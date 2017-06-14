@@ -118,7 +118,7 @@ public class MainFragment extends Fragment {
         super.onDetach();
     }
 
-    private static class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mEstimateCount;
         private TextView mEstimateEndTime;
@@ -132,7 +132,7 @@ public class MainFragment extends Fragment {
 
         private Request mRequest;
 
-        public MainViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        public MainViewHolder(LayoutInflater inflater, ViewGroup parent)  {
             super(inflater.inflate(R.layout.main_item, parent, false));
 
             mEstimateCount = (TextView) itemView.findViewById(R.id.estimateCount);
@@ -158,10 +158,9 @@ public class MainFragment extends Fragment {
             mRequestJobType.setText(mRequest.getJobType());
             mOverDue.setText(mRequest.getOverdueRecord());
         }
-
         @Override
         public void onClick(View v) {
-
+            getActivity().startActivity(DetailedRequest.getIntent(mRequest.getRequestId(), mContext));
         }
     }
 
