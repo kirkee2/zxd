@@ -1,4 +1,4 @@
-package com.hellmoney.thca.View;
+package com.hellmoney.thca.view;
 
 import android.content.Context;
 import android.net.Uri;

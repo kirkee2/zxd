@@ -1,9 +1,10 @@
-package com.hellmoney.thca.View;
+package com.hellmoney.thca.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,21 +18,28 @@ import com.hellmoney.thca.CustomViewPager;
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.ViewPageAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements
         ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
-
     private static final String TAG = MainActivity.class.getName();
 
     @BindView(R.id.container)
-    CustomViewPager mViewPager;
-
+    protected CustomViewPager mViewPager;
     @BindView(R.id.navigation)
-    BottomNavigationView navigation;
+    protected BottomNavigationView mBottomNavigationView;
+    @BindView(R.id.drawer_layout)
+    protected DrawerLayout mDrawerLayout;
+    @BindView(R.id.toolbar)
+    protected Toolbar mToolbar;
 
-    ViewPageAdapter mViewPageAdapter;
+    private ViewPageAdapter mViewPageAdapter;
+    private List<Fragment> mFragments;
+    private MenuItem mPrevBottomNavigationItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +47,29 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mViewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
+        mFragments = new ArrayList<>();
+        mFragments.add(MainFragment.newInstance(null, null));
+        mFragments.add(AgentFragment.newInstance(null, null));
+        mFragments.add(NoticeFragment.newInstance(null, null));
+        mFragments.add(ItemFragment.newInstance(null, null));
+        mViewPageAdapter = new ViewPageAdapter(getSupportFragmentManager(), mFragments);
+
         mViewPager.setAdapter(mViewPageAdapter);
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setCurrentItem(1);
-        prevBottomNavigation = navigation.getMenu().getItem(0);
         mViewPager.setOffscreenPageLimit(4);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mPrevBottomNavigationItem = mBottomNavigationView.getMenu().getItem(0);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setSupportActionBar(mToolbar);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         );
-        drawer.setDrawerListener(toggle);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements
         });
 
     }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -96,9 +107,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -110,15 +120,13 @@ public class MainActivity extends AppCompatActivity implements
         mViewPager.removeOnPageChangeListener(this);
     }
 
-    private MenuItem prevBottomNavigation;
-
     @Override
     public void onPageSelected(int position) {
-        if (prevBottomNavigation != null){
-            prevBottomNavigation.setChecked(false);
+        if (mPrevBottomNavigationItem != null) {
+            mPrevBottomNavigationItem.setChecked(false);
         }
-        prevBottomNavigation = navigation.getMenu().getItem(position);
-        prevBottomNavigation.setChecked(true);
+        mPrevBottomNavigationItem = mBottomNavigationView.getMenu().getItem(position);
+        mPrevBottomNavigationItem.setChecked(true);
         mViewPageAdapter.notifyDataSetChanged();
     }
 
@@ -129,9 +137,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
-
     }
 }

@@ -1,4 +1,4 @@
-package com.hellmoney.thca.View;
+package com.hellmoney.thca.view;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 import com.hellmoney.thca.R;
 
 public class ItemFragment extends Fragment {
+    private static final String TAG = ItemFragment.class.getName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
-
+    private Context mContext;
 
     public ItemFragment() {
         // Required empty public constructor
@@ -38,28 +39,14 @@ public class ItemFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        mContext = getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container , false);
-
+        View view = inflater.inflate(R.layout.fragment_item, container , false);
         return view;
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
 }

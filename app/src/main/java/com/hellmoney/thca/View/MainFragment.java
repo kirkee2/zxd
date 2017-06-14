@@ -1,4 +1,4 @@
-package com.hellmoney.thca.View;
+package com.hellmoney.thca.view;
 
 import android.content.Context;
 import android.net.Uri;
@@ -26,11 +26,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainFragment extends Fragment {
+    private static final String TAG = MainFragment.class.getName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
+    private Context mContext;
 
     private RecyclerView recyclerView;
     private MainContentAdapter mMainContentAdapter;

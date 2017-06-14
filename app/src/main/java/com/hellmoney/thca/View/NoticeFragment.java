@@ -1,6 +1,7 @@
-package com.hellmoney.thca.View;
+package com.hellmoney.thca.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,23 +28,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NoticeFragment extends Fragment {
-
-    private final String TAG = NoticeFragment.class.getName();
-
+    private static final String TAG = NoticeFragment.class.getName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
-
     private Context mContext;
-
-    private List<Notice> notices;
+    private List<Notice> mNotices;
     private NoticeAdapter mNoticeAdapter;
 
-    RecyclerView mRecyclerView;
-
-    LinearLayoutManager mLinearLayoutManager;
+    @BindView(R.id.notice_recycler_view)
+    protected RecyclerView mRecyclerView;
 
     public NoticeFragment() {
         // Required empty public constructor
@@ -73,13 +69,18 @@ public class NoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
-        notices = new ArrayList<>();
-        mNoticeAdapter = new NoticeAdapter(mContext, notices);
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        ButterKnife.bind(this, view);
+        mNotices = new ArrayList<>();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setHasFixedSize(true);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.notice_recyclerView);
+        return view;
+    }
 
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+    @Override
+    public void onResume() {
+        super.onResume();
+        mNoticeAdapter = new NoticeAdapter(mContext, mNotices);
         mRecyclerView.setAdapter(mNoticeAdapter);
         Call<NoticeRes> getNotices = NetworkManager.service.getNotices();
         getNotices.enqueue(new Callback<NoticeRes>() {
@@ -87,95 +88,81 @@ public class NoticeFragment extends Fragment {
             public void onResponse(Call<NoticeRes> call, Response<NoticeRes> response) {
                 if (response.isSuccessful()) {
                     NoticeRes results = response.body();
-//                    Log.d("Network", results.getNotices().toString());
-                    notices.clear();
-                    notices.addAll(results.getNotices());
+                    Log.d(TAG, results.getNotices().toString());
+                    mNotices.clear();
+                    mNotices.addAll(results.getNotices());
                     mNoticeAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
             public void onFailure(Call<NoticeRes> call, Throwable t) {
-                Log.d(TAG, "ERROR");
+                Log.e(TAG, "NETWORKING_ERROR");
             }
         });
-        return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
+    class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeHolder> {
+        private final String TAG = NoticeAdapter.class.getName();
+        private final Context mContext;
+        private final List<Notice> mNotices;
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    /**
-     * NoticeAdapter 부분
-     */
-    public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeHolder> {
-        private final Context context;
-        private final List<Notice> notices;
-
-        public NoticeAdapter(Context context, List<Notice> notices) {
-            this.context = context;
-            this.notices = notices;
+        NoticeAdapter(Context context, List<Notice> notices) {
+            this.mContext = context;
+            this.mNotices = notices;
         }
 
         @Override
         public NoticeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(context);
+            LayoutInflater inflater = LayoutInflater.from(mContext);
             View view = inflater.inflate(R.layout.notice_item, parent, false);
             return new NoticeHolder(view);
         }
 
         @Override
         public void onBindViewHolder(NoticeHolder holder, int position) {
-            Notice notice = notices.get(position);
+            final Notice notice = mNotices.get(position);
 
-            holder.tvTitle.setText(notice.getTitle());
+            holder.TitleTextView.setText(notice.getTitle());
             switch (notice.getType()) {
                 case "공지":
-                    holder.tvType.setImageResource(R.drawable.alert1);
+                    holder.TypeImageView.setImageResource(R.mipmap.ic_notice);
                     break;
                 case "점검":
-                    holder.tvType.setImageResource(R.drawable.alert2);
+                    holder.TypeImageView.setImageResource(R.mipmap.ic_check);
                     break;
                 case "경고":
-                    holder.tvType.setImageResource(R.drawable.alert3);
+                    holder.TypeImageView.setImageResource(R.mipmap.ic_warning);
                     break;
                 default:
-                    holder.tvType.setImageResource(R.drawable.ic_favorite);
+                    holder.TypeImageView.setImageResource(R.mipmap.ic_notice);
                     break;
-
             }
-
-//            holder.tvRegisterTime.setText(notice.getRegisterTime().toString());
             holder.itemView.setTag(notice.getNoticeId());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, NoticeDetailActivity.class);
+                    intent.putExtra(NoticeDetailActivity.EXTRA_NOTICE_ID, notice.getNoticeId());
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
         @Override
         public int getItemCount() {
-            return notices.size();
+            return mNotices.size();
         }
 
         class NoticeHolder extends RecyclerView.ViewHolder {
+            @BindView(R.id.notice_title_text_view)
+            protected TextView TitleTextView;
+            @BindView(R.id.notice_type_image_view)
+            protected ImageView TypeImageView;
 
-            @BindView(R.id.TitleNotice)
-            protected TextView tvTitle;
-
-            @BindView(R.id.TypeNotice)
-            protected ImageView tvType;
-
-            public NoticeHolder(View view) {
+            NoticeHolder(View view) {
                 super(view);
                 ButterKnife.bind(this, view);
             }
