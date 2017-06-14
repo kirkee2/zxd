@@ -67,12 +67,14 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+        mContext = getActivity();
         mRequests = new ArrayList<>();
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        mMainContentAdapter = new MainContentAdapter(mRequests);
+        mMainContentAdapter = new MainContentAdapter(mRequests, mContext);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mMainContentAdapter);
+
 
         Call<RequestRes> getRequests = NetworkManager.service.getRequests("agent1@naver.com");
         getRequests.enqueue(new Callback<RequestRes>() {
@@ -118,7 +120,7 @@ public class MainFragment extends Fragment {
         super.onDetach();
     }
 
-    private static class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mEstimateCount;
         private TextView mEstimateEndTime;
@@ -129,10 +131,10 @@ public class MainFragment extends Fragment {
         private TextView mRequestAddressPrice;
         private TextView mRequestJobType;
         private TextView mOverDue;
-
+        private ImageView mStar;
         private Request mRequest;
 
-        public MainViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        public MainViewHolder(LayoutInflater inflater, ViewGroup parent)  {
             super(inflater.inflate(R.layout.main_item, parent, false));
 
             mEstimateCount = (TextView) itemView.findViewById(R.id.estimateCount);
@@ -144,6 +146,9 @@ public class MainFragment extends Fragment {
             mRequestAddressPrice = (TextView) itemView.findViewById(R.id.requestPrice);
             mRequestJobType = (TextView) itemView.findViewById(R.id.requestJobType);
             mOverDue = (TextView) itemView.findViewById(R.id.OverDueRecord);
+            mStar = (ImageView) itemView.findViewById(R.id.star);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bindRequest(Request request) {
@@ -157,21 +162,40 @@ public class MainFragment extends Fragment {
             mRequestAddressPrice.setText(mRequest.getPrice());
             mRequestJobType.setText(mRequest.getJobType());
             mOverDue.setText(mRequest.getOverdueRecord());
-        }
 
+            switch (mRequest.getFavorite()){
+                case 1 :
+                    mStar.setImageResource(R.mipmap.ic_favorite_active);
+                    break;
+                case 0 :
+                    mStar.setImageResource(R.mipmap.ic_favorite_inactive_trim);
+                    break;
+            }
+
+            switch(mRequest.getLoanType()){
+                case "담보":
+                    mLoanTypeImageView.setImageResource(R.mipmap.ic_dambu);
+                    break;
+                case "전세":
+                    mLoanTypeImageView.setImageResource(R.mipmap.ic_junsa);
+                    break;
+
+            }
+        }
         @Override
         public void onClick(View v) {
-
+            getActivity().startActivity(DetailedRequest.getIntent(mRequest.getRequestId(), mContext));
         }
     }
 
     private class MainContentAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
         private List<Request> mRequests;
+        private Context mContext;
 
-
-        public MainContentAdapter(List<Request> requests) {
+        public MainContentAdapter(List<Request> requests, Context context) {
             this.mRequests = requests;
+            this.mContext = context;
         }
 
         @Override

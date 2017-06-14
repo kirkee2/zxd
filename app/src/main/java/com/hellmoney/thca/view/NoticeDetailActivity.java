@@ -1,8 +1,8 @@
 package com.hellmoney.thca.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -82,7 +82,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                         mContentTextView.setText(notice.getContent());
                         mRegisterTimeTextView.setText(dateFormat.format(notice.getRegisterTime()));
                     } else {
-                        Log.e(TAG, results.getMessage());
+//                        Log.e(TAG, results.getMessage());
                     }
                 }
             }
