@@ -4,6 +4,7 @@ import com.hellmoney.thca.model.NoticeDetailRes;
 import com.hellmoney.thca.model.NoticeRes;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
+import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.model.User;
 
 import retrofit2.Call;
@@ -51,8 +52,14 @@ public interface NetworkService {
                              @Field("earlyRepaymentFee") String earlyRepaymentFee,
                              @Field("repaymentType") String fcmToken);
 
+    @GET("/consultants/requests/{requestId}/{agentId}")
+    Call<SingleRequestRes> getRequest(@Path("requestId") String requestId,
+                                      @Path("agentId") String agentId);
+
     @GET("/commons/notices")
     Call<NoticeRes> getNotices();
+
+//    /consultants/requests/:requestId/:agentId
 
     @GET("/commons/notices/{noticeId}")
     Call<NoticeDetailRes> getNotice(@Path("noticeId") int noticeId);

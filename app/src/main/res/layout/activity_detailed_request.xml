@@ -344,7 +344,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -357,7 +357,7 @@
                                 android:textColor="#757575"
                                 android:text="대출금액"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/fixedLoanAmount"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -365,7 +365,7 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="만원"
+                                android:hint="만원"
                                 />
                     </LinearLayout>
                     <Space
@@ -374,7 +374,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -387,7 +387,7 @@
                                 android:textColor="#757575"
                                 android:text="금리종류"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/itemName"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -395,7 +395,7 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="금리"
+                                android:hint="금리"
                                 />
                     </LinearLayout>
                     <Space
@@ -404,7 +404,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -417,15 +417,15 @@
                                 android:textColor="#757575"
                                 android:text="금리"
                                 />
-                        <TextView
-                                android:id="@+id/loan_rate"
+                        <EditText
+                                android:id="@+id/loanRate"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="%"
+                                android:hint="%"
                                 />
                     </LinearLayout>
                     <Space
@@ -434,13 +434,12 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
                             >
                         <TextView
-                                android:id="@+id/repaymentType"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -448,14 +447,15 @@
                                 android:textColor="#757575"
                                 android:text="상환방식"
                                 />
-                        <TextView
+                        <EditText
+                                android:id="@+id/repaymentType"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                android:hint="원리금분할상환"
+                                android:hint="ex) 원리금분할상환"
                                 />
                     </LinearLayout>
                     <Space
@@ -464,7 +464,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -477,7 +477,7 @@
                                 android:textColor="#757575"
                                 android:text="중도상환수수료"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/earlyRepaymentType"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -494,7 +494,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -507,7 +507,7 @@
                                 android:textColor="#757575"
                                 android:text="연체기간1"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/overDueTime1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -524,7 +524,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -537,7 +537,7 @@
                                 android:textColor="#757575"
                                 android:text="연체금리1"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/overDueInterestRate1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -554,14 +554,12 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
                             >
                         <TextView
-                                android:id="@+id/overDueTime2"
-
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -569,14 +567,16 @@
                                 android:textColor="#757575"
                                 android:text="연체기간2"
                                 />
-                        <TextView
+                        <EditText
+                                android:id="@+id/overDueTime2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                android:hint="ex) 1개월 초과 3개월 이내"
+                                android:singleLine="true"
+                                android:hint="ex)1개월 초과 3개월 이내"
                                 />
                     </LinearLayout>
                     <Space
@@ -585,7 +585,7 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
@@ -598,7 +598,7 @@
                                 android:textColor="#757575"
                                 android:text="연체금리2"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/overDueInterestRate2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -607,6 +607,7 @@
                                 android:textColor="#262637"
                                 android:gravity="end"
                                 android:text="%"
+
                                 />
                     </LinearLayout>
                     <Space
@@ -615,24 +616,23 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
                             >
                         <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#757575"
                                 android:text="연체기간3"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/overDueTime3"
-
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
@@ -646,27 +646,27 @@
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="24dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
                             android:orientation="horizontal"
                             >
                         <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#757575"
                                 android:text="연체금리3"
                                 />
-                        <TextView
+                        <EditText
                                 android:id="@+id/overDueInterestRate3"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
-                                android:gravity="end"
+                                android:gravity="right"
                                 android:text="%"
                                 />
                     </LinearLayout>
@@ -677,6 +677,7 @@
                     android:layout_height="20dp"
                     />
             <Button
+                    android:id="@+id/sendEstimate"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="296dp"
                     android:layout_height="48dp"
@@ -684,8 +685,5 @@
                     android:text="견적서 전송"
                     />
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
-
-
 </LinearLayout>

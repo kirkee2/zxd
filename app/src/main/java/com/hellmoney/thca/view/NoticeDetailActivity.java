@@ -1,13 +1,12 @@
 package com.hellmoney.thca.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.model.NoticeDetailRes;
-import com.hellmoney.thca.model.NoticeRes;
 import com.hellmoney.thca.network.NetworkManager;
 
 import butterknife.BindView;
@@ -47,7 +46,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                     if(results.getMessage().equals("SUCCESS")) {
                         textViewTest.setText(results.getNotice().toString());
                     } else {
-                        Log.e(TAG, results.getMessage());
+//                        Log.e(TAG, results.getMessage());
                     }
                 }
             }
