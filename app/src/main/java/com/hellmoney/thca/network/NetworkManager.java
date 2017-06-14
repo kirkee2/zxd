@@ -10,7 +10,7 @@ public class NetworkManager {
     private static final String baseUrl = "http://13.124.127.93:3000";
 
     private static Gson gson = new GsonBuilder()
-            .setDateFormat("yyyy-MM-dd")
+            .setDateFormat("yyyy-MM-dd HH:mm:ss")
             .create();
 
     private static Retrofit retrofit = new Retrofit.Builder()

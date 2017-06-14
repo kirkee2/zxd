@@ -123,19 +123,19 @@ public class NoticeFragment extends Fragment {
         public void onBindViewHolder(NoticeHolder holder, int position) {
             final Notice notice = mNotices.get(position);
 
-            holder.TitleTextView.setText(notice.getTitle());
+            holder.mTitleTextView.setText(notice.getTitle());
             switch (notice.getType()) {
                 case "공지":
-                    holder.TypeImageView.setImageResource(R.mipmap.ic_notice);
+                    holder.mTypeImageView.setImageResource(R.mipmap.ic_notice);
                     break;
                 case "점검":
-                    holder.TypeImageView.setImageResource(R.mipmap.ic_check);
+                    holder.mTypeImageView.setImageResource(R.mipmap.ic_check);
                     break;
                 case "경고":
-                    holder.TypeImageView.setImageResource(R.mipmap.ic_warning);
+                    holder.mTypeImageView.setImageResource(R.mipmap.ic_warning);
                     break;
                 default:
-                    holder.TypeImageView.setImageResource(R.mipmap.ic_notice);
+                    holder.mTypeImageView.setImageResource(R.mipmap.ic_notice);
                     break;
             }
             holder.itemView.setTag(notice.getNoticeId());
@@ -158,9 +158,9 @@ public class NoticeFragment extends Fragment {
 
         class NoticeHolder extends RecyclerView.ViewHolder {
             @BindView(R.id.notice_title_text_view)
-            protected TextView TitleTextView;
+            protected TextView mTitleTextView;
             @BindView(R.id.notice_type_image_view)
-            protected ImageView TypeImageView;
+            protected ImageView mTypeImageView;
 
             NoticeHolder(View view) {
                 super(view);

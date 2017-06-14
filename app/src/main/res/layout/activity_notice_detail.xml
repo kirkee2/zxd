@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.hellmoney.thca.view.NoticeDetailActivity">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:layout_alignParentTop="true"/>
+    <include layout="@layout/app_bar_main" />
 
-
-    <TextView
-        android:id="@+id/text_test"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="sdfsdfsdf" />
-</RelativeLayout>
+    <include layout="@layout/content_notice_detail" />
+</android.support.design.widget.CoordinatorLayout>

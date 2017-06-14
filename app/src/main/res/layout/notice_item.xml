@@ -23,14 +23,14 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:src="@mipmap/ic_notice" />
+            tools:src="@mipmap/ic_notice" />
 
         <Space
             android:id="@+id/notice_space"
             android:layout_width="8dp"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/notice_type_image_view" />
+            android:layout_toRightOf="@+id/notice_type_image_view" />
 
         <TextView
             android:id="@+id/notice_title_text_view"
@@ -41,7 +41,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/notice_space"
+            android:layout_toRightOf="@+id/notice_space"
             android:gravity="center_vertical"
             android:textColor="#262637"
             android:textSize="14sp"
