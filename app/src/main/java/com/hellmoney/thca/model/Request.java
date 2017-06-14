@@ -2,17 +2,27 @@ package com.hellmoney.thca.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import android.util.Log;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by len on 2017. 6. 13..
  */
 
 public class Request {
+    /*
+    상세보기에 필요한 변수들은 모임
+     */
+    @SerializedName("estimate_count")
+    private int estiamteCount;
+
+    @SerializedName("bank_count")
+    private int bankCount;
+
+    @SerializedName("favorite")
+    private int favorite;
+
+    @SerializedName("customer_id")
+    private String customerId;
 
     @SerializedName("count")
     private String countEstimate;
@@ -34,6 +44,10 @@ public class Request {
 
     @SerializedName("loan_amount")
     private String loanAmount;
+
+    public Double getLimiteAmount() {
+        return Double.parseDouble(loanAmount) * 0.7;
+    }
 
     @SerializedName("interest_rate_type")
     private String interestRateType;
@@ -123,20 +137,35 @@ public class Request {
     @SerializedName("fixed_loan_amount")
     private String fixedLoanAmount;
 
+    public int getEstiamteCount() {
+        return estiamteCount;
+    }
+
+    public int getBankCount() {
+        return bankCount;
+    }
+
+    public int getFavorite() {
+        return favorite;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
 
     private String totalAddress;
     private String Size;
 
     public String getSize() {
-        return getExclusiveSize() + "/" + getSupplySize() + "m3" ;
+        return getExclusiveSize() + "/" + getSupplySize() + "m3";
     }
 
     public String getTotalAddress() {
-        return getAddress1() + " " +getAddress2() + " " + getAddress3();
+        return getAddress1() + " " + getAddress2() + " " + getAddress3();
     }
 
     public String getCountEstimate() {
-        return "견적 " + countEstimate+"건";
+        return "견적 " + countEstimate + "건";
     }
 
     public int getRequestId() {
@@ -221,12 +250,12 @@ public class Request {
 
     public String getEndTime() {
 
-        long time = System.currentTimeMillis();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-        String currentTime = dayTime.format(new Date(time));
+//        long time = System.currentTimeMillis();
+//        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+//        String currentTime = dayTime.format(new Date(time));
 //TODO 시간 해결해야함.
-        Log.d("LEN", currentTime + "GG"+endTime);
-        return   endTime;
+//        Log.d("LEN", currentTime + "GG" + endTime);
+        return endTime;
 
     }
 
