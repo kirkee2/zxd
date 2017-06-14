@@ -6,11 +6,8 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class NetworkManager {
-
     private static final String baseUrl = "http://13.124.127.93:3000";
-
 
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
@@ -21,7 +18,5 @@ public class NetworkManager {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 
-
     public static NetworkService service = retrofit.create(NetworkService.class);
-
 }

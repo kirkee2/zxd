@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
-        android:layout_width="328dp"
-        android:layout_height="72dp"
-        android:gravity="center"
-        >
-    <ImageView
-            android:id="@+id/TypeNotice"
-            android:padding="8dp"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="4dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/notice_type_image_view"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:src="@drawable/ic_notifications_black_24dp"
-            />
-    <Space
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@mipmap/ic_notice" />
+
+        <Space
+            android:id="@+id/notice_space"
             android:layout_width="8dp"
-            android:layout_height="1dp"
-            />
-    <LinearLayout
-            android:layout_width="232dp"
-            android:layout_height="56dp"
-            android:background="#ffffff"
-            android:gravity="center_vertical"
-            >
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/notice_type_image_view" />
+
         <TextView
-                android:id="@+id/TitleNotice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#262637"
-                tools:text="헬로머니 서비스 이용안내"
-                />
-    </LinearLayout>
-</LinearLayout>
+            android:id="@+id/notice_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/notice_space"
+            android:gravity="center_vertical"
+            android:textColor="#262637"
+            android:textSize="14sp"
+            tools:text="Information About Us" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
