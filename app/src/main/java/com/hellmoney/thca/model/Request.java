@@ -9,15 +9,9 @@ import java.util.Date;
  */
 
 public class Request {
-    /*
-    상세보기에 필요한 변수들은 모임
-     */
+
     @SerializedName("msg")
     private String msg;
-
-    public String getMsg() {
-        return msg;
-    }
 
     @SerializedName("estimate_count")
     private int estiamteCount;
@@ -51,10 +45,6 @@ public class Request {
 
     @SerializedName("loan_amount")
     private String loanAmount;
-
-    public Double getLimiteAmount() {
-        return Double.parseDouble(loanAmount) * 0.7;
-    }
 
     @SerializedName("interest_rate_type")
     private String interestRateType;
@@ -97,7 +87,6 @@ public class Request {
 
     @SerializedName("apt_price")
     private String price;
-
 
     @SerializedName("apt_size_supply")
     private Float supplySize;
@@ -143,6 +132,14 @@ public class Request {
 
     @SerializedName("fixed_loan_amount")
     private String fixedLoanAmount;
+
+    public Double getLimiteAmount() {
+        return Double.parseDouble(loanAmount) * 0.7;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
 
     public int getEstiamteCount() {
         return estiamteCount;

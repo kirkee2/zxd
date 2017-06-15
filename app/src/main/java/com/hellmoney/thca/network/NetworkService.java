@@ -1,5 +1,7 @@
 package com.hellmoney.thca.network;
 
+import com.hellmoney.thca.model.EstimateRes;
+import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.NoticeDetailRes;
 import com.hellmoney.thca.model.NoticeRes;
 import com.hellmoney.thca.model.Request;
@@ -8,11 +10,13 @@ import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.model.User;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface NetworkService {
     @FormUrlEncoded
@@ -55,23 +59,14 @@ public interface NetworkService {
     @GET("/consultants/requests/agent/{agentId}")
     Call<RequestRes> getRequests(@Path("agentId") String agentId);
 
-//    request_id:요청ID
-//    itemBank:상품은행
-//    itemName:상품명
-//    interestRate : 금리
-//    interestRateType : 금리 종류
-//    repaymentType : 상환방식
-//            overdueInterestRate01
-//    overdueInterestRate02,
-//    overdueInterestRate03,
-//    overdueTime01,
-//    overdueTime02,
-//    overdueTime03,
-//    earlyRepaymentFee : 중도 상환 수수료
-
     @GET("/consultants/requests/{requestId}/{agentId}")
     Call<SingleRequestRes> getRequest(@Path("requestId") String requestId,
                                       @Path("agentId") String agentId);
+
+//
+    @GET("/clients/estimates")
+    Call<RequestRes> getLoanRate(@Query("requestId") String requestId);
+
 
     @GET("/commons/notices")
     Call<NoticeRes> getNotices();
@@ -80,4 +75,15 @@ public interface NetworkService {
 
     @GET("/commons/notices/{noticeId}")
     Call<NoticeDetailRes> getNotice(@Path("noticeId") int noticeId);
+//
+    @POST("/consultants/likes/agents/{agentId}/requests/{requestId}")
+    Call<LikeRes> like(@Path("agentId") String agentId,
+                       @Path("requestId") int requestId);
+
+    @DELETE("/consultants/likes/agents/{agentId}/requests/{requestId}")
+    Call<LikeRes> unlike(@Path("agentId") String agentId,
+                       @Path("requestId") int requestId);
+
+    @GET("/consultants/estimates")
+    Call<EstimateRes> getMyEstimate(@Query("agentId") String agentId);
 }

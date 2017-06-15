@@ -6,16 +6,23 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.model.Request;
+import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +39,12 @@ public class DetailedRequest extends AppCompatActivity {
 
     @BindView(R.id.loanTypeImageView)
     ImageView loanTypeImage;
+
+    @BindView(R.id.finalQuotationCount)
+    TextView finalQuotationCount;
+
+    @BindView(R.id.averageInterestRate)
+    TextView averageInterestRate;
 
     @BindView(R.id.requestAddress)
     TextView requestAddress;
@@ -63,91 +76,16 @@ public class DetailedRequest extends AppCompatActivity {
     @BindView(R.id.mainBank)
     TextView mainBank;
 
-    //저장된 아이템 불러오는 버튼
-    @BindView(R.id.callItem)
-    ImageView callItem;
+    @BindView(R.id.barChart)
+    BarChart mBarChart;
 
-    @BindView(R.id.fixedLoanAmount)
-    EditText fixedLoanAmount;
+    @BindView(R.id.calledAddEstimate)
+    Button mButton;
 
-    @BindView(R.id.itemName)
-    EditText itemName;
-
-    @BindView(R.id.loanRate)
-    EditText loanRate;
-
-    @BindView(R.id.repaymentType)
-    EditText repaymentType;
-
-    @BindView(R.id.earlyRepaymentType)
-    EditText earlyRepaymentType;
-
-    @BindView(R.id.overDueTime1)
-    EditText overDueTime1;
-
-    @BindView(R.id.overDueInterestRate1)
-    EditText overDueInterestRate1;
-
-    @BindView(R.id.overDueTime2)
-    EditText overDueTime2;
-
-    @BindView(R.id.overDueInterestRate2)
-    EditText overDueInterestRate2;
-
-    @BindView(R.id.overDueTime3)
-    EditText overDueTime3;
-
-    @BindView(R.id.overDueInterestRate3)
-    EditText overDueInterestRate3;
-
-    @BindView(R.id.sendEstimate)
-    Button sendEstimateButton;
-
-    @OnClick(R.id.sendEstimate)
-    public void submit(View view) {
-
-        Log.d(TAG,request.getAgentId());
-        Call<Request> insertEstimate = NetworkManager.service.addRequest(
-                request.getAgentId(),
-                fixedLoanAmount.getText().toString(),
-                requestId,
-                request.getAgentId(),
-                request.getItemBank(),
-                itemName.getText().toString(),
-                request.getInterestRate(),
-                request.getInterestRateType(),
-                overDueInterestRate1.getText().toString(),
-                overDueInterestRate2.getText().toString(),
-                overDueInterestRate3.getText().toString(),
-                overDueTime1.getText().toString(),
-                overDueTime2.getText().toString(),
-                overDueTime3.getText().toString(),
-                earlyRepaymentType.getText().toString(),
-                repaymentType.getText().toString());
-
-        insertEstimate.enqueue(new Callback<Request>() {
-            @Override
-            public void onResponse(Call<Request> call, Response<Request> response) {
-                if(response.isSuccessful()){
-
-                    Log.d(TAG, "Estimate insert Success");
-                    Request request = response.body();
-                    String msg = request.getMsg();
-                    Log.d(TAG, msg);
-                    finish();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Request> call, Throwable t) {
-                    Log.d(TAG, t + "");
-            }
-        });
-
-    }
     Request request;
-
+    ArrayList<Request> loanRates;
     private int requestId;
+    Context mContext;
 
     protected static Intent getIntent(int id, Context context) {
         Intent intent = new Intent(context, DetailedRequest.class);
@@ -163,13 +101,99 @@ public class DetailedRequest extends AppCompatActivity {
 
         requestId = (int) getIntent().getSerializableExtra(REQUESTID);
         Log.d(TAG, "RequestID 는" + requestId + "");
+        mContext = getApplicationContext();
+    }
 
-
+    @OnClick(R.id.calledAddEstimate)void onClick(){
+        startActivity(SendDetailedRequest.getIntent(requestId, mContext));
+        Toast.makeText(this, "클릭", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        loanRates = new ArrayList<>();
+
+        Call<RequestRes> getLoanRate = NetworkManager.service.getLoanRate(String.valueOf(requestId));
+        getLoanRate.enqueue(new Callback<RequestRes>() {
+            @Override
+            public void onResponse(Call<RequestRes> call, Response<RequestRes> response) {
+                if(response.isSuccessful()){
+                    RequestRes requests = response.body();
+                    if(requests.getMessage().equals("SUCCESS")){
+
+                        ArrayList<BarEntry> entries = new ArrayList<>();
+                        ArrayList<BarEntry> entriesMin = new ArrayList<>();
+
+                        float min = 100;
+                        int minIndex = 0;
+                        loanRates.clear();
+                        loanRates.addAll(requests.getRequests());
+
+                        int length = loanRates.size();
+                        Double sum = 0.0;
+
+                        int i = 0;
+                        for (Request loanLate: loanRates) {
+                            Float rate = Float.parseFloat(loanLate.getInterestRate());
+                            sum += rate;
+                            entries.add(new BarEntry(i*0.5F,rate));
+
+                            if(rate < min){
+                                min = rate;
+                                minIndex = i;
+                            }
+                            i++;
+                        }
+
+                        entriesMin.add(entries.get(minIndex));
+                        entries.remove(minIndex);
+
+
+                        Description d = new Description();
+                        d.setText("");
+
+                        BarDataSet dataSet = new BarDataSet(entries, "금리");
+                        BarDataSet dataSetMin = new BarDataSet(entriesMin, "최저 금리");
+
+                        dataSet.setColor(0xFF00BFA5);
+                        dataSet.setHighlightEnabled(false);
+                        dataSet.setValueTextSize(10);
+
+                        dataSetMin.setColor(0xFFFF4081);
+                        dataSetMin.setHighlightEnabled(false);
+                        dataSetMin.setValueTextSize(10);
+
+                        BarData data = new BarData(dataSet);
+                        data.addDataSet(dataSetMin);
+
+                        data.setBarWidth(0.15F);
+
+                        mBarChart.setData(data);
+                        mBarChart.getAxisRight().setEnabled(false);
+                        mBarChart.getXAxis().setEnabled(false);
+                        mBarChart.setDescription(d);
+                        mBarChart.setEnabled(false);
+                        mBarChart.animateY(500);
+                        mBarChart.setDoubleTapToZoomEnabled(false);
+                        mBarChart.setScaleEnabled(false);
+                        mBarChart.invalidate();
+
+
+
+                        Double average = (sum / length);
+                        averageInterestRate.setText(average + "");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RequestRes> call, Throwable t) {
+                Log.d(TAG, "평균 OR 그래프 에러" + t);
+            }
+        });
+
 
         Call<SingleRequestRes> getRequest = NetworkManager.service.getRequest(String.valueOf(requestId), "agent1@naver.com");
         getRequest.enqueue(new Callback<SingleRequestRes>() {
@@ -181,11 +205,30 @@ public class DetailedRequest extends AppCompatActivity {
                         Request[] requests = results.getRequest();
                         // 배열로 보내져서 배열로 받아왔음
                         request = requests[0];
-                        requestLimitAmount.setText(request.getLimiteAmount() + "만원");
-                        loanAmount.setText(request.getLoanAmount() + "만원");
+
+                        Log.d(TAG, request.getTotalAddress());
+
+                        finalQuotationCount.setText(request.getEstiamteCount() + "");
+
+                        switch (request.getLoanType()) {
+
+                            case "주택담보대출":
+                                loanTypeImage.setImageResource(R.drawable.dambuu);
+                                break;
+
+                            case "전세자금대출":
+                                loanTypeImage.setImageResource(R.drawable.sunjaa);
+                                break;
+                        }
+                        requestAddress.setText(request.getTotalAddress());
+                        requestAddressApt.setText(request.getAptName());
+                        requestAddressSize.setText(request.getSize());
+                        requestLimitAmount.setText(request.getLimiteAmount() + " 만원");
+                        loanAmount.setText(request.getLoanAmount() + " 만원");
                         loanType.setText(request.getLoanType());
                         requestOverDue.setText(request.getOverdueRecord());
                         jobType.setText(request.getJobType());
+
 
                         //TODO 시간 해결
                         scheduledTime.setText(request.getScheduledTime() + "");
@@ -198,9 +241,12 @@ public class DetailedRequest extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SingleRequestRes> call, Throwable t) {
+
                 Log.e(TAG, t + "");
             }
         });
     }
+
+
 }
 

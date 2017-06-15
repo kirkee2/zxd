@@ -23,13 +23,13 @@
                 android:gravity="center"
                 >
             <TextView
-                    android:id="@+id/estimateCount"
+                    android:id="@+id/estimateStatus"
                     android:layout_width="64dp"
                     android:layout_height="18dp"
                     android:textSize="14sp"
                     android:textColor="#757575"
                     android:layout_gravity="center_vertical"
-                    tools:text="견적 10 건"
+                    tools:text="채택"
                     />
             <Space
                     android:layout_width="16dp"
@@ -206,7 +206,7 @@
                             android:textSize="15sp"
                             android:textColor="#757575"
                             android:gravity="center_horizontal"
-                            android:text="연제 이력"
+                            android:text="연체 이력"
                             />
                     <Space
                             android:layout_width="1dp"
