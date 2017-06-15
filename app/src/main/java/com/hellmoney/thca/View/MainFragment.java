@@ -21,8 +21,8 @@ import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.util.timeUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +30,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.hellmoney.thca.util.timeUtil.formatNumber2;
+
 public class MainFragment extends Fragment {
     public static final String TAG = MainFragment.class.getName();
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -153,7 +154,6 @@ public class MainFragment extends Fragment {
             mRequestJobType = (TextView) itemView.findViewById(R.id.requestJobType);
             mOverDue = (TextView) itemView.findViewById(R.id.OverDueRecord);
             mStar = (ToggleButton) itemView.findViewById(R.id.star);
-
             itemView.setOnClickListener(this);
             mStar.setOnCheckedChangeListener(this);
         }
@@ -162,7 +162,19 @@ public class MainFragment extends Fragment {
 
             mRequest = request;
             mEstimateCount.setText(mRequest.getCountEstimate());
-            mEstimateEndTime.setText(dateFormat.format(mRequest.getEndTime()));
+
+            int secondParsing = timeUtil.timeLeftSecondParsing(mRequest.getEndTime());
+            int hour = secondParsing/3600;
+            int tmp = secondParsing%3600;
+            int minute = tmp/60;
+            int second = tmp%60;
+
+            if(secondParsing > 0) {
+                mEstimateEndTime.setText("마감까지 " + formatNumber2(hour) + " : " + formatNumber2(minute) + ":" + formatNumber2(second) + " 남았습니다. ");
+            } else {
+                mEstimateEndTime.setText("현재 요청서는 마감 되었습니다.");
+
+            }
             mRequestAddress.setText(mRequest.getTotalAddress());
             mRequestAddressApt.setText(mRequest.getAptName());
             mRequestAddressSize.setText(mRequest.getSize());
@@ -179,7 +191,6 @@ public class MainFragment extends Fragment {
                     mStar.setBackgroundResource(R.drawable.favorite_unactive);
                     break;
             }
-
             switch (mRequest.getLoanType()) {
                 case "주택담보대출":
                     mLoanTypeImageView.setImageResource(R.drawable.dambuu);
@@ -209,6 +220,7 @@ public class MainFragment extends Fragment {
                             mStar.setBackgroundResource(R.drawable.favorite_active);
                         }
                     }
+
                     @Override
                     public void onFailure(Call<LikeRes> call, Throwable t) {
                         Log.e(TAG, "onFailure: ");
@@ -219,7 +231,7 @@ public class MainFragment extends Fragment {
                 deleteFavorite.enqueue(new Callback<LikeRes>() {
                     @Override
                     public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             Toast.makeText(mContext, "좋아요를 취소합니다.", Toast.LENGTH_SHORT).show();
                             mStar.setBackgroundResource(R.drawable.favorite_unactive);
                         }

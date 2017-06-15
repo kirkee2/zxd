@@ -412,10 +412,15 @@
                 </LinearLayout>
                 <Button
                         android:id="@+id/calledAddEstimate"
-                        android:text="하하"
+                        android:layout_gravity="center_horizontal"
                         android:layout_width="296dp"
                         android:layout_height="48dp"
-                        android:background="#000000"
+                        android:background="#00bfa5"
+                        android:textStyle=""
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="30dp"
+                        android:text="견적서 전송"
                         />
             </LinearLayout>
         </LinearLayout>

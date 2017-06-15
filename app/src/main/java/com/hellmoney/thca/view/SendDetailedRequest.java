@@ -16,6 +16,7 @@ import com.hellmoney.thca.R;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.util.timeUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -182,16 +183,29 @@ public class SendDetailedRequest extends AppCompatActivity {
                         Request[] requests = results.getRequest();
                         // 배열로 보내져서 배열로 받아왔음
                         request = requests[0];
+
+                        requestAddress.setText(request.getTotalAddress());
+                        requestAddressApt.setText(request.getAptName());
+                        requestAddressSize.setText(request.getSize());
+
                         requestLimitAmount.setText(request.getLimiteAmount() + "만원");
                         loanAmount.setText(request.getLoanAmount() + "만원");
                         loanType.setText(request.getLoanType());
                         requestOverDue.setText(request.getOverdueRecord());
                         jobType.setText(request.getJobType());
+                        scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
 
-                        //TODO 시간 해결
-                        scheduledTime.setText(request.getScheduledTime() + "");
                         //TODO 요청서에 주거래 은행 없음.
                         mainBank.setText(request.getItemBank());
+
+                        switch (request.getLoanType()){
+                            case "주택담보대출":
+                                loanTypeImage.setImageResource(R.drawable.dambuu);
+                                break;
+                            case "전세자금대출":
+                                loanTypeImage.setImageResource(R.drawable.sunjaa);
+                                break;
+                        }
                     }
                 }
 

@@ -303,6 +303,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="#bdbdbd"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             />
                     <RelativeLayout
@@ -745,7 +746,10 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_width="296dp"
                     android:layout_height="48dp"
-                    android:background="#000000"
+                    android:background="#00bfa5"
+                    android:textStyle=""
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     android:text="견적서 전송"
                     />
         </LinearLayout>

@@ -21,7 +21,9 @@ import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.util.timeUtil;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -36,6 +38,7 @@ public class DetailedRequest extends AppCompatActivity {
 
     private static final String REQUESTID = "requestId";
     private static final String TAG = DetailedRequest.class.getName();
+
 
     @BindView(R.id.loanTypeImageView)
     ImageView loanTypeImage;
@@ -104,7 +107,8 @@ public class DetailedRequest extends AppCompatActivity {
         mContext = getApplicationContext();
     }
 
-    @OnClick(R.id.calledAddEstimate)void onClick(){
+    @OnClick(R.id.calledAddEstimate)
+    void onClick() {
         startActivity(SendDetailedRequest.getIntent(requestId, mContext));
         Toast.makeText(this, "클릭", Toast.LENGTH_SHORT).show();
     }
@@ -119,9 +123,9 @@ public class DetailedRequest extends AppCompatActivity {
         getLoanRate.enqueue(new Callback<RequestRes>() {
             @Override
             public void onResponse(Call<RequestRes> call, Response<RequestRes> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     RequestRes requests = response.body();
-                    if(requests.getMessage().equals("SUCCESS")){
+                    if (requests.getMessage().equals("SUCCESS")) {
 
                         ArrayList<BarEntry> entries = new ArrayList<>();
                         ArrayList<BarEntry> entriesMin = new ArrayList<>();
@@ -135,12 +139,12 @@ public class DetailedRequest extends AppCompatActivity {
                         Double sum = 0.0;
 
                         int i = 0;
-                        for (Request loanLate: loanRates) {
+                        for (Request loanLate : loanRates) {
                             Float rate = Float.parseFloat(loanLate.getInterestRate());
                             sum += rate;
-                            entries.add(new BarEntry(i*0.5F,rate));
+                            entries.add(new BarEntry(i * 0.5F, rate));
 
-                            if(rate < min){
+                            if (rate < min) {
                                 min = rate;
                                 minIndex = i;
                             }
@@ -180,10 +184,13 @@ public class DetailedRequest extends AppCompatActivity {
                         mBarChart.setScaleEnabled(false);
                         mBarChart.invalidate();
 
-
-
                         Double average = (sum / length);
-                        averageInterestRate.setText(average + "");
+
+                        String pattern = "#####.##";
+                        DecimalFormat dformat = new DecimalFormat(pattern);
+
+                        averageInterestRate.setText(dformat.format(average));
+
                     }
                 }
             }
@@ -228,20 +235,14 @@ public class DetailedRequest extends AppCompatActivity {
                         loanType.setText(request.getLoanType());
                         requestOverDue.setText(request.getOverdueRecord());
                         jobType.setText(request.getJobType());
-
-
-                        //TODO 시간 해결
-                        scheduledTime.setText(request.getScheduledTime() + "");
-                        //TODO 요청서에 주거래 은행 없음.
+                        scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
                         mainBank.setText(request.getItemBank());
                     }
                 }
-
             }
 
             @Override
             public void onFailure(Call<SingleRequestRes> call, Throwable t) {
-
                 Log.e(TAG, t + "");
             }
         });

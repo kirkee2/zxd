@@ -43,10 +43,11 @@
                     >
                 <TextView
                         android:id="@+id/endTime"
-                        android:layout_width="116.3dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="16dp"
                         android:textSize="14sp"
                         android:textColor="#00bfa5"
+
                         android:layout_gravity="center_horizontal|center_vertical"
                         tools:text="마감 03시간 26분 전"
                         />
