@@ -3,6 +3,7 @@ package com.hellmoney.thca.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -73,5 +74,10 @@ public class ItemFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @OnClick(R.id.fab)
+    protected void onClick(View v) {
+        Snackbar.make(v, "기능이 추가될 예정입니다.", Snackbar.LENGTH_SHORT).show();
     }
 }

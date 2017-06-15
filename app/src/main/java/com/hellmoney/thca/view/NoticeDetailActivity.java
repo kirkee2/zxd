@@ -83,7 +83,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                         mContentTextView.setText(notice.getContent());
                         mRegisterTimeTextView.setText(dateFormat.format(notice.getRegisterTime()));
                     } else {
-//                        Log.e(TAG, results.getMessage());
+                        Log.e(TAG, results.getMessage());
                     }
                 }
             }
