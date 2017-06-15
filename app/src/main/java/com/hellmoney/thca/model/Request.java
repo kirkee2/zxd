@@ -12,6 +12,13 @@ public class Request {
     /*
     상세보기에 필요한 변수들은 모임
      */
+    @SerializedName("msg")
+    private String msg;
+
+    public String getMsg() {
+        return msg;
+    }
+
     @SerializedName("estimate_count")
     private int estiamteCount;
 

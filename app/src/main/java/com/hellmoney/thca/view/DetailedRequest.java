@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.hellmoney.thca.network.NetworkManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -101,6 +103,50 @@ public class DetailedRequest extends AppCompatActivity {
     @BindView(R.id.sendEstimate)
     Button sendEstimateButton;
 
+    @OnClick(R.id.sendEstimate)
+    public void submit(View view) {
+
+        Log.d(TAG,request.getAgentId());
+        Call<Request> insertEstimate = NetworkManager.service.addRequest(
+                request.getAgentId(),
+                fixedLoanAmount.getText().toString(),
+                requestId,
+                request.getAgentId(),
+                request.getItemBank(),
+                itemName.getText().toString(),
+                request.getInterestRate(),
+                request.getInterestRateType(),
+                overDueInterestRate1.getText().toString(),
+                overDueInterestRate2.getText().toString(),
+                overDueInterestRate3.getText().toString(),
+                overDueTime1.getText().toString(),
+                overDueTime2.getText().toString(),
+                overDueTime3.getText().toString(),
+                earlyRepaymentType.getText().toString(),
+                repaymentType.getText().toString());
+
+        insertEstimate.enqueue(new Callback<Request>() {
+            @Override
+            public void onResponse(Call<Request> call, Response<Request> response) {
+                if(response.isSuccessful()){
+
+                    Log.d(TAG, "Estimate insert Success");
+                    Request request = response.body();
+                    String msg = request.getMsg();
+                    Log.d(TAG, msg);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Request> call, Throwable t) {
+                    Log.d(TAG, t + "");
+            }
+        });
+
+    }
+    Request request;
+
     private int requestId;
 
     protected static Intent getIntent(int id, Context context) {
@@ -116,7 +162,8 @@ public class DetailedRequest extends AppCompatActivity {
         ButterKnife.bind(this);
 
         requestId = (int) getIntent().getSerializableExtra(REQUESTID);
-        Log.d(TAG, requestId + "");
+        Log.d(TAG, "RequestID 는" + requestId + "");
+
 
     }
 
@@ -133,7 +180,7 @@ public class DetailedRequest extends AppCompatActivity {
                     if (results.getMessage().equals("SUCCESS")) {
                         Request[] requests = results.getRequest();
                         // 배열로 보내져서 배열로 받아왔음
-                        Request request = requests[0];
+                        request = requests[0];
                         requestLimitAmount.setText(request.getLimiteAmount() + "만원");
                         loanAmount.setText(request.getLoanAmount() + "만원");
                         loanType.setText(request.getLoanType());

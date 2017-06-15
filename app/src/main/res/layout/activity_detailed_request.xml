@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:background="#bababa"
+        android:orientation="vertical"
         >
     <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -365,7 +365,16 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                android:hint="만원"
+                                android:hint="10000"
+                                android:background="@null"
+                                />
+                        <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#262637"
+                                android:gravity="end"
+                                android:text="만원"
                                 />
                     </LinearLayout>
                     <Space
@@ -395,7 +404,9 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                android:hint="금리"
+                                android:hint="금리 이름"
+                                android:background="@null"
+
                                 />
                     </LinearLayout>
                     <Space
@@ -425,7 +436,17 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
-                                android:hint="%"
+                                android:hint="10"
+                                android:background="@null"
+
+                                />
+                        <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#262637"
+                                android:gravity="end"
+                                android:text="%"
                                 />
                     </LinearLayout>
                     <Space
@@ -455,7 +476,10 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
+                                android:singleLine="true"
                                 android:hint="ex) 원리금분할상환"
+                                android:background="@null"
+
                                 />
                     </LinearLayout>
                     <Space
@@ -485,7 +509,10 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
+                                android:singleLine="true"
                                 android:hint="ex) 고정"
+                                android:background="@null"
+
                                 />
                     </LinearLayout>
                     <Space
@@ -515,7 +542,10 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
+                                android:singleLine="true"
                                 android:hint="ex) 1개월 이내"
+                                android:background="@null"
+
                                 />
                     </LinearLayout>
                     <Space
@@ -542,6 +572,16 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:textSize="14sp"
+                                android:textColor="#262637"
+                                android:gravity="end"
+                                android:hint="5.0"
+                                android:background="@null"
+
+                                />
+                        <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
@@ -577,6 +617,8 @@
                                 android:gravity="end"
                                 android:singleLine="true"
                                 android:hint="ex)1개월 초과 3개월 이내"
+                                android:background="@null"
+
                                 />
                     </LinearLayout>
                     <Space
@@ -606,7 +648,18 @@
                                 android:textSize="14sp"
                                 android:textColor="#262637"
                                 android:gravity="end"
+                                android:hint="2.5"
+                                android:background="@null"
+
+                                />
+                        <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#262637"
+                                android:gravity="end"
                                 android:text="%"
+                                android:background="@null"
 
                                 />
                     </LinearLayout>
@@ -638,6 +691,7 @@
                                 android:textColor="#262637"
                                 android:gravity="end"
                                 android:hint="ex) 3개월 초과"
+                                android:background="@null"
                                 />
                     </LinearLayout>
                     <Space
@@ -666,7 +720,17 @@
                                 android:layout_weight="1"
                                 android:textSize="14sp"
                                 android:textColor="#262637"
-                                android:gravity="right"
+                                android:gravity="end"
+                                android:hint="22.5"
+                                android:background="@null"
+
+                                />
+                        <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:textSize="14sp"
+                                android:textColor="#262637"
+                                android:gravity="end"
                                 android:text="%"
                                 />
                     </LinearLayout>

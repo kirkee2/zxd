@@ -29,20 +29,16 @@ public interface NetworkService {
                       @Field("fcm_token") int fcmToken);
 
     @FormUrlEncoded
-    @POST("/consultant/logout")
-    Call<User> signout();
-
-    @GET("/consultants/requests/agent/{agentId}")
-    Call<RequestRes> getRequests(@Path("agentId") String agentId);
-
-    @FormUrlEncoded
     @POST("/consultants/requests/agent/{agentId}")
-    Call<Request> addRequest(@Path("agentId") int agentId,
-                             @Field("request_id") int request_id,
+    Call<Request> addRequest(@Path("agentId") String agentId,
+
+                             @Field("fixedLoanAmount") String fixedLoanAmount,
+                             @Field("requestId") int requestId,
+                             @Field("agentId") String agentId2,
                              @Field("itemBank") String itemBank,
                              @Field("itemName") String itemName,
                              @Field("interestRate") String interestRate,
-                             @Field("repaymentType") String repaymentType,
+                             @Field("interestRateType") String interestRateType,
                              @Field("overdueInterestRate01") String overdueInterestRate01,
                              @Field("overdueInterestRate02") String overdueInterestRate02,
                              @Field("overdueInterestRate03") String overdueInterestRate03,
@@ -50,7 +46,28 @@ public interface NetworkService {
                              @Field("overdueTime02") String overdueTime02,
                              @Field("overdueTime03") String overdueTime03,
                              @Field("earlyRepaymentFee") String earlyRepaymentFee,
-                             @Field("repaymentType") String fcmToken);
+                             @Field("repaymentType") String repaymentType);
+
+    @FormUrlEncoded
+    @POST("/consultant/logout")
+    Call<User> signout();
+
+    @GET("/consultants/requests/agent/{agentId}")
+    Call<RequestRes> getRequests(@Path("agentId") String agentId);
+
+//    request_id:요청ID
+//    itemBank:상품은행
+//    itemName:상품명
+//    interestRate : 금리
+//    interestRateType : 금리 종류
+//    repaymentType : 상환방식
+//            overdueInterestRate01
+//    overdueInterestRate02,
+//    overdueInterestRate03,
+//    overdueTime01,
+//    overdueTime02,
+//    overdueTime03,
+//    earlyRepaymentFee : 중도 상환 수수료
 
     @GET("/consultants/requests/{requestId}/{agentId}")
     Call<SingleRequestRes> getRequest(@Path("requestId") String requestId,
