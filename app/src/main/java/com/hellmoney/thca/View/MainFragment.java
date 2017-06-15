@@ -22,6 +22,7 @@ import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.network.NetworkManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainFragment extends Fragment {
-    private static final String TAG = MainFragment.class.getName();
+    public static final String TAG = MainFragment.class.getName();
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -77,7 +81,6 @@ public class MainFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mMainContentAdapter);
-
 
         Call<RequestRes> getRequests = NetworkManager.service.getRequests("agent1@naver.com");
         getRequests.enqueue(new Callback<RequestRes>() {
@@ -159,7 +162,7 @@ public class MainFragment extends Fragment {
 
             mRequest = request;
             mEstimateCount.setText(mRequest.getCountEstimate());
-            mEstimateEndTime.setText(mRequest.getEndTime());
+            mEstimateEndTime.setText(dateFormat.format(mRequest.getEndTime()));
             mRequestAddress.setText(mRequest.getTotalAddress());
             mRequestAddressApt.setText(mRequest.getAptName());
             mRequestAddressSize.setText(mRequest.getSize());

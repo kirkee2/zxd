@@ -18,8 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.NoticeDetailActivity" />
+        <activity android:name=".view.ItemDetailActivity" />
         <activity android:name=".view.SendDetailedRequest" />
         <activity android:name=".view.DetailedRequest" />
-
     </application>
+
 </manifest>

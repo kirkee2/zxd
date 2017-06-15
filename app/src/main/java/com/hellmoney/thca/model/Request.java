@@ -59,7 +59,7 @@ public class Request {
     private Date registerTime;
 
     @SerializedName("end_time")
-    private String endTime;
+    private Date endTime;
 
     @SerializedName("extra")
     private String extra;
@@ -252,18 +252,11 @@ public class Request {
         this.registerTime = registerTime;
     }
 
-    public String getEndTime() {
-
-//        long time = System.currentTimeMillis();
-//        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-//        String currentTime = dayTime.format(new Date(time));
-//TODO 시간 해결해야함.
-//        Log.d("LEN", currentTime + "GG" + endTime);
+    public Date getEndTime() {
         return endTime;
-
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

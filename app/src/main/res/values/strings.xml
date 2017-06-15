@@ -1,4 +1,7 @@
 <resources>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_import">Import</string>
     <string name="nav_gallery">Gallery</string>
     <string name="nav_slideshow">Slideshow</string>
@@ -7,8 +10,8 @@
     <string name="nav_share">Share</string>
     <string name="nav_send">Send</string>
     <string name="styling_android">Styling Android</string>
-
-
+    <string name="message_empty">empty</string>
+    <string name="title_activity_item_add">ItemAddActivity</string>
     <string name="app_name">헬로머니</string>
     <string name="skip">건너뛰기</string>
     <string name="end">완료</string>
@@ -88,15 +91,6 @@
     <string name="loan_type_2">전세 자금 대출</string>
     <string name="select_region_1">시/도 선택하기</string>
     <string name="confirm_all_information">네. 모든 정보가 맞습니다.</string>
-
-
     <string name="fix">수정</string>
-
-
     <string name="test">testing text for HelloMoney.</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

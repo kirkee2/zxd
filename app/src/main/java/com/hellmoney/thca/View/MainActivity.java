@@ -1,45 +1,29 @@
 package com.hellmoney.thca.view;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
-import com.hellmoney.thca.CustomViewPager;
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.ViewPageAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements
-        ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = MainActivity.class.getName();
 
-    @BindView(R.id.container)
-    protected CustomViewPager mViewPager;
     @BindView(R.id.navigation)
     protected BottomNavigationView mBottomNavigationView;
-    @BindView(R.id.drawer_layout)
-    protected DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
-
-    private ViewPageAdapter mViewPageAdapter;
-    private List<Fragment> mFragments;
-    private MenuItem mPrevBottomNavigationItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,97 +31,66 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mFragments = new ArrayList<>();
-        mFragments.add(MainFragment.newInstance(null, null));
-        mFragments.add(AgentFragment.newInstance(null, null));
-        mFragments.add(NoticeFragment.newInstance(null, null));
-        mFragments.add(ItemFragment.newInstance(null, null));
-        mViewPageAdapter = new ViewPageAdapter(getSupportFragmentManager(), mFragments);
-
-        mViewPager.setAdapter(mViewPageAdapter);
-        mViewPager.addOnPageChangeListener(this);
-        mViewPager.setCurrentItem(1);
-        mViewPager.setOffscreenPageLimit(4);
-
-        mPrevBottomNavigationItem = mBottomNavigationView.getMenu().getItem(0);
+        addFragment(R.id.main_container, MainFragment.newInstance(null, null), MainFragment.TAG);
 
         setSupportActionBar(mToolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        );
-        mDrawerLayout.setDrawerListener(toggle);
-        toggle.syncState();
-
-        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_main:
-                        mViewPager.setCurrentItem(0);
-                        mViewPager.invalidate();
-                        Log.d(TAG, "Page 0 selected");
-                        return true;
-                    case R.id.navigation_agent:
-                        mViewPager.setCurrentItem(1);
-                        mViewPager.invalidate();
-                        Log.d(TAG, "Page 1 selected");
-                        return true;
-                    case R.id.navigation_notice:
-                        mViewPager.setCurrentItem(2);
-                        mViewPager.invalidate();
-                        Log.d(TAG, "Page 2 selected");
-                        return true;
-                    case R.id.navigation_item:
-                        mViewPager.setCurrentItem(3);
-                        mViewPager.invalidate();
-                        Log.d(TAG, "Page 3 selected");
-                        return true;
-                }
-                return false;
-            }
-        });
-
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+        BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mViewPager.removeOnPageChangeListener(this);
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if (mPrevBottomNavigationItem != null) {
-            mPrevBottomNavigationItem.setChecked(false);
-        }
-        mPrevBottomNavigationItem = mBottomNavigationView.getMenu().getItem(position);
-        mPrevBottomNavigationItem.setChecked(true);
-        mViewPageAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+        switch (item.getItemId()) {
+            case R.id.navigation_main:
+                replaceFragment(R.id.main_container, MainFragment.newInstance(null, null), MainFragment.TAG, MainFragment.TAG);
+                return true;
+            case R.id.navigation_agent:
+                replaceFragment(R.id.main_container, AgentFragment.newInstance(null, null), AgentFragment.TAG, AgentFragment.TAG);
+                return true;
+            case R.id.navigation_notice:
+                replaceFragment(R.id.main_container, NoticeFragment.newInstance(null, null), NoticeFragment.TAG, NoticeFragment.TAG);
+                return true;
+            case R.id.navigation_item:
+                replaceFragment(R.id.main_container, ItemFragment.newInstance(null, null), ItemFragment.TAG, ItemFragment.TAG);
+                return true;
+        }
+        return false;
+    }
+
+    protected void addFragment(@IdRes int containerViewId,
+                               @NonNull Fragment fragment,
+                               @NonNull String fragmentTag) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(containerViewId, fragment, fragmentTag)
+                .disallowAddToBackStack()
+                .commit();
+    }
+
+    protected void replaceFragment(@IdRes int containerViewId,
+                                   @NonNull Fragment fragment,
+                                   @NonNull String fragmentTag,
+                                   @Nullable String backStackStateName) {
+        FragmentManager fm = getSupportFragmentManager();
+        boolean popped = fm.popBackStackImmediate(backStackStateName, 0);
+
+        if (!popped) {
+            fm.beginTransaction()
+                    .replace(containerViewId, fragment, fragmentTag)
+                    // 메뉴와 함께 BackStack을 사용하기 어려워서 일단 제외.
+                    //.addToBackStack(backStackStateName)
+                    .commit();
+        }
     }
 }

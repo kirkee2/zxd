@@ -1,5 +1,7 @@
 package com.hellmoney.thca.network;
 
+import com.hellmoney.thca.model.ItemDetailRes;
+import com.hellmoney.thca.model.ItemRes;
 import com.hellmoney.thca.model.EstimateRes;
 import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.NoticeDetailRes;
@@ -15,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -75,7 +78,50 @@ public interface NetworkService {
 
     @GET("/commons/notices/{noticeId}")
     Call<NoticeDetailRes> getNotice(@Path("noticeId") int noticeId);
-//
+
+    @GET("/consultants/items")
+    Call<ItemRes> getItemsByAgentId(@Query("agentId") String agentId);
+
+    @FormUrlEncoded
+    @POST("/consultants/items")
+    Call<String> AddItem(@Field("agentId") String agentId,
+                         @Field("itemBank") String itemBank,
+                         @Field("itemName") String itemName,
+                         @Field("minInterestrate") Float minInterestrate,
+                         @Field("maxInterestrate") Float maxInterestrate,
+                         @Field("interestRateType") String interestRateType,
+                         @Field("repaymentType") String repaymentType,
+                         @Field("overdueInterestRate01") Float overdueInterestRate01,
+                         @Field("overdueInterestRate02") Float overdueInterestRate02,
+                         @Field("overdueInterestRate03") Float overdueInterestRate03,
+                         @Field("overdueTime01") String overdueTime01,
+                         @Field("overdueTime02") String overdueTime02,
+                         @Field("overdueTime03") String overdueTime03,
+                         @Field("earlyRepaymentFee") Float earlyRepaymentFee);
+
+    @GET("/consultants/items/{itemId}")
+    Call<ItemDetailRes> getItem(@Path("itemId") int itemId);
+
+    @FormUrlEncoded
+    @PUT("/consultants/items/{itemId}")
+    Call<String> updateItem(@Path("itemId") int itemId,
+                            @Field("itemBank") String itemBank,
+                            @Field("itemName") String itemName,
+                            @Field("minInterestrate") Float minInterestrate,
+                            @Field("maxInterestrate") Float maxInterestrate,
+                            @Field("interestRateType") String interestRateType,
+                            @Field("repaymentType") String repaymentType,
+                            @Field("overdueInterestRate01") Float overdueInterestRate01,
+                            @Field("overdueInterestRate02") Float overdueInterestRate02,
+                            @Field("overdueInterestRate03") Float overdueInterestRate03,
+                            @Field("overdueTime01") String overdueTime01,
+                            @Field("overdueTime02") String overdueTime02,
+                            @Field("overdueTime03") String overdueTime03,
+                            @Field("earlyRepaymentFee") Float earlyRepaymentFee);
+
+    @DELETE("/consultants/items/{itemId}")
+    Call<String> deleteItem(@Path("itemId") int itemId);
+
     @POST("/consultants/likes/agents/{agentId}/requests/{requestId}")
     Call<LikeRes> like(@Path("agentId") String agentId,
                        @Path("requestId") int requestId);

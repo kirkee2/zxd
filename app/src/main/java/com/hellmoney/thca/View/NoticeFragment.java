@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
@@ -28,7 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NoticeFragment extends Fragment {
-    private static final String TAG = NoticeFragment.class.getName();
+    public static final String TAG = NoticeFragment.class.getName();
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 

@@ -1,8 +1,11 @@
-package com.hellmoney.thca;
+package com.hellmoney.thca.view;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.hellmoney.thca.view.AgentFragment;
 import com.hellmoney.thca.view.ItemFragment;
@@ -12,12 +15,12 @@ import com.hellmoney.thca.view.NoticeFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPageAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragments;
+public class ViewPageAdapter extends FragmentStatePagerAdapter {
+    private List<Fragment> mFragments = new ArrayList<>();
+    private List<String> mFragmentTitles = new ArrayList<>();
 
-    public ViewPageAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public ViewPageAdapter(FragmentManager fm) {
         super(fm);
-        this.mFragments = fragments;
     }
 
     @Override
@@ -28,6 +31,16 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return mFragments.size();
+    }
+
+    public void addFragment(Fragment fragment, String title) {
+        mFragments.add(fragment);
+        mFragmentTitles.add(title);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragmentTitles.get(position);
     }
 
     @Override
