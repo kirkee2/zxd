@@ -21,6 +21,7 @@
         <activity android:name=".view.ItemDetailActivity" />
         <activity android:name=".view.SendDetailedRequest" />
         <activity android:name=".view.DetailedRequest" />
+        <activity android:name=".view.DetailedEstimate" />
     </application>
 
 </manifest>

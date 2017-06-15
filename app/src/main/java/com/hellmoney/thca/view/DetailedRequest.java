@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +41,8 @@ public class DetailedRequest extends AppCompatActivity {
     private static final String REQUESTID = "requestId";
     private static final String TAG = DetailedRequest.class.getName();
 
+    @BindView(R.id.toolbar)
+    protected Toolbar mToolbar;
 
     @BindView(R.id.loanTypeImageView)
     ImageView loanTypeImage;
@@ -96,11 +100,18 @@ public class DetailedRequest extends AppCompatActivity {
         return intent;
     }
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_request);
         ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("견적요청 상세");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         requestId = (int) getIntent().getSerializableExtra(REQUESTID);
         Log.d(TAG, "RequestID 는" + requestId + "");
@@ -248,6 +259,22 @@ public class DetailedRequest extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
 }
 

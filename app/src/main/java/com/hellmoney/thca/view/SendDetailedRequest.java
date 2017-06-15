@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,9 @@ public class SendDetailedRequest extends AppCompatActivity {
 
     private static final String REQUESTID = "requestId";
     private static final String TAG = SendDetailedRequest.class.getName();
+
+    @BindView(R.id.toolbar)
+    protected Toolbar mToolbar;
 
     @BindView(R.id.loanTypeImageView)
     ImageView loanTypeImage;
@@ -104,6 +109,8 @@ public class SendDetailedRequest extends AppCompatActivity {
     @BindView(R.id.sendEstimate)
     Button sendEstimateButton;
 
+
+
     @OnClick(R.id.sendEstimate)
     public void submit(View view) {
 
@@ -166,6 +173,9 @@ public class SendDetailedRequest extends AppCompatActivity {
         requestId = (int) getIntent().getSerializableExtra(REQUESTID);
         Log.d(TAG, "RequestID 는" + requestId + "");
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("견적서 작성");        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 
@@ -216,6 +226,23 @@ public class SendDetailedRequest extends AppCompatActivity {
                 Log.e(TAG, t + "");
             }
         });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 }
 

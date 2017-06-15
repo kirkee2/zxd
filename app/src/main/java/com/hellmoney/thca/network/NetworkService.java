@@ -1,13 +1,14 @@
 package com.hellmoney.thca.network;
 
+import com.hellmoney.thca.model.EstimateRes;
 import com.hellmoney.thca.model.ItemDetailRes;
 import com.hellmoney.thca.model.ItemRes;
-import com.hellmoney.thca.model.EstimateRes;
 import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.NoticeDetailRes;
 import com.hellmoney.thca.model.NoticeRes;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
+import com.hellmoney.thca.model.SingleEstimateRes;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.model.User;
 
@@ -132,4 +133,9 @@ public interface NetworkService {
 
     @GET("/consultants/estimates")
     Call<EstimateRes> getMyEstimate(@Query("agentId") String agentId);
+
+    @GET("/consultants/estimates/{estimateId}")
+    Call<SingleEstimateRes> getSingleMyEstimte(@Path("estimateId") String estimateId);
+
+
 }

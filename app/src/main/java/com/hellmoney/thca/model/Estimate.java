@@ -13,62 +13,24 @@ public class Estimate {
     @SerializedName("msg")
     private String msg;
 
-    @SerializedName("estimate_count")
-    private int estiamteCount;
-
-    @SerializedName("bank_count")
-    private int bankCount;
-
-    @SerializedName("favorite")
-    private int favorite;
-
-    @SerializedName("customer_id")
-    private String customerId;
-
-    @SerializedName("count")
-    private String countEstimate;
-
-    @SerializedName("request_id")
-    private int requestId;
-
-    @SerializedName("selected_estimate_id")
-    private int selectedEstimateId;
-
-    @SerializedName("overdue_record")
-    private String overdueRecord;
-
-    @SerializedName("loan_type")
-    private String loanType;
-
     @SerializedName("scheduled_time")
     private Date scheduledTime;
 
-    @SerializedName("loan_amount")
-    private String loanAmount;
+    public String getFixedLoanAmount() {
+        return fixedLoanAmount;
+    }
 
-    @SerializedName("interest_rate_type")
-    private String interestRateType;
+    @SerializedName("fixed_loan_amount")
+    private String fixedLoanAmount;
 
-    @SerializedName("loan_period")
-    private String loanPeriod;
-
-    @SerializedName("loan_reason")
-    private String loanReason;
-
-    @SerializedName("register_time")
-    private Date registerTime;
-
-    @SerializedName("end_time")
-    private String endTime;
-
-    @SerializedName("extra")
-    private String extra;
-
-    @SerializedName("job_type")
-    private String jobType;
+    @SerializedName("estimate_id")
+    private int estimateId;
 
     @SerializedName("status")
     private String status;
+
+    @SerializedName("end_time")
+    private Date endTime;
 
     @SerializedName("region_1")
     private String address1;
@@ -94,17 +56,26 @@ public class Estimate {
     @SerializedName("apt_size_exclusive")
     private Float exclusiveSize;
 
-    @SerializedName("estimate_id")
-    private int estimateId;
+    @SerializedName("request_id")
+    private int requestId;
 
     @SerializedName("agent_id")
     private String agentId;
 
+    @SerializedName("register_time")
+    private String registerTime;
+
     @SerializedName("item_bank")
     private String itemBank;
 
+    @SerializedName("item_name")
+    private String itemName;
+
     @SerializedName("interest_rate")
     private String interestRate;
+
+    @SerializedName("interest_rate_type")
+    private String interestRateType;
 
     @SerializedName("repayment_type")
     private String repaymentType;
@@ -130,6 +101,156 @@ public class Estimate {
     @SerializedName("early_repayment_fee")
     private String earlyRepaymentFee;
 
-    @SerializedName("fixed_loan_amount")
-    private String fixedLoanAmount;
+    @SerializedName("job_type")
+    private String jobType;
+
+    @SerializedName("overdue_record")
+    private String overdueRecord;
+
+    @SerializedName("loan_type")
+    private String loanType;
+
+    @SerializedName("loan_amount")
+    private String loanAmount;
+
+    public Date getScheduledTime() {
+        return scheduledTime;
+    }
+
+    public String getLoanAmount() {
+        return loanAmount;
+    }
+
+    public Double getLimiteAmount() {
+
+        return Double.parseDouble(loanAmount) * 0.7;
+    }
+
+    public String getLoanType() {
+        return loanType;
+    }
+
+    public String getOverdueRecord() {
+        return overdueRecord;
+    }
+
+    public String getJobType() {
+        return jobType;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public String getTotalAddress() {
+        return address1 + " " + address2 + " " + address3;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public String getAptName() {
+        return aptName;
+    }
+
+    public String getKbId() {
+        return kbId;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public Float getSupplySize() {
+        return supplySize;
+    }
+
+    public Float getExclusiveSize() {
+        return exclusiveSize;
+    }
+
+    public String getSize() {
+        return supplySize + " / " + exclusiveSize;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public int getEstimateId() {
+        return estimateId;
+    }
+
+    public int getRequestId() {
+        return requestId;
+    }
+
+    public String getAgentId() {
+        return agentId;
+    }
+
+    public String getRegisterTime() {
+        return registerTime;
+    }
+
+    public String getItemBank() {
+        return itemBank;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public String getInterestRate() {
+        return interestRate;
+    }
+
+    public String getInterestRateType() {
+        return interestRateType;
+    }
+
+    public String getRepaymentType() {
+        return repaymentType;
+    }
+
+    public String getOverdueInterestRate1() {
+        return overdueInterestRate1;
+    }
+
+    public String getOverdueInterestRate2() {
+        return overdueInterestRate2;
+    }
+
+    public String getOverdueInterestRate3() {
+        return overdueInterestRate3;
+    }
+
+    public String getOverdueTime1() {
+        return overdueTime1;
+    }
+
+    public String getOverdueTime2() {
+        return overdueTime2;
+    }
+
+    public String getOverdueTime3() {
+        return overdueTime3;
+    }
+
+    public String getEarlyRepaymentFee() {
+        return earlyRepaymentFee;
+    }
 }
