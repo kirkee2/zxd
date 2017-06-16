@@ -26,7 +26,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_height="55dp"
-                app:spb_currentStateNumber="three"
+                app:spb_currentStateNumber="one"
                 app:spb_maxStateNumber="four"
                 app:spb_stateBackgroundColor="#BDBDBD"
                 app:spb_stateForegroundColor="#009688"
@@ -35,7 +35,6 @@
                 app:spb_currentStateDescriptionColor="#009688"
                 app:spb_stateDescriptionColor="#808080"
                 app:spb_animateToCurrentProgressState="true"
-                app:spb_checkStateCompleted="true"
                 app:spb_stateTextSize="20sp"
                 app:spb_descriptionTopSpaceIncrementer="10dp"
                 app:spb_stateLineThickness="10dp"
@@ -83,7 +82,6 @@
                                     android:textSize="15sp"
                                     android:textColor="#262637"
                                     tools:text="견적진행"
-                                    android:textStyle="bold"
                                     android:layout_centerVertical="true"
                                     />
                             <TextView
@@ -92,7 +90,6 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="15sp"
                                     android:textColor="#00bfa5"
-                                    android:textStyle="bold"
                                     android:layout_centerVertical="true"
                                     android:layout_centerHorizontal="true"
                                     tools:text="마감 01시간 20분 전"
@@ -266,36 +263,6 @@
                                     android:layout_weight="1"
                                     android:textSize="14sp"
                                     android:textColor="#757575"
-                                    android:text="연체이력"
-                                    />
-                            <TextView
-                                    android:id="@+id/requestOverDue"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
-                                    android:gravity="end"
-                                    android:text="없음"
-                                    />
-                        </LinearLayout>
-                        <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="18dp"
-                                />
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="24dp"
-                                android:layout_marginRight="12dp"
-                                android:layout_marginLeft="12dp"
-                                android:orientation="horizontal"
-                                >
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#757575"
                                     android:text="직업구분"
                                     />
                             <TextView
@@ -379,18 +346,18 @@
                             </RelativeLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -399,7 +366,7 @@
                                 <TextView
                                         android:id="@+id/itemName"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -411,18 +378,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -431,7 +398,7 @@
                                 <TextView
                                         android:id="@+id/fixedLoanAmount"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -443,18 +410,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -463,7 +430,7 @@
                                 <TextView
                                         android:id="@+id/estimateLoanType"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -474,18 +441,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -494,7 +461,7 @@
                                 <TextView
                                         android:id="@+id/loanRate"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -505,18 +472,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -525,7 +492,7 @@
                                 <TextView
                                         android:id="@+id/repaymentType"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -537,18 +504,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -557,7 +524,7 @@
                                 <TextView
                                         android:id="@+id/earlyRepaymentType"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -569,18 +536,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -589,7 +556,7 @@
                                 <TextView
                                         android:id="@+id/overDueTime1"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -601,18 +568,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -621,7 +588,7 @@
                                 <TextView
                                         android:id="@+id/overDueInterestRate1"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -633,18 +600,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -653,7 +620,7 @@
                                 <TextView
                                         android:id="@+id/overDueTime2"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -664,18 +631,18 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
                                     >
                                 <TextView
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#757575"
@@ -684,7 +651,7 @@
                                 <TextView
                                         android:id="@+id/overDueInterestRate2"
                                         android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="match_parent"
                                         android:layout_weight="1"
                                         android:textSize="14sp"
                                         android:textColor="#262637"
@@ -696,11 +663,11 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"
@@ -727,11 +694,11 @@
                             </LinearLayout>
                             <Space
                                     android:layout_width="match_parent"
-                                    android:layout_height="18dp"
+                                    android:layout_height="8dp"
                                     />
                             <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="24dp"
                                     android:layout_marginRight="12dp"
                                     android:layout_marginLeft="12dp"
                                     android:orientation="horizontal"

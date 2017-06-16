@@ -56,9 +56,6 @@ public class DetailedEstimate extends AppCompatActivity {
     @BindView(R.id.typeLoan)
     TextView loanType;
 
-    @BindView(R.id.requestOverDue)
-    TextView requestOverDue;
-
     @BindView(R.id.jobType)
     TextView jobType;
 
@@ -167,14 +164,13 @@ public class DetailedEstimate extends AppCompatActivity {
                     int second = temp%60;
 
                     if(time > 0){
-                        endTime.setText("마감까지 " + timeUtil.formatNumber2(hour) + ":" + timeUtil.formatNumber2(minute)  + ":" + timeUtil.formatNumber2(second) + " 남았습니다.");
+
+                        endTime.setText("마감 " + timeUtil.formatNumber2(hour) + "시간 " + timeUtil.formatNumber2(minute)  + " 분 " + timeUtil.formatNumber2(second) + " 전");
                         endTime.setSelected(true);
                     }else{
-                        endTime.setText("마감까지 " + "00" + ":" +"00" + " 남았습니다.");
+                        endTime.setText("마감까지 " + "00" + "시" +"00 분" + " 전");
                         endTime.setSelected(true);
                     }
-
-
 
                     requestAddress.setText(singleEstimate.getTotalAddress());
                     requestAddressApt.setText(singleEstimate.getAptName());
@@ -186,7 +182,6 @@ public class DetailedEstimate extends AppCompatActivity {
                     requestLimitAmount.setText(dformat.format(singleEstimate.getLimiteAmount()) + "만원");
                     loanAmount.setText(singleEstimate.getLoanAmount() + "만원");
                     loanType.setText(singleEstimate.getLoanType());
-                    requestOverDue.setText(singleEstimate.getOverdueRecord());
                     jobType.setText(singleEstimate.getJobType());
                     scheduledTime.setText(timeUtil.dateFormat.format(singleEstimate.getScheduledTime()));
 
@@ -205,32 +200,59 @@ public class DetailedEstimate extends AppCompatActivity {
                     overDueInterestRate2.setText(singleEstimate.getOverdueInterestRate2() + "%");
                     overDueInterestRate3.setText(singleEstimate.getOverdueInterestRate3() + "%");
 
+
+
+                    stateProgressBar.setStateDescriptionData(descriptionData);
+
                     switch (singleEstimate.getStatus()){
 
                         case "상담중":
-                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
                             statusImageView.setImageResource(R.drawable.myestimate_selected);
+                            stateProgressBar.enableAnimationToCurrentState(true);
                             stateProgressBar.checkStateCompleted(true);
+                            stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FOUR);
+
                             break;
                         case "심사중":
-                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                             statusImageView.setImageResource(R.drawable.myestimate_selected);
+                            stateProgressBar.enableAnimationToCurrentState(true);
                             stateProgressBar.checkStateCompleted(true);
+                            stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FOUR);
                             break;
                         case "승인완료":
-                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                             statusImageView.setImageResource(R.drawable.myestimate_selected);
+                            stateProgressBar.enableAnimationToCurrentState(true);
                             stateProgressBar.checkStateCompleted(true);
+                            stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FOUR);
                             break;
                         case "대출실행완료":
                             stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
                             statusImageView.setImageResource(R.drawable.myestiamte_ing);
+                            stateProgressBar.enableAnimationToCurrentState(true);
                             stateProgressBar.checkStateCompleted(true);
+                            stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FOUR);
                             break;
                     }
-                    stateProgressBar.setStateDescriptionData(descriptionData);
+
                 }
             }
+
+//            <com.kofigyan.stateprogressbar.StateProgressBar
+//            android:layout_width="wrap_content"
+//            android:layout_height="wrap_content"
+//            app:spb_currentStateNumber="three"
+//            app:spb_maxStateNumber="four"
+//            app:spb_stateBackgroundColor="#BDBDBD"
+//            app:spb_stateForegroundColor="#DB0082"
+//            app:spb_stateNumberBackgroundColor="#808080"
+//            app:spb_stateNumberForegroundColor="#eeeeee"
+//            app:spb_currentStateDescriptionColor="#DB0082"
+//            app:spb_stateDescriptionColor="#808080"
+//            app:spb_animateToCurrentProgressState="true"
+//            app:spb_checkStateCompleted="true"/>
 
             @Override
             public void onFailure(Call<SingleEstimateRes> call, Throwable t) {
