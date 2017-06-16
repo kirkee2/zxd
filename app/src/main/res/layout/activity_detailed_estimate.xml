@@ -340,36 +340,6 @@
                                     tools:text="17.06.13"
                                     />
                         </LinearLayout>
-                        <Space
-                                android:layout_width="match_parent"
-                                android:layout_height="18dp"
-                                />
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="24dp"
-                                android:layout_marginRight="12dp"
-                                android:layout_marginLeft="12dp"
-                                android:orientation="horizontal"
-                                >
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#757575"
-                                    android:text="주거래은행"
-                                    />
-                            <TextView
-                                    android:id="@+id/mainBank"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
-                                    android:gravity="end"
-                                    tools:text="신한은행"
-                                    />
-                        </LinearLayout>
 
                         <LinearLayout
                                 android:id="@+id/bottom"

@@ -183,7 +183,7 @@ public class MainFragment extends Fragment {
             mRequestAddressSize.setText(mRequest.getSize());
             mRequestAddressPrice.setText(mRequest.getPrice());
             mRequestJobType.setText(mRequest.getJobType());
-            loanType.setText(mRequest.getLoanType());
+            loanType.setText(mRequest.getInterestRateType());
             switch (mRequest.getFavorite()) {
                 case 1:
                     mStar.setChecked(true);
@@ -223,7 +223,6 @@ public class MainFragment extends Fragment {
                             mStar.setBackgroundResource(R.drawable.favorite_active);
                         }
                     }
-
                     @Override
                     public void onFailure(Call<LikeRes> call, Throwable t) {
                         Log.e(TAG, "onFailure: ");

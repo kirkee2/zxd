@@ -65,9 +65,6 @@ public class DetailedEstimate extends AppCompatActivity {
     @BindView(R.id.scheduledTime)
     TextView scheduledTime;
 
-    @BindView(R.id.mainBank)
-    TextView mainBank;
-
     @BindView(R.id.fixedLoanAmount)
     TextView fixedLoanAmount;
 
@@ -126,7 +123,7 @@ public class DetailedEstimate extends AppCompatActivity {
         return intent;
     }
 
-    String[] descriptionData = {"상담중", "대출심사중", "대출승인", "대출실행"};
+    String[] descriptionData = {"상담중", "심사중", "승인완료", "대출실행완료"} ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -140,7 +137,7 @@ public class DetailedEstimate extends AppCompatActivity {
         getSupportActionBar().setTitle("내 견적 상세");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        endTime.setSelected(true);
         Log.d(TAG, "EstimateId 는" + estimateId + "");
 
     }
@@ -161,7 +158,7 @@ public class DetailedEstimate extends AppCompatActivity {
                     Estimate estimates = estimate.getEstimates();
                     Estimate singleEstimate = estimates;
                     statusTextView.setText(singleEstimate.getStatus());
-                    
+
                     int time = timeUtil.timeLeftSecondParsing(singleEstimate.getEndTime());
 
                     int hour = time/3600;
@@ -171,15 +168,19 @@ public class DetailedEstimate extends AppCompatActivity {
 
                     if(time > 0){
                         endTime.setText("마감까지 " + timeUtil.formatNumber2(hour) + ":" + timeUtil.formatNumber2(minute)  + ":" + timeUtil.formatNumber2(second) + " 남았습니다.");
+                        endTime.setSelected(true);
                     }else{
                         endTime.setText("마감까지 " + "00" + ":" +"00" + " 남았습니다.");
+                        endTime.setSelected(true);
                     }
+
+
 
                     requestAddress.setText(singleEstimate.getTotalAddress());
                     requestAddressApt.setText(singleEstimate.getAptName());
                     requestAddressSize.setText(singleEstimate.getSize());
 
-                    String pattern = "#####.##";
+                    String pattern = "#####";
                     DecimalFormat dformat = new DecimalFormat(pattern);
 
                     requestLimitAmount.setText(dformat.format(singleEstimate.getLimiteAmount()) + "만원");
@@ -188,11 +189,10 @@ public class DetailedEstimate extends AppCompatActivity {
                     requestOverDue.setText(singleEstimate.getOverdueRecord());
                     jobType.setText(singleEstimate.getJobType());
                     scheduledTime.setText(timeUtil.dateFormat.format(singleEstimate.getScheduledTime()));
-                    //TODO 주거래 은행 없다구!!!
-//                    mainBank.setText(singleEstimate);
 
 
                     itemName.setText(singleEstimate.getItemName());
+
                     fixedLoanAmount.setText(singleEstimate.getFixedLoanAmount() + "만원");
                     estimateLoanType.setText(singleEstimate.getInterestRateType());
                     loanRate.setText(singleEstimate.getInterestRate() + "%");
@@ -205,30 +205,29 @@ public class DetailedEstimate extends AppCompatActivity {
                     overDueInterestRate2.setText(singleEstimate.getOverdueInterestRate2() + "%");
                     overDueInterestRate3.setText(singleEstimate.getOverdueInterestRate3() + "%");
 
-
-                    //
                     switch (singleEstimate.getStatus()){
 
-
                         case "상담중":
-                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
-                            stateProgressBar.checkStateCompleted(true);
-                            break;
-                        case "대출심사중":
-                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                            stateProgressBar.checkStateCompleted(true);
-                            break;
-                        case "대출승인":
                             stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            statusImageView.setImageResource(R.drawable.myestimate_selected);
                             stateProgressBar.checkStateCompleted(true);
                             break;
-                        case "대출실행":
+                        case "심사중":
                             stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            statusImageView.setImageResource(R.drawable.myestimate_selected);
                             stateProgressBar.checkStateCompleted(true);
                             break;
-
+                        case "승인완료":
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            statusImageView.setImageResource(R.drawable.myestimate_selected);
+                            stateProgressBar.checkStateCompleted(true);
+                            break;
+                        case "대출실행완료":
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            statusImageView.setImageResource(R.drawable.myestiamte_ing);
+                            stateProgressBar.checkStateCompleted(true);
+                            break;
                     }
-
                     stateProgressBar.setStateDescriptionData(descriptionData);
                 }
             }

@@ -22,7 +22,6 @@ import com.hellmoney.thca.util.timeUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -134,7 +133,6 @@ public class AgentFragment extends Fragment {
         private TextView mInterestLoanType;
         private Estimate mEstimate;
 
-        @BindView(R.id.statusImageView)
         private ImageView mImageView;
 
         public MainViewHolder(View itemView) {
@@ -154,7 +152,8 @@ public class AgentFragment extends Fragment {
             mRequestAddressSize = (TextView) itemView.findViewById(R.id.requestAddressSize);
             mRequestAddressPrice = (TextView) itemView.findViewById(R.id.requestPrice);
             mRequestJobType = (TextView) itemView.findViewById(R.id.requestJobType);
-            mInterestLoanType = (TextView) itemView.findViewById(R.id.interestLoanType);
+            mInterestLoanType = (TextView) itemView.findViewById(R.id.estimateLoanType);
+            mImageView = (ImageView) itemView.findViewById(R.id.statusImageView);
 
             mEstimateEndTime.setSelected(true);
 
@@ -201,6 +200,7 @@ public class AgentFragment extends Fragment {
             mRequestAddressSize.setText(mEstimate.getSize());
             mRequestAddressPrice.setText(mEstimate.getPrice());
             mRequestJobType.setText(mEstimate.getJobType());
+
             mInterestLoanType.setText(mEstimate.getInterestRateType());
 
             if (mEstimate.getStatus().equals("대출실행완료")){

@@ -68,9 +68,6 @@ public class SendDetailedRequest extends AppCompatActivity {
     @BindView(R.id.scheduledTime)
     TextView scheduledTime;
 
-    @BindView(R.id.mainBank)
-    TextView mainBank;
-
     //저장된 아이템 불러오는 버튼
     @BindView(R.id.callItem)
     ImageView callItem;
@@ -208,10 +205,6 @@ public class SendDetailedRequest extends AppCompatActivity {
                         interestLoanType.setText(request.getInterestRateType());
                         jobType.setText(request.getJobType());
                         scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
-
-                        //TODO 요청서에 주거래 은행 없음.
-                        mainBank.setText(request.getItemBank());
-
                         switch (request.getLoanType()){
                             case "주택담보대출":
                                 loanTypeImage.setImageResource(R.drawable.dambuu);

@@ -70,17 +70,11 @@ public class DetailedRequest extends AppCompatActivity {
     @BindView(R.id.typeLoan)
     TextView loanType;
 
-    @BindView(R.id.requestOverDue)
-    TextView requestOverDue;
-
     @BindView(R.id.jobType)
     TextView jobType;
 
     @BindView(R.id.scheduledTime)
     TextView scheduledTime;
-
-    @BindView(R.id.mainBank)
-    TextView mainBank;
 
     @BindView(R.id.barChart)
     BarChart mBarChart;
@@ -247,14 +241,11 @@ public class DetailedRequest extends AppCompatActivity {
                         String pattern = "#####";
                         DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
-
                         requestLimitAmount.setText(decimalFormat.format(request.getLimiteAmount()) + " 만원");
                         loanAmount.setText(request.getLoanAmount() + " 만원");
                         loanType.setText(request.getLoanType());
-                        requestOverDue.setText(request.getOverdueRecord());
                         jobType.setText(request.getJobType());
                         scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
-                        mainBank.setText(request.getItemBank());
                     }
                 }
             }

@@ -36,7 +36,7 @@
                 >
             <TextView
                     android:id="@+id/estimateStatus"
-                    android:layout_width="64dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:textSize="14sp"
                     android:textColor="#757575"
@@ -89,7 +89,7 @@
                         android:layout_height="48dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
-                        android:src="@drawable/ic_favorite"
+                        android:src="@drawable/dambuu"
                         />
                 <Space
                         android:layout_width="2dp"
@@ -213,14 +213,14 @@
                             android:textSize="15sp"
                             android:textColor="#757575"
                             android:gravity="center_horizontal"
-                            android:text="연체 이력"
+                            android:text="금리방식"
                             />
                     <Space
                             android:layout_width="1dp"
                             android:layout_height="3dp"
                             />
                     <TextView
-                            android:id="@+id/OverDueRecord"
+                            android:id="@+id/estimateLoanType"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"

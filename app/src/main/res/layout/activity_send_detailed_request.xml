@@ -276,36 +276,6 @@
                                 tools:text="17.06.13"
                                 />
                     </LinearLayout>
-                    <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
-                                android:text="주거래은행"
-                                />
-                        <TextView
-                                android:id="@+id/mainBank"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
-                                android:gravity="end"
-                                tools:text="신한은행"
-                                />
-                    </LinearLayout>
 
                     <LinearLayout
                             android:id="@+id/bottom"
@@ -380,6 +350,9 @@
                                     android:textSize="14sp"
                                     android:textColor="#262637"
                                     android:gravity="end"
+                                    android:singleLine="true"
+                                    android:inputType="number"
+                                    android:digits="0123456789"
                                     android:hint="10000"
                                     android:background="@null"
                                     />
@@ -420,6 +393,7 @@
                                     android:textColor="#262637"
                                     android:gravity="end"
                                     android:hint="금리 이름"
+                                    android:singleLine="true"
                                     android:background="@null"
 
                                     />
@@ -451,6 +425,9 @@
                                     android:textSize="14sp"
                                     android:textColor="#262637"
                                     android:gravity="end"
+                                    android:singleLine="true"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:hint="10"
                                     android:background="@null"
 
@@ -524,6 +501,8 @@
                                     android:textSize="14sp"
                                     android:textColor="#262637"
                                     android:gravity="end"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:singleLine="true"
                                     android:hint="ex) 고정"
                                     android:background="@null"
@@ -591,6 +570,9 @@
                                     android:textColor="#262637"
                                     android:gravity="end"
                                     android:hint="5.0"
+                                    android:singleLine="true"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:background="@null"
 
                                     />
@@ -630,6 +612,8 @@
                                     android:textSize="14sp"
                                     android:textColor="#262637"
                                     android:gravity="end"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:singleLine="true"
                                     android:hint="ex)1개월 초과 3개월 이내"
                                     android:background="@null"
@@ -664,6 +648,9 @@
                                     android:textColor="#262637"
                                     android:gravity="end"
                                     android:hint="2.5"
+                                    android:singleLine="true"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:background="@null"
 
                                     />
@@ -705,6 +692,9 @@
                                     android:textSize="14sp"
                                     android:textColor="#262637"
                                     android:gravity="end"
+                                    android:singleLine="true"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:hint="ex) 3개월 초과"
                                     android:background="@null"
                                     />
@@ -737,6 +727,9 @@
                                     android:textColor="#262637"
                                     android:gravity="end"
                                     android:hint="22.5"
+                                    android:singleLine="true"
+                                    android:inputType="numberDecimal"
+                                    android:digits="0123456789"
                                     android:background="@null"
 
                                     />
