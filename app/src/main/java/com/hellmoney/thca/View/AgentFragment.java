@@ -121,7 +121,7 @@ public class AgentFragment extends Fragment {
         super.onDetach();
     }
 
-    private class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mEstimateStatus;
         private TextView mEstimateEndTime;
@@ -135,7 +135,7 @@ public class AgentFragment extends Fragment {
         private Estimate mEstimate;
 
         @BindView(R.id.statusImageView)
-        private ImageView mImageView;
+        protected ImageView mImageView;
 
         public MainViewHolder(View itemView) {
             super(itemView);
