@@ -8,20 +8,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.model.Estimate;
 import com.hellmoney.thca.model.SingleEstimateRes;
+import com.hellmoney.thca.model.SingleRes;
 import com.hellmoney.thca.network.NetworkManager;
 import com.hellmoney.thca.util.timeUtil;
 import com.kofigyan.stateprogressbar.StateProgressBar;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -110,7 +116,95 @@ public class DetailedEstimate extends AppCompatActivity {
     @BindView(R.id.your_state_progress_bar_id)
     StateProgressBar stateProgressBar;
 
-    Estimate mEstimate;
+    @BindView(R.id.topContainer)
+    FrameLayout mFrameLayout;
+
+    @BindView(R.id.oneStatus)
+    View oneStatusView;
+
+
+    @OnClick(R.id.oneStatus)
+    public void setOneStatusView(View view) {
+        Log.d("STATUS", "clicked First Status View" );
+    }
+
+    @BindView(R.id.twoStatus)
+    View twoStatusView;
+
+    @OnClick(R.id.twoStatus)
+    public void setTwoStatusView(View view) {
+        new LovelyStandardDialog(view.getContext())
+                .setTopColorRes(R.color.colorAccent)
+                .setButtonsColorRes(R.color.darkDeepOrange)
+                .setIcon(R.drawable.icon)
+                .setTitle("진행 변화")
+                .setMessage("상태를 변화하시겠습니가?")
+                .setPositiveButton("확인", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setStatus("심사중", estimateId);
+                        Toast.makeText(DetailedEstimate.this, "심사중으로 상태 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                        stateProgressBar.enableAnimationToCurrentState(true);
+                        stateProgressBar.setAnimationStartDelay(10);
+                        stateProgressBar.invalidate();
+                    }
+                })
+                .setNegativeButton("취소", null)
+                .show();
+    }
+
+    @BindView(R.id.threeStatus)
+    View threeStatusView;
+
+    @OnClick(R.id.threeStatus)
+    public void setThreeStatusView(View view) {
+        new LovelyStandardDialog(view.getContext())
+                .setTopColorRes(R.color.colorAccent)
+                .setButtonsColorRes(R.color.darkDeepOrange)
+                .setIcon(R.drawable.icon)
+                .setTitle("진행 변화")
+                .setMessage("상태를 변화하시겠습니가?")
+                .setPositiveButton("확인", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setStatus("승인완료", estimateId);
+                        Toast.makeText(DetailedEstimate.this, "승인완료 상태 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                        stateProgressBar.enableAnimationToCurrentState(true);
+                        stateProgressBar.setAnimationStartDelay(10);
+                        stateProgressBar.invalidate();
+                    }
+                })
+                .setNegativeButton("취소", null)
+                .show();
+    }
+
+    @BindView(R.id.fourStatus)
+    View fourStatusView;
+
+    @OnClick(R.id.fourStatus)
+    public void setFourStatusView(View view) {
+        new LovelyStandardDialog(view.getContext())
+                .setTopColorRes(R.color.colorAccent)
+                .setButtonsColorRes(R.color.darkDeepOrange)
+                .setIcon(R.drawable.icon)
+                .setTitle("진행 변화")
+                .setMessage("상태를 변화하시겠습니가?")
+                .setPositiveButton("확인", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setStatus("대출실행완료", estimateId);
+                        Toast.makeText(DetailedEstimate.this, "대출실행완료 상태 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                        stateProgressBar.enableAnimationToCurrentState(true);
+                        stateProgressBar.setAnimationStartDelay(10);
+                        stateProgressBar.invalidate();
+                    }
+                })
+                .setNegativeButton("취소", null)
+                .show();
+    }
 
     private int estimateId;
 
@@ -120,7 +214,7 @@ public class DetailedEstimate extends AppCompatActivity {
         return intent;
     }
 
-    String[] descriptionData = {"상담중", "심사중", "승인완료", "대출실행완료"} ;
+    String[] descriptionData = {"상담중", "심사중", "승인완료", "대출실행완료"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -137,7 +231,13 @@ public class DetailedEstimate extends AppCompatActivity {
         endTime.setSelected(true);
         Log.d(TAG, "EstimateId 는" + estimateId + "");
 
+
+
+
     }
+
+    private Estimate estimates;
+    private Estimate singleEstimate;
 
     @Override
     protected void onResume() {
@@ -152,23 +252,23 @@ public class DetailedEstimate extends AppCompatActivity {
                     Log.d(TAG, "가져옴");
 
                     SingleEstimateRes estimate = response.body();
-                    Estimate estimates = estimate.getEstimates();
-                    Estimate singleEstimate = estimates;
+                    estimates = estimate.getEstimates();
+                    singleEstimate = estimates;
                     statusTextView.setText(singleEstimate.getStatus());
 
                     int time = timeUtil.timeLeftSecondParsing(singleEstimate.getEndTime());
 
-                    int hour = time/3600;
-                    int temp = time%3600;
-                    int minute = temp/60;
-                    int second = temp%60;
+                    int hour = time / 3600;
+                    int temp = time % 3600;
+                    int minute = temp / 60;
+                    int second = temp % 60;
 
-                    if(time > 0){
+                    if (time > 0) {
 
-                        endTime.setText("마감 " + timeUtil.formatNumber2(hour) + "시간 " + timeUtil.formatNumber2(minute)  + " 분 " + timeUtil.formatNumber2(second) + " 전");
+                        endTime.setText("마감 " + timeUtil.formatNumber2(hour) + "시간 " + timeUtil.formatNumber2(minute) + " 분 " + timeUtil.formatNumber2(second) + " 전");
                         endTime.setSelected(true);
-                    }else{
-                        endTime.setText("마감까지 " + "00" + "시" +"00 분" + " 전");
+                    } else {
+                        endTime.setText("마감까지 " + "00" + "시" + "00 분" + " 전");
                         endTime.setSelected(true);
                     }
 
@@ -201,10 +301,9 @@ public class DetailedEstimate extends AppCompatActivity {
                     overDueInterestRate3.setText(singleEstimate.getOverdueInterestRate3() + "%");
 
 
-
                     stateProgressBar.setStateDescriptionData(descriptionData);
 
-                    switch (singleEstimate.getStatus()){
+                    switch (singleEstimate.getStatus()) {
 
                         case "상담중":
                             stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
@@ -237,22 +336,16 @@ public class DetailedEstimate extends AppCompatActivity {
                             break;
                     }
 
+                    String estimateId = String.valueOf(singleEstimate.getEstimateId());
+
+                    if (!singleEstimate.getSelectedEstimateId().equals(estimateId)) {
+                        mFrameLayout.setVisibility(View.GONE);
+                    }else {
+                        mFrameLayout.setVisibility(View.VISIBLE);
+                    }
+
                 }
             }
-
-//            <com.kofigyan.stateprogressbar.StateProgressBar
-//            android:layout_width="wrap_content"
-//            android:layout_height="wrap_content"
-//            app:spb_currentStateNumber="three"
-//            app:spb_maxStateNumber="four"
-//            app:spb_stateBackgroundColor="#BDBDBD"
-//            app:spb_stateForegroundColor="#DB0082"
-//            app:spb_stateNumberBackgroundColor="#808080"
-//            app:spb_stateNumberForegroundColor="#eeeeee"
-//            app:spb_currentStateDescriptionColor="#DB0082"
-//            app:spb_stateDescriptionColor="#808080"
-//            app:spb_animateToCurrentProgressState="true"
-//            app:spb_checkStateCompleted="true"/>
 
             @Override
             public void onFailure(Call<SingleEstimateRes> call, Throwable t) {
@@ -275,6 +368,43 @@ public class DetailedEstimate extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    public void setStatus(String status, int estimateId) {
+
+        Call<SingleRes> call = NetworkManager.service.setStatus(estimateId, status);
+        call.enqueue(new Callback<SingleRes>() {
+            @Override
+            public void onResponse(Call<SingleRes> call, Response<SingleRes> response) {
+                if (response.isSuccessful()) {
+                    SingleRes res = response.body();
+                    if (res.getMsg().equals("SUCCESS")) {
+                        Log.d("STATUS", "CHANGED_STATUS");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SingleRes> call, Throwable t) {
+                Log.d("STATUS", "ERROR_STATUS");
+            }
+        });
+    }
+
+    public void dialog(final Context context, final String status, final int estimateId) {
+        new LovelyStandardDialog(context)
+                .setTopColorRes(R.color.indigo)
+                .setButtonsColorRes(R.color.darkDeepOrange)
+                .setTitle("진행 변화")
+                .setMessage("상태를 변화하시겠습니가?")
+                .setPositiveButton("확인", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                })
+                .setNegativeButton("취소", null)
+                .show();
     }
 }
 

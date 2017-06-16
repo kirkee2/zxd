@@ -19,27 +19,65 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
-        <com.kofigyan.stateprogressbar.StateProgressBar
-                android:id="@+id/your_state_progress_bar_id"
+        <FrameLayout
+                android:id="@+id/topContainer"
                 android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_height="55dp"
-                app:spb_currentStateNumber="one"
-                app:spb_maxStateNumber="four"
-                app:spb_stateBackgroundColor="#BDBDBD"
-                app:spb_stateForegroundColor="#009688"
-                app:spb_stateNumberBackgroundColor="#808080"
-                app:spb_stateNumberForegroundColor="#eeeeee"
-                app:spb_currentStateDescriptionColor="#009688"
-                app:spb_stateDescriptionColor="#808080"
-                app:spb_animateToCurrentProgressState="true"
-                app:spb_stateTextSize="20sp"
-                app:spb_descriptionTopSpaceIncrementer="10dp"
-                app:spb_stateLineThickness="10dp"
-                android:layout_gravity="center"
-                />
+                >
+            <com.kofigyan.stateprogressbar.StateProgressBar
+                    android:id="@+id/your_state_progress_bar_id"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_height="match_parent"
+                    app:spb_currentStateNumber="one"
+                    app:spb_maxStateNumber="four"
+                    app:spb_stateBackgroundColor="#BDBDBD"
+                    app:spb_stateForegroundColor="#009688"
+                    app:spb_stateNumberBackgroundColor="#808080"
+                    app:spb_stateNumberForegroundColor="#eeeeee"
+                    app:spb_currentStateDescriptionColor="#009688"
+                    app:spb_stateDescriptionColor="#808080"
+                    app:spb_animateToCurrentProgressState="true"
+                    app:spb_stateTextSize="20sp"
+                    app:spb_descriptionTopSpaceIncrementer="10dp"
+                    app:spb_stateLineThickness="10dp"
+                    android:layout_gravity="center"
+                    />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal"
+                    >
+                <View
+                        android:id="@+id/oneStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        />
+                <View
+                        android:id="@+id/twoStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        />
+                <View
+                        android:id="@+id/threeStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        />
+                <View
+                        android:id="@+id/fourStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        />
+            </LinearLayout>
+        </FrameLayout>
 
         <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"

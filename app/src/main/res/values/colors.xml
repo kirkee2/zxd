@@ -8,13 +8,24 @@
     <color name="navigation1">#ffffff</color>
     <color name="navigation2">#a0a0a0</color>
 
-        <color name="basement">#F5F5F5</color>
-        <color name="progress">#00BFA5</color>
-        <color name="pointTypo">#262637</color>
-        <color name="normalTypo">#757575</color>
-        <color name="subNormal">#BDBDBD</color>
-        <color name="fix">#FF00BBFF</color>
-        <color name="orange">#FF5722</color>
-        <color name="white">#FFFFFFFF</color>
+    <color name="basement">#F5F5F5</color>
+    <color name="progress">#00BFA5</color>
+    <color name="pointTypo">#262637</color>
+    <color name="normalTypo">#757575</color>
+    <color name="subNormal">#BDBDBD</color>
+    <color name="fix">#FF00BBFF</color>
+    <color name="orange">#FF5722</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--LovelyDialog-->
+    <color name="indigo">#3F51B5</color>
+    <color name="teal">#009688</color>
+    <color name="darkDeepOrange">#E64A19</color>
+    <color name="darkGreen">#388E3C</color>
+    <color name="darkBlueGrey">#455A64</color>
+    <color name="darkRed">#D32F2F</color>
+
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#727272</color>
 
 </resources>

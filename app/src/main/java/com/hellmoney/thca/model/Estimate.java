@@ -113,6 +113,15 @@ public class Estimate {
     @SerializedName("loan_amount")
     private String loanAmount;
 
+
+    @SerializedName("selected_estimate_id")
+    private String selectedEstimateId;
+
+    public String getSelectedEstimateId() {
+        return selectedEstimateId;
+    }
+
+
     public Date getScheduledTime() {
         return scheduledTime;
     }

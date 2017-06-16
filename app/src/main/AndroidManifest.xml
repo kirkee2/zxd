@@ -9,19 +9,25 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".view.MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.MainActivity"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.NoticeDetailActivity" />
-        <activity android:name=".view.ItemDetailActivity" />
-        <activity android:name=".view.SendDetailedRequest" />
-        <activity android:name=".view.DetailedRequest" />
-        <activity android:name=".view.DetailedEstimate" />
+        <activity android:name=".view.NoticeDetailActivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.ItemDetailActivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.SendDetailedRequest"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.DetailedRequest"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.DetailedEstimate"
+                android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

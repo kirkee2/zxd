@@ -10,6 +10,7 @@ import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.model.SingleEstimateRes;
 import com.hellmoney.thca.model.SingleRequestRes;
+import com.hellmoney.thca.model.SingleRes;
 import com.hellmoney.thca.model.User;
 
 import retrofit2.Call;
@@ -138,6 +139,11 @@ public interface NetworkService {
 
     @GET("/consultants/estimates/{estimateId}")
     Call<SingleEstimateRes> getSingleMyEstimte(@Path("estimateId") String estimateId);
+
+    @FormUrlEncoded
+    @PUT("/consultants/estimates/{estimateId}")
+    Call<SingleRes> setStatus(@Path("estimateId") int estimateId,
+                              @Field("status") String status);
 
 
 }
