@@ -1,7 +1,6 @@
 package com.hellmoney.thca.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.hellmoney.thca.R;
@@ -34,7 +31,8 @@ import static com.hellmoney.thca.util.timeUtil.formatNumber2;
 
 public class MainFragment extends Fragment {
     public static final String TAG = MainFragment.class.getName();
-
+    // TODO : agentId 로그인 완성되면 대체
+    private static String AGENT_ID = "agent1@naver.com";
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -78,12 +76,18 @@ public class MainFragment extends Fragment {
         mContext = getActivity();
         mRequests = new ArrayList<>();
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        mMainContentAdapter = new MainContentAdapter(mRequests, mContext);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(mMainContentAdapter);
 
-        Call<RequestRes> getRequests = NetworkManager.service.getRequests("agent1@naver.com");
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMainContentAdapter = new MainContentAdapter(mRequests, mContext);
+        recyclerView.setAdapter(mMainContentAdapter);
+        Call<RequestRes> getRequests = NetworkManager.service.getRequests(AGENT_ID);
         getRequests.enqueue(new Callback<RequestRes>() {
             @Override
             public void onResponse(Call<RequestRes> call, Response<RequestRes> response) {
@@ -102,33 +106,9 @@ public class MainFragment extends Fragment {
                 Log.d("Len", t.toString());
             }
         });
-
-        return view;
     }
 
-    public void onButtonPressed(Uri uri) {
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    private class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ToggleButton.OnCheckedChangeListener {
-
+    private class MainViewHolder extends RecyclerView.ViewHolder {
         private TextView mEstimateCount;
         private TextView mEstimateEndTime;
         private ImageView mLoanTypeImageView;
@@ -157,8 +137,6 @@ public class MainFragment extends Fragment {
             mRequestJobType = (TextView) itemView.findViewById(R.id.requestJobType);
             loanType = (TextView) itemView.findViewById(R.id.loanType);
             mStar = (ToggleButton) itemView.findViewById(R.id.star);
-            itemView.setOnClickListener(this);
-            mStar.setOnCheckedChangeListener(this);
         }
 
         public void bindRequest(Request request) {
@@ -187,11 +165,9 @@ public class MainFragment extends Fragment {
             switch (mRequest.getFavorite()) {
                 case 1:
                     mStar.setChecked(true);
-                    mStar.setBackgroundResource(R.drawable.favorite_active);
                     break;
                 case 0:
                     mStar.setChecked(false);
-                    mStar.setBackgroundResource(R.drawable.favorite_unactive);
                     break;
             }
             switch (mRequest.getLoanType()) {
@@ -202,54 +178,55 @@ public class MainFragment extends Fragment {
                     mLoanTypeImageView.setImageResource(R.drawable.sunjaa);
                     break;
             }
-        }
 
-        @Override
-        public void onClick(View v) {
-            getActivity().startActivity(DetailedRequest.getIntent(mRequest.getRequestId(), mContext));
-        }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().startActivity(DetailedRequest.getIntent(mRequest.getRequestId(), mContext));
+                }
+            });
 
-        @Override
-        public void onCheckedChanged(final CompoundButton buttonView, boolean isChecked) {
+            mStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean isChecked = ((ToggleButton) v).isChecked();
+                    if (isChecked) {
+                        Call<LikeRes> insertFavorite = NetworkManager.service.like(AGENT_ID, mRequest.getRequestId());
+                        insertFavorite.enqueue(new Callback<LikeRes>() {
+                            @Override
+                            public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
+                                if (response.isSuccessful()) {
+//                                    Toast.makeText(mContext, "좋아요!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-            if (isChecked) {
+                            @Override
+                            public void onFailure(Call<LikeRes> call, Throwable t) {
+                                Log.e(TAG, "onFailure: ");
+                            }
+                        });
+                    } else {
+                        Call<LikeRes> deleteFavorite = NetworkManager.service.unlike(AGENT_ID, mRequest.getRequestId());
+                        deleteFavorite.enqueue(new Callback<LikeRes>() {
+                            @Override
+                            public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
+                                if (response.isSuccessful()) {
+//                                    Toast.makeText(mContext, "좋아요를 취소합니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-                Call<LikeRes> insertFavorite = NetworkManager.service.like(mRequest.getAgentId(), mRequest.getRequestId());
-                insertFavorite.enqueue(new Callback<LikeRes>() {
-                    @Override
-                    public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(mContext, "좋아요!", Toast.LENGTH_SHORT).show();
-                            mStar.setBackgroundResource(R.drawable.favorite_active);
-                        }
+                            @Override
+                            public void onFailure(Call<LikeRes> call, Throwable t) {
+                                Log.e(TAG, "onFailure: ");
+                            }
+                        });
                     }
-                    @Override
-                    public void onFailure(Call<LikeRes> call, Throwable t) {
-                        Log.e(TAG, "onFailure: ");
-                    }
-                });
-            } else {
-                Call<LikeRes> deleteFavorite = NetworkManager.service.unlike(mRequest.getAgentId(), mRequest.getRequestId());
-                deleteFavorite.enqueue(new Callback<LikeRes>() {
-                    @Override
-                    public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(mContext, "좋아요를 취소합니다.", Toast.LENGTH_SHORT).show();
-                            mStar.setBackgroundResource(R.drawable.favorite_unactive);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LikeRes> call, Throwable t) {
-                        Log.e(TAG, "onFailure: ");
-                    }
-                });
-            }
+                }
+            });
         }
     }
 
     private class MainContentAdapter extends RecyclerView.Adapter<MainViewHolder> {
-
         private List<Request> mRequests;
         private Context mContext;
 
@@ -274,5 +251,4 @@ public class MainFragment extends Fragment {
             return mRequests.size();
         }
     }
-
 }

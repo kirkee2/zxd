@@ -22,6 +22,7 @@ import com.hellmoney.thca.util.timeUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -120,7 +121,7 @@ public class AgentFragment extends Fragment {
         super.onDetach();
     }
 
-    private class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mEstimateStatus;
         private TextView mEstimateEndTime;
@@ -133,7 +134,8 @@ public class AgentFragment extends Fragment {
         private TextView mInterestLoanType;
         private Estimate mEstimate;
 
-        private ImageView mImageView;
+        @BindView(R.id.statusImageView)
+        protected ImageView mImageView;
 
         public MainViewHolder(View itemView) {
             super(itemView);
