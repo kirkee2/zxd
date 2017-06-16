@@ -188,9 +188,7 @@ public class SendDetailedRequest extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     SingleRequestRes results = response.body();
                     if (results.getMessage().equals("SUCCESS")) {
-                        Request[] requests = results.getRequest();
-                        // 배열로 보내져서 배열로 받아왔음
-                        request = requests[0];
+                        request = results.getRequest();
 
                         requestAddress.setText(request.getTotalAddress());
                         requestAddressApt.setText(request.getAptName());

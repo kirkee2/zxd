@@ -12,7 +12,7 @@ public class SingleRequestRes {
     private String message;
 
     @SerializedName("data")
-    private Request[] mRequest;
+    private Request request;
 
     public String getMessage() {
         return message;
@@ -22,12 +22,12 @@ public class SingleRequestRes {
         this.message = message;
     }
 
-    public Request[] getRequest() {
-        return mRequest;
+    public Request getRequest() {
+        return request;
     }
 
-    public void setRequest(Request[] requests) {
-        mRequest = requests;
+    public void setRequest(Request request) {
+        this.request = request;
     }
 }
 

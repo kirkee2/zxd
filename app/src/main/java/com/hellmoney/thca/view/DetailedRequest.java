@@ -82,7 +82,6 @@ public class DetailedRequest extends AppCompatActivity {
     @BindView(R.id.calledAddEstimate)
     Button mButton;
 
-    Request request;
     ArrayList<Request> loanRates;
     private int requestId;
     Context mContext;
@@ -112,7 +111,6 @@ public class DetailedRequest extends AppCompatActivity {
     }
 
     @OnClick(R.id.calledAddEstimate)
-
     void onClick() {
         startActivity(SendDetailedRequest.getIntent(requestId, mContext));
     }
@@ -213,9 +211,7 @@ public class DetailedRequest extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     SingleRequestRes results = response.body();
                     if (results.getMessage().equals("SUCCESS")) {
-                        Request[] requests = results.getRequest();
-                        // 배열로 보내져서 배열로 받아왔음
-                        request = requests[0];
+                        Request request = results.getRequest();
 
                         Log.d(TAG, request.getTotalAddress());
 
