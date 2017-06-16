@@ -10,8 +10,7 @@
         android:layout_gravity="center_horizontal"
         android:foreground="?attr/selectableItemBackground"
         >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,15 +19,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 >
             <TextView
                     android:id="@+id/estimateCount"
                     android:layout_width="64dp"
                     android:layout_height="18dp"
+                    android:layout_marginLeft="12dp"
                     android:textSize="14sp"
                     android:textColor="#757575"
-                    android:layout_gravity="center_vertical"
                     tools:text="견적 10 건"
                     />
             <Space
@@ -64,7 +63,9 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:textOff=""
-                    android:textOn="" />
+                    android:textOn=""
+                    android:background="@drawable/favorite_icon_selector"
+                    />
         </LinearLayout>
         <LinearLayout
                 android:id="@+id/bottom"

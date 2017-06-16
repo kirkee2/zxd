@@ -106,7 +106,6 @@ public class AgentFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
     }
 
     @Override
@@ -132,7 +131,6 @@ public class AgentFragment extends Fragment {
         private TextView mRequestAddressPrice;
         private TextView mRequestJobType;
         private TextView mOverDue;
-
         private Estimate mEstimate;
 
         public MainViewHolder(LayoutInflater inflater, ViewGroup parent) {
