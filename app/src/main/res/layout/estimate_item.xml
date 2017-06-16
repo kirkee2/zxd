@@ -56,7 +56,7 @@
                 <TextView
                         android:id="@+id/endTime"
                         android:layout_width="116.3dp"
-                        android:layout_height="16dp"
+                        android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#00bfa5"
                         android:layout_gravity="center_horizontal|center_vertical"
