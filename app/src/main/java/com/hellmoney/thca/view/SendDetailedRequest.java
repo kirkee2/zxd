@@ -112,6 +112,7 @@ public class SendDetailedRequest extends AppCompatActivity {
     public void submit(View view) {
 
         Log.d(TAG,request.getAgentId());
+
         Call<Request> insertEstimate = NetworkManager.service.addRequest(
                 request.getAgentId(),
                 fixedLoanAmount.getText().toString(),
@@ -174,7 +175,6 @@ public class SendDetailedRequest extends AppCompatActivity {
         getSupportActionBar().setTitle("견적서 작성");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
 
     @Override

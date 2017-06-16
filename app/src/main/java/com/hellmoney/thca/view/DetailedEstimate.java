@@ -122,7 +122,6 @@ public class DetailedEstimate extends AppCompatActivity {
     @BindView(R.id.oneStatus)
     View oneStatusView;
 
-
     @OnClick(R.id.oneStatus)
     public void setOneStatusView(View view) {
         Log.d("STATUS", "clicked First Status View" );
