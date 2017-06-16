@@ -29,6 +29,16 @@ public class Item {
     private Float overdueInterestRate3;
     @SerializedName("overdue_time_3")
     private String overdueTime3;
+    @SerializedName("loan_type")
+    private String loanType;
+
+    public String getLoanType() {
+        return loanType;
+    }
+
+    public void setLoanType(String loanType) {
+        this.loanType = loanType;
+    }
 
     public int getItemId() {
         return itemId;

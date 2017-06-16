@@ -67,7 +67,7 @@ public interface NetworkService {
     Call<SingleRequestRes> getRequest(@Path("requestId") String requestId,
                                       @Path("agentId") String agentId);
 
-//
+    //
     @GET("/clients/estimates")
     Call<RequestRes> getLoanRate(@Query("requestId") String requestId);
 
@@ -81,24 +81,25 @@ public interface NetworkService {
     Call<NoticeDetailRes> getNotice(@Path("noticeId") int noticeId);
 
     @GET("/consultants/items")
-    Call<ItemRes> getItemsByAgentId(@Query("agentId") String agentId);
+    Call<ItemRes> getItemsByAgentId(@Query("agentId") String agentId, @Query("loanType") String loanType);
 
     @FormUrlEncoded
     @POST("/consultants/items")
     Call<String> AddItem(@Field("agentId") String agentId,
                          @Field("itemBank") String itemBank,
                          @Field("itemName") String itemName,
-                         @Field("minInterestrate") Float minInterestrate,
-                         @Field("maxInterestrate") Float maxInterestrate,
+                         @Field("minInterestRate") Float minInterestRate,
+                         @Field("maxInterestRate") Float maxInterestRate,
                          @Field("interestRateType") String interestRateType,
                          @Field("repaymentType") String repaymentType,
-                         @Field("overdueInterestRate01") Float overdueInterestRate01,
-                         @Field("overdueInterestRate02") Float overdueInterestRate02,
-                         @Field("overdueInterestRate03") Float overdueInterestRate03,
-                         @Field("overdueTime01") String overdueTime01,
-                         @Field("overdueTime02") String overdueTime02,
-                         @Field("overdueTime03") String overdueTime03,
-                         @Field("earlyRepaymentFee") Float earlyRepaymentFee);
+                         @Field("overdueInterestRate1") Float overdueInterestRate1,
+                         @Field("overdueInterestRate2") Float overdueInterestRate2,
+                         @Field("overdueInterestRate3") Float overdueInterestRate3,
+                         @Field("overdueTime1") String overdueTime1,
+                         @Field("overdueTime2") String overdueTime2,
+                         @Field("overdueTime3") String overdueTime3,
+                         @Field("earlyRepaymentFee") Float earlyRepaymentFee,
+                         @Field("loanType") String loanType);
 
     @GET("/consultants/items/{itemId}")
     Call<ItemDetailRes> getItem(@Path("itemId") int itemId);
@@ -108,17 +109,18 @@ public interface NetworkService {
     Call<String> updateItem(@Path("itemId") int itemId,
                             @Field("itemBank") String itemBank,
                             @Field("itemName") String itemName,
-                            @Field("minInterestrate") Float minInterestrate,
-                            @Field("maxInterestrate") Float maxInterestrate,
+                            @Field("minInterestRate") Float minInterestRate,
+                            @Field("maxInterestRate") Float maxInterestRate,
                             @Field("interestRateType") String interestRateType,
                             @Field("repaymentType") String repaymentType,
-                            @Field("overdueInterestRate01") Float overdueInterestRate01,
-                            @Field("overdueInterestRate02") Float overdueInterestRate02,
-                            @Field("overdueInterestRate03") Float overdueInterestRate03,
-                            @Field("overdueTime01") String overdueTime01,
-                            @Field("overdueTime02") String overdueTime02,
-                            @Field("overdueTime03") String overdueTime03,
-                            @Field("earlyRepaymentFee") Float earlyRepaymentFee);
+                            @Field("overdueInterestRate1") Float overdueInterestRate1,
+                            @Field("overdueInterestRate2") Float overdueInterestRate2,
+                            @Field("overdueInterestRate3") Float overdueInterestRate3,
+                            @Field("overdueTime1") String overdueTime1,
+                            @Field("overdueTime2") String overdueTime2,
+                            @Field("overdueTime3") String overdueTime3,
+                            @Field("earlyRepaymentFee") Float earlyRepaymentFee,
+                            @Field("loanType") String loanType);
 
     @DELETE("/consultants/items/{itemId}")
     Call<String> deleteItem(@Path("itemId") int itemId);
@@ -129,7 +131,7 @@ public interface NetworkService {
 
     @DELETE("/consultants/likes/agents/{agentId}/requests/{requestId}")
     Call<LikeRes> unlike(@Path("agentId") String agentId,
-                       @Path("requestId") int requestId);
+                         @Path("requestId") int requestId);
 
     @GET("/consultants/estimates")
     Call<EstimateRes> getMyEstimate(@Query("agentId") String agentId);
