@@ -67,7 +67,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                         Notice notice = results.getNotice();
                         mTitleTextView.setText(notice.getTitle());
                         switch (notice.getType()) {
-                            case "공지":
+                            case "교육":
                                 mTypeImageView.setImageResource(R.mipmap.ic_notice);
                                 break;
                             case "점검":

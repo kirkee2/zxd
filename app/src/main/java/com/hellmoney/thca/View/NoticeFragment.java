@@ -127,7 +127,7 @@ public class NoticeFragment extends Fragment {
 
             holder.mTitleTextView.setText(notice.getTitle());
             switch (notice.getType()) {
-                case "공지":
+                case "교육":
                     holder.mTypeImageView.setImageResource(R.mipmap.ic_notice);
                     break;
                 case "점검":
