@@ -77,6 +77,8 @@ public class AgentFragment extends Fragment {
         recyclerView.setAdapter(mMainContentAdapter);
         recyclerView.setNestedScrollingEnabled(false);
 
+
+
         Call<EstimateRes> getMyEstimate = NetworkManager.service.getMyEstimate("agent1@naver.com");
         getMyEstimate.enqueue(new Callback<EstimateRes>() {
             @Override
