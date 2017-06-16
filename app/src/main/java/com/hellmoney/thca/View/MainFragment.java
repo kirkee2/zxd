@@ -137,7 +137,7 @@ public class MainFragment extends Fragment {
         private TextView mRequestAddressSize;
         private TextView mRequestAddressPrice;
         private TextView mRequestJobType;
-        private TextView mOverDue;
+        private TextView loanType;
         private ToggleButton mStar;
         private Request mRequest;
 
@@ -146,13 +146,16 @@ public class MainFragment extends Fragment {
 
             mEstimateCount = (TextView) itemView.findViewById(R.id.estimateCount);
             mEstimateEndTime = (TextView) itemView.findViewById(R.id.endTime);
+
+            mEstimateEndTime.setSelected(true);
+
             mLoanTypeImageView = (ImageView) itemView.findViewById(R.id.loanTypeImageView);
             mRequestAddress = (TextView) itemView.findViewById(R.id.requestAddress);
             mRequestAddressApt = (TextView) itemView.findViewById(R.id.requestAddressApt);
             mRequestAddressSize = (TextView) itemView.findViewById(R.id.requestAddressSize);
             mRequestAddressPrice = (TextView) itemView.findViewById(R.id.requestPrice);
             mRequestJobType = (TextView) itemView.findViewById(R.id.requestJobType);
-            mOverDue = (TextView) itemView.findViewById(R.id.OverDueRecord);
+            loanType = (TextView) itemView.findViewById(R.id.loanType);
             mStar = (ToggleButton) itemView.findViewById(R.id.star);
             itemView.setOnClickListener(this);
             mStar.setOnCheckedChangeListener(this);
@@ -180,7 +183,7 @@ public class MainFragment extends Fragment {
             mRequestAddressSize.setText(mRequest.getSize());
             mRequestAddressPrice.setText(mRequest.getPrice());
             mRequestJobType.setText(mRequest.getJobType());
-            mOverDue.setText(mRequest.getOverdueRecord());
+            loanType.setText(mRequest.getLoanType());
             switch (mRequest.getFavorite()) {
                 case 1:
                     mStar.setChecked(true);

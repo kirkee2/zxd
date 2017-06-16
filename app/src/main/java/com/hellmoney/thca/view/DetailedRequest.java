@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -119,9 +118,9 @@ public class DetailedRequest extends AppCompatActivity {
     }
 
     @OnClick(R.id.calledAddEstimate)
+
     void onClick() {
         startActivity(SendDetailedRequest.getIntent(requestId, mContext));
-        Toast.makeText(this, "클릭", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -200,7 +199,7 @@ public class DetailedRequest extends AppCompatActivity {
                         String pattern = "#####.##";
                         DecimalFormat dformat = new DecimalFormat(pattern);
 
-                        averageInterestRate.setText(dformat.format(average));
+                        averageInterestRate.setText(dformat.format(average) + "%");
 
                     }
                 }
@@ -226,6 +225,9 @@ public class DetailedRequest extends AppCompatActivity {
 
                         Log.d(TAG, request.getTotalAddress());
 
+                        if (request.getEstiamteCount() > 10){
+                            mButton.setSelected(false);
+                        }
                         finalQuotationCount.setText(request.getEstiamteCount() + "");
 
                         switch (request.getLoanType()) {
@@ -241,7 +243,12 @@ public class DetailedRequest extends AppCompatActivity {
                         requestAddress.setText(request.getTotalAddress());
                         requestAddressApt.setText(request.getAptName());
                         requestAddressSize.setText(request.getSize());
-                        requestLimitAmount.setText(request.getLimiteAmount() + " 만원");
+
+                        String pattern = "#####";
+                        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+
+
+                        requestLimitAmount.setText(decimalFormat.format(request.getLimiteAmount()) + " 만원");
                         loanAmount.setText(request.getLoanAmount() + " 만원");
                         loanType.setText(request.getLoanType());
                         requestOverDue.setText(request.getOverdueRecord());

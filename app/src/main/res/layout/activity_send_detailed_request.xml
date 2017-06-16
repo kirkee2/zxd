@@ -54,7 +54,7 @@
                                 android:layout_height="48dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:src="@drawable/ic_favorite"
+                                android:src="@drawable/dambuu"
                                 />
                         <Space
                                 android:layout_width="2dp"
@@ -97,7 +97,7 @@
                     </LinearLayout>
                     <Space
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="8dp"
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                     </LinearLayout>
                     <Space
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="8dp"
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -157,7 +157,37 @@
                     </LinearLayout>
                     <Space
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="8dp"
+                            />
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:orientation="horizontal"
+                            >
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="14sp"
+                                android:textColor="#757575"
+                                android:text="금리종류"
+                                />
+                        <TextView
+                                android:id="@+id/typeLoan"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="14sp"
+                                android:textColor="#262637"
+                                android:gravity="end"
+                                tools:text="고정"
+                                />
+                    </LinearLayout>
+                    <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -175,7 +205,7 @@
                                 android:text="금리방식"
                                 />
                         <TextView
-                                android:id="@+id/typeLoan"
+                                android:id="@+id/interestLoanType"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -187,37 +217,7 @@
                     </LinearLayout>
                     <Space
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
-                            />
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
-                                android:text="연체이력"
-                                />
-                        <TextView
-                                android:id="@+id/requestOverDue"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
-                                android:gravity="end"
-                                tools:text="없음"
-                                />
-                    </LinearLayout>
-                    <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="8dp"
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -248,7 +248,7 @@
                     </LinearLayout>
                     <Space
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="8dp"
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -278,7 +278,7 @@
                     </LinearLayout>
                     <Space
                             android:layout_width="match_parent"
-                            android:layout_height="18dp"
+                            android:layout_height="8dp"
                             />
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -347,7 +347,7 @@
                                     android:id="@+id/callItem"
                                     android:layout_width="90dp"
                                     android:layout_height="28dp"
-                                    android:src="@drawable/alert1"
+                                    android:src="@android:drawable/btn_plus"
                                     android:layout_alignParentTop="true"
                                     android:layout_alignParentRight="true"
                                     android:layout_alignParentEnd="true"
@@ -355,11 +355,11 @@
                         </RelativeLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -398,7 +398,7 @@
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -430,7 +430,7 @@
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -466,11 +466,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -499,11 +499,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -532,11 +532,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -565,11 +565,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -605,11 +605,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -638,11 +638,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -680,11 +680,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"
@@ -711,11 +711,11 @@
                         </LinearLayout>
                         <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="18dp"
+                                android:layout_height="8dp"
                                 />
                         <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="24dp"
                                 android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
                                 android:orientation="horizontal"

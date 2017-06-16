@@ -22,6 +22,8 @@ import com.hellmoney.thca.util.timeUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,7 +80,6 @@ public class AgentFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
 
-
         Call<EstimateRes> getMyEstimate = NetworkManager.service.getMyEstimate("agent1@naver.com");
         getMyEstimate.enqueue(new Callback<EstimateRes>() {
             @Override
@@ -130,8 +131,17 @@ public class AgentFragment extends Fragment {
         private TextView mRequestAddressSize;
         private TextView mRequestAddressPrice;
         private TextView mRequestJobType;
-        private TextView mOverDue;
+        private TextView mInterestLoanType;
         private Estimate mEstimate;
+
+        @BindView(R.id.statusImageView)
+        private ImageView mImageView;
+
+        public MainViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+
+        }
 
         public MainViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.estimate_item, parent, false));
@@ -144,7 +154,9 @@ public class AgentFragment extends Fragment {
             mRequestAddressSize = (TextView) itemView.findViewById(R.id.requestAddressSize);
             mRequestAddressPrice = (TextView) itemView.findViewById(R.id.requestPrice);
             mRequestJobType = (TextView) itemView.findViewById(R.id.requestJobType);
-            mOverDue = (TextView) itemView.findViewById(R.id.OverDueRecord);
+            mInterestLoanType = (TextView) itemView.findViewById(R.id.interestLoanType);
+
+            mEstimateEndTime.setSelected(true);
 
             itemView.setOnClickListener(this);
         }
@@ -161,10 +173,10 @@ public class AgentFragment extends Fragment {
             int minute = temp / 60;
             int _second = temp % 60;
 
-            if (second > 0){
+            if (second > 0) {
                 mEstimateEndTime.setText("마감시간이 " + hour + "시 " + minute + "분" + _second + "초 남았습니다.");
-            }else {
-                mEstimateEndTime.setText("마감까지 " + "00" + ":" +"00" + " 남았습니다.");
+            } else {
+                mEstimateEndTime.setText("마감까지 " + "00" + ":" + "00" + " 남았습니다.");
             }
 
               /*
@@ -189,7 +201,13 @@ public class AgentFragment extends Fragment {
             mRequestAddressSize.setText(mEstimate.getSize());
             mRequestAddressPrice.setText(mEstimate.getPrice());
             mRequestJobType.setText(mEstimate.getJobType());
-            mOverDue.setText(mEstimate.getOverdueRecord());
+            mInterestLoanType.setText(mEstimate.getInterestRateType());
+
+            if (mEstimate.getStatus().equals("대출실행완료")){
+                mImageView.setImageResource(R.drawable.myestiamte_ing);
+            } else {
+                mImageView.setImageResource(R.drawable.myestimate_selected);
+            }
 
 
             switch (mEstimate.getLoanType()) {

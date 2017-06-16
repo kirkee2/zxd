@@ -46,9 +46,11 @@
                         android:layout_height="16dp"
                         android:textSize="14sp"
                         android:textColor="#00bfa5"
-
                         android:layout_gravity="center_horizontal|center_vertical"
                         tools:text="마감 03시간 26분 전"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
                         />
             </LinearLayout>
             <Space
@@ -87,10 +89,9 @@
                         android:src="@drawable/ic_favorite"
                         />
                 <Space
-                        android:layout_width="2dp"
+                        android:layout_width="1dp"
                         android:layout_height="48dp"
                         android:background="@android:color/darker_gray"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
                         />
                 <LinearLayout
@@ -208,14 +209,14 @@
                             android:textSize="15sp"
                             android:textColor="#757575"
                             android:gravity="center_horizontal"
-                            android:text="연제 이력"
+                            android:text="금리방식"
                             />
                     <Space
                             android:layout_width="1dp"
                             android:layout_height="3dp"
                             />
                     <TextView
-                            android:id="@+id/OverDueRecord"
+                            android:id="@+id/loanType"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"

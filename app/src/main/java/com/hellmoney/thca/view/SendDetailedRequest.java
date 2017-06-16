@@ -20,6 +20,8 @@ import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
 import com.hellmoney.thca.util.timeUtil;
 
+import java.text.DecimalFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -57,8 +59,8 @@ public class SendDetailedRequest extends AppCompatActivity {
     @BindView(R.id.typeLoan)
     TextView loanType;
 
-    @BindView(R.id.requestOverDue)
-    TextView requestOverDue;
+    @BindView(R.id.interestLoanType)
+    TextView interestLoanType;
 
     @BindView(R.id.jobType)
     TextView jobType;
@@ -108,8 +110,6 @@ public class SendDetailedRequest extends AppCompatActivity {
 
     @BindView(R.id.sendEstimate)
     Button sendEstimateButton;
-
-
 
     @OnClick(R.id.sendEstimate)
     public void submit(View view) {
@@ -174,7 +174,8 @@ public class SendDetailedRequest extends AppCompatActivity {
         Log.d(TAG, "RequestID 는" + requestId + "");
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("견적서 작성");        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("견적서 작성");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
@@ -198,10 +199,13 @@ public class SendDetailedRequest extends AppCompatActivity {
                         requestAddressApt.setText(request.getAptName());
                         requestAddressSize.setText(request.getSize());
 
-                        requestLimitAmount.setText(request.getLimiteAmount() + "만원");
+                        String pattern = "#######";
+                        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+
+                        requestLimitAmount.setText(decimalFormat.format(request.getLimiteAmount())+ " 만원");
                         loanAmount.setText(request.getLoanAmount() + "만원");
                         loanType.setText(request.getLoanType());
-                        requestOverDue.setText(request.getOverdueRecord());
+                        interestLoanType.setText(request.getInterestRateType());
                         jobType.setText(request.getJobType());
                         scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
 

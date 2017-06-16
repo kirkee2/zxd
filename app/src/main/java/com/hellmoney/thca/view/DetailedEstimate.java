@@ -160,9 +160,8 @@ public class DetailedEstimate extends AppCompatActivity {
                     SingleEstimateRes estimate = response.body();
                     Estimate estimates = estimate.getEstimates();
                     Estimate singleEstimate = estimates;
-                    Log.d(TAG, response.body() + "");
                     statusTextView.setText(singleEstimate.getStatus());
-
+                    
                     int time = timeUtil.timeLeftSecondParsing(singleEstimate.getEndTime());
 
                     int hour = time/3600;

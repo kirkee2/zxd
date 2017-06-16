@@ -12,8 +12,7 @@
         android:foreground="?attr/selectableItemBackground"
         >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
             android:orientation="vertical"
             android:layout_width="328dp"
             android:layout_height="168dp"
@@ -50,6 +49,9 @@
                         android:textColor="#00bfa5"
                         android:layout_gravity="center_horizontal|center_vertical"
                         tools:text="마감 03시간 26분 전"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
                         />
             </LinearLayout>
             <Space
@@ -83,10 +85,9 @@
                         android:src="@drawable/ic_favorite"
                         />
                 <Space
-                        android:layout_width="2dp"
+                        android:layout_width="1dp"
                         android:layout_height="48dp"
                         android:background="@color/colorAccent"
-                        android:layout_marginLeft="12dp"
                         android:layout_marginRight="12dp"
                         />
                 <LinearLayout
@@ -203,14 +204,14 @@
                             android:textSize="10sp"
                             android:textColor="#757575"
                             android:gravity="center_horizontal"
-                            tools:text="연제 이력"
+                            tools:text="금리방식"
                             />
                     <Space
                             android:layout_width="1dp"
                             android:layout_height="3dp"
                             />
                     <TextView
-                            android:id="@+id/OverDueRecord"
+                            android:id="@+id/interestLoanType"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
