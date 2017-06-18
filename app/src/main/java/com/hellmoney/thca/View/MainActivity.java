@@ -20,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
+import com.hellmoney.thca.message.MyFirebaseInstanceIDService;
 import com.hellmoney.thca.model.Agent;
 import com.hellmoney.thca.model.AgentDetailRes;
 import com.hellmoney.thca.network.NetworkManager;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         Agent agent = results.getAgent();
                         ((TextView) mNavHeader.findViewById(R.id.agent_name_text_view)).setText(agent.getName());
                         ((TextView) mNavHeader.findViewById(R.id.agent_company_name_text_view)).setText(agent.getCompanyName());
+                        ((TextView) mNavHeader.findViewById(R.id.test_fcm_token)).setText(FirebaseInstanceId.getInstance().getToken());
                         Glide.with(getApplicationContext())
                                 .load(agent.getPhoto())
                                 .thumbnail(0.1f)

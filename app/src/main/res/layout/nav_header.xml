@@ -21,6 +21,7 @@
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
+        android:id="@+id/agent_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/image_view"
@@ -55,5 +56,16 @@
             android:textSize="18sp"
             tools:text="홍길동" />
     </LinearLayout>
+
+    <!--TODO 테스트용 뷰-->
+    <TextView
+        android:id="@+id/test_fcm_token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/agent_text"
+        android:layout_centerHorizontal="true"
+        android:textIsSelectable="true"
+        android:layout_marginTop="20dp"
+        tools:text="fcm_token"/>
 
 </RelativeLayout>
