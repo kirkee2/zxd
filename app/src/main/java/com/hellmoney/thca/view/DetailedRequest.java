@@ -130,12 +130,18 @@ public class DetailedRequest extends AppCompatActivity {
                     RequestRes requests = response.body();
                     if (requests.getMessage().equals("SUCCESS")) {
 
+
+
                         ArrayList<BarEntry> entries = new ArrayList<>();
                         ArrayList<BarEntry> entriesMin = new ArrayList<>();
 
                         float min = 100;
                         int minIndex = 0;
                         loanRates.clear();
+
+                        Request request = requests.getRequests().get(0);
+                        Log.d(TAG + "GGG ", request.getTotalAddress() + "");
+
                         loanRates.addAll(requests.getRequests());
 
                         int length = loanRates.size();
@@ -143,15 +149,15 @@ public class DetailedRequest extends AppCompatActivity {
 
                         int i = 0;
                         for (Request loanLate : loanRates) {
-                            Float rate = Float.parseFloat(loanLate.getInterestRate());
-                            sum += rate;
-                            entries.add(new BarEntry(i * 0.5F, rate));
-
-                            if (rate < min) {
-                                min = rate;
-                                minIndex = i;
-                            }
-                            i++;
+//                            Float rate = Float.parseFloat(loanLate.getInterestRate());
+//                            sum += rate;
+//                            entries.add(new BarEntry(i * 0.5F, rate));
+//
+//                            if (rate < min) {
+//                                min = rate;
+//                                minIndex = i;
+//                            }
+//                            i++;
                         }
 
                         entriesMin.add(entries.get(minIndex));

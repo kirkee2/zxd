@@ -615,8 +615,6 @@
                                     android:textSize="14sp"
                                     android:textColor="#262637"
                                     android:gravity="end"
-                                    android:inputType="numberDecimal"
-                                    android:digits="0123456789"
                                     android:singleLine="true"
                                     android:hint="ex)1개월 초과 3개월 이내"
                                     android:background="@null"
@@ -696,8 +694,6 @@
                                     android:textColor="#262637"
                                     android:gravity="end"
                                     android:singleLine="true"
-                                    android:inputType="numberDecimal"
-                                    android:digits="0123456789"
                                     android:hint="ex) 3개월 초과"
                                     android:background="@null"
                                     />

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
@@ -20,8 +21,6 @@ import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
 import com.hellmoney.thca.util.timeUtil;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
@@ -111,50 +110,7 @@ public class SendDetailedRequest extends AppCompatActivity {
     @BindView(R.id.sendEstimate)
     Button sendEstimateButton;
 
-    @OnClick(R.id.sendEstimate)
-    public void submit(View view) {
 
-        Log.d(TAG,request.getAgentId());
-
-        Call<Request> insertEstimate = NetworkManager.service.addRequest(
-                request.getAgentId(),
-                fixedLoanAmount.getText().toString(),
-                requestId,
-                request.getAgentId(),
-                request.getItemBank(),
-                itemName.getText().toString(),
-                request.getInterestRate(),
-                request.getInterestRateType(),
-                overDueInterestRate1.getText().toString(),
-                overDueInterestRate2.getText().toString(),
-                overDueInterestRate3.getText().toString(),
-                overDueTime1.getText().toString(),
-                overDueTime2.getText().toString(),
-                overDueTime3.getText().toString(),
-                earlyRepaymentType.getText().toString(),
-                repaymentType.getText().toString());
-
-        insertEstimate.enqueue(new Callback<Request>() {
-            @Override
-            public void onResponse(Call<Request> call, Response<Request> response) {
-                if(response.isSuccessful()){
-
-                    Log.d(TAG, "Estimate insert Success");
-                    Request request = response.body();
-                    String msg = request.getMsg();
-                    Log.d(TAG, msg);
-
-                    finish();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Request> call, Throwable t) {
-                    Log.d(TAG, t + "");
-            }
-        });
-
-    }
     Request request;
 
     private int requestId;
@@ -200,6 +156,7 @@ public class SendDetailedRequest extends AppCompatActivity {
                         String pattern = "#######";
                         DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
+                        Toast.makeText(SendDetailedRequest.this, request.getAgentId() + "", Toast.LENGTH_SHORT).show();
                         requestLimitAmount.setText(decimalFormat.format(request.getLimiteAmount())+ " 만원");
                         loanAmount.setText(request.getLoanAmount() + "만원");
                         loanType.setText(request.getLoanType());
@@ -241,6 +198,50 @@ public class SendDetailedRequest extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.sendEstimate)
+    public void submit(View view) {
+
+        Call<Request> insertEstimate = NetworkManager.service.addRequest(
+                TempAgent.AGENT_ID,
+                fixedLoanAmount.getText().toString(),
+                requestId,
+                TempAgent.AGENT_ID,
+                request.getItemBank(),
+                itemName.getText().toString(),
+                request.getInterestRate(),
+                request.getInterestRateType(),
+                repaymentType.getText().toString(),
+                overDueInterestRate1.getText().toString(),
+                overDueInterestRate2.getText().toString(),
+                overDueInterestRate3.getText().toString(),
+                overDueTime1.getText().toString(),
+                overDueTime2.getText().toString(),
+                overDueTime3.getText().toString(),
+                earlyRepaymentType.getText().toString());
+
+        insertEstimate.enqueue(new Callback<Request>() {
+            @Override
+            public void onResponse(Call<Request> call, Response<Request> response) {
+
+                if(response.isSuccessful()){
+
+                    Log.d(TAG, "Estimate insert Success");
+                    Request request = response.body();
+                    String msg = request.getMsg();
+                    Log.d(TAG, msg);
+
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Request> call, Throwable t) {
+                Log.d(TAG, t + "");
+            }
+        });
+
     }
 }
 

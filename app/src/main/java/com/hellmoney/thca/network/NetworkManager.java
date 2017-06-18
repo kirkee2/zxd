@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkManager {
     private static final String baseUrl = "http://13.124.127.93:3000";
+//    private static final String baseUrl = "http://127.0.0.1:3000";
 
     private static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd HH:mm:ss")
