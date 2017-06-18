@@ -23,7 +23,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            tools:src="@mipmap/ic_notice" />
+            tools:src="@mipmap/ic_education" />
 
         <Space
             android:id="@+id/notice_space"

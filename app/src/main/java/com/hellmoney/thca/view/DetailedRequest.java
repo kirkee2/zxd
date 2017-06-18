@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.hellmoney.thca.R;
+import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.model.SingleRequestRes;
@@ -204,7 +205,7 @@ public class DetailedRequest extends AppCompatActivity {
         });
 
 
-        Call<SingleRequestRes> getRequest = NetworkManager.service.getRequest(String.valueOf(requestId), "agent1@naver.com");
+        Call<SingleRequestRes> getRequest = NetworkManager.service.getRequest(String.valueOf(requestId), TempAgent.AGENT_ID);
         getRequest.enqueue(new Callback<SingleRequestRes>() {
             @Override
             public void onResponse(Call<SingleRequestRes> call, Response<SingleRequestRes> response) {

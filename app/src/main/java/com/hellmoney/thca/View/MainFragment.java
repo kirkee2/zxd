@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.hellmoney.thca.R;
+import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
@@ -31,8 +32,6 @@ import static com.hellmoney.thca.util.timeUtil.formatNumber2;
 
 public class MainFragment extends Fragment {
     public static final String TAG = MainFragment.class.getName();
-    // TODO : agentId 로그인 완성되면 대체
-    private static String AGENT_ID = "agent1@naver.com";
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -87,7 +86,7 @@ public class MainFragment extends Fragment {
         super.onResume();
         mMainContentAdapter = new MainContentAdapter(mRequests, mContext);
         recyclerView.setAdapter(mMainContentAdapter);
-        Call<RequestRes> getRequests = NetworkManager.service.getRequests(AGENT_ID);
+        Call<RequestRes> getRequests = NetworkManager.service.getRequests(TempAgent.AGENT_ID);
         getRequests.enqueue(new Callback<RequestRes>() {
             @Override
             public void onResponse(Call<RequestRes> call, Response<RequestRes> response) {
@@ -191,7 +190,7 @@ public class MainFragment extends Fragment {
                 public void onClick(View v) {
                     boolean isChecked = ((ToggleButton) v).isChecked();
                     if (isChecked) {
-                        Call<LikeRes> insertFavorite = NetworkManager.service.like(AGENT_ID, mRequest.getRequestId());
+                        Call<LikeRes> insertFavorite = NetworkManager.service.like(TempAgent.AGENT_ID, mRequest.getRequestId());
                         insertFavorite.enqueue(new Callback<LikeRes>() {
                             @Override
                             public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
@@ -206,7 +205,7 @@ public class MainFragment extends Fragment {
                             }
                         });
                     } else {
-                        Call<LikeRes> deleteFavorite = NetworkManager.service.unlike(AGENT_ID, mRequest.getRequestId());
+                        Call<LikeRes> deleteFavorite = NetworkManager.service.unlike(TempAgent.AGENT_ID, mRequest.getRequestId());
                         deleteFavorite.enqueue(new Callback<LikeRes>() {
                             @Override
                             public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {

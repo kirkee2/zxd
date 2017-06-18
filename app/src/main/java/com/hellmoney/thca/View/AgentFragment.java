@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
+import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.Estimate;
 import com.hellmoney.thca.model.EstimateRes;
 import com.hellmoney.thca.network.NetworkManager;
@@ -80,7 +81,7 @@ public class AgentFragment extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
 
-        Call<EstimateRes> getMyEstimate = NetworkManager.service.getMyEstimate("agent1@naver.com");
+        Call<EstimateRes> getMyEstimate = NetworkManager.service.getMyEstimate(TempAgent.AGENT_ID);
         getMyEstimate.enqueue(new Callback<EstimateRes>() {
             @Override
             public void onResponse(Call<EstimateRes> call, Response<EstimateRes> response) {

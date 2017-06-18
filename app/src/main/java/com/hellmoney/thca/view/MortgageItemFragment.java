@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
+import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.Item;
 import com.hellmoney.thca.model.ItemRes;
 import com.hellmoney.thca.network.NetworkManager;
@@ -81,11 +82,9 @@ public class MortgageItemFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // TODO : agentId 로그인 완성되면 대체
-        String agentId = "agent1@naver.com";
         mItemAdapter = new ItemAdapter(mContext, mItems);
         mRecyclerView.setAdapter(mItemAdapter);
-        Call<ItemRes> geItemsByAgentId = NetworkManager.service.getItemsByAgentId(agentId, this.NAME);
+        Call<ItemRes> geItemsByAgentId = NetworkManager.service.getItemsByAgentId(TempAgent.AGENT_ID, this.NAME);
         geItemsByAgentId.enqueue(new Callback<ItemRes>() {
             @Override
             public void onResponse(Call<ItemRes> call, Response<ItemRes> response) {

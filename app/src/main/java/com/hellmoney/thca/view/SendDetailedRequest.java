@@ -15,10 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
+import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
 import com.hellmoney.thca.util.timeUtil;
+
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
@@ -70,7 +73,7 @@ public class SendDetailedRequest extends AppCompatActivity {
 
     //저장된 아이템 불러오는 버튼
     @BindView(R.id.callItem)
-    ImageView callItem;
+    TextView callItem;
 
     @BindView(R.id.fixedLoanAmount)
     EditText fixedLoanAmount;
@@ -181,7 +184,7 @@ public class SendDetailedRequest extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Call<SingleRequestRes> getRequest = NetworkManager.service.getRequest(String.valueOf(requestId), "agent1@naver.com");
+        Call<SingleRequestRes> getRequest = NetworkManager.service.getRequest(String.valueOf(requestId), TempAgent.AGENT_ID);
         getRequest.enqueue(new Callback<SingleRequestRes>() {
             @Override
             public void onResponse(Call<SingleRequestRes> call, Response<SingleRequestRes> response) {

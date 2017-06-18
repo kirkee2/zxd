@@ -128,7 +128,7 @@ public class NoticeFragment extends Fragment {
             holder.mTitleTextView.setText(notice.getTitle());
             switch (notice.getType()) {
                 case "교육":
-                    holder.mTypeImageView.setImageResource(R.mipmap.ic_notice);
+                    holder.mTypeImageView.setImageResource(R.mipmap.ic_education);
                     break;
                 case "점검":
                     holder.mTypeImageView.setImageResource(R.mipmap.ic_check);
@@ -137,7 +137,7 @@ public class NoticeFragment extends Fragment {
                     holder.mTypeImageView.setImageResource(R.mipmap.ic_warning);
                     break;
                 default:
-                    holder.mTypeImageView.setImageResource(R.mipmap.ic_notice);
+                    holder.mTypeImageView.setImageResource(R.mipmap.ic_education);
                     break;
             }
             holder.itemView.setTag(notice.getNoticeId());
