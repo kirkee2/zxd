@@ -68,7 +68,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                         mTitleTextView.setText(notice.getTitle());
                         switch (notice.getType()) {
                             case "교육":
-                                mTypeImageView.setImageResource(R.mipmap.ic_notice);
+                                mTypeImageView.setImageResource(R.mipmap.ic_education);
                                 break;
                             case "점검":
                                 mTypeImageView.setImageResource(R.mipmap.ic_check);
@@ -77,7 +77,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
                                 mTypeImageView.setImageResource(R.mipmap.ic_warning);
                                 break;
                             default:
-                                mTypeImageView.setImageResource(R.mipmap.ic_notice);
+                                mTypeImageView.setImageResource(R.mipmap.ic_education);
                                 break;
                         }
                         mContentTextView.setText(notice.getContent());

@@ -1,5 +1,6 @@
 package com.hellmoney.thca.network;
 
+import com.hellmoney.thca.model.AgentDetailRes;
 import com.hellmoney.thca.model.EstimateRes;
 import com.hellmoney.thca.model.ItemDetailRes;
 import com.hellmoney.thca.model.ItemRes;
@@ -40,7 +41,6 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("/consultants/requests/agent/{agentId}")
     Call<Request> addRequest(@Path("agentId") String agentId,
-
                              @Field("fixedLoanAmount") String fixedLoanAmount,
                              @Field("requestId") int requestId,
                              @Field("agentId") String agentId2,
@@ -48,12 +48,12 @@ public interface NetworkService {
                              @Field("itemName") String itemName,
                              @Field("interestRate") String interestRate,
                              @Field("interestRateType") String interestRateType,
-                             @Field("overdueInterestRate01") String overdueInterestRate01,
-                             @Field("overdueInterestRate02") String overdueInterestRate02,
-                             @Field("overdueInterestRate03") String overdueInterestRate03,
-                             @Field("overdueTime01") String overdueTime01,
-                             @Field("overdueTime02") String overdueTime02,
-                             @Field("overdueTime03") String overdueTime03,
+                             @Field("overdueInterestRate1") String overdueInterestRate1,
+                             @Field("overdueInterestRate2") String overdueInterestRate2,
+                             @Field("overdueInterestRate3") String overdueInterestRate3,
+                             @Field("overdueTime1") String overdueTime1,
+                             @Field("overdueTime2") String overdueTime2,
+                             @Field("overdueTime3") String overdueTime3,
                              @Field("earlyRepaymentFee") String earlyRepaymentFee,
                              @Field("repaymentType") String repaymentType);
 
@@ -145,5 +145,6 @@ public interface NetworkService {
     Call<SingleRes> setStatus(@Path("estimateId") int estimateId,
                               @Field("status") String status);
 
-
+    @GET("/clients/agents/{agentId}")
+    Call<AgentDetailRes> getAgent(@Path("agentId") String agentId);
 }
