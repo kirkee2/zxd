@@ -81,26 +81,26 @@ public class DetailedEstimate extends AppCompatActivity {
     @BindView(R.id.repaymentType)
     TextView repaymentType;
 
-    @BindView(R.id.earlyRepaymentType)
-    TextView earlyRepaymentType;
-
-    @BindView(R.id.overDueTime1)
-    TextView overDueTime1;
-
-    @BindView(R.id.overDueInterestRate1)
-    TextView overDueInterestRate1;
-
-    @BindView(R.id.overDueTime2)
-    TextView overDueTime2;
-
-    @BindView(R.id.overDueInterestRate2)
-    TextView overDueInterestRate2;
-
-    @BindView(R.id.overDueTime3)
-    TextView overDueTime3;
-
-    @BindView(R.id.overDueInterestRate3)
-    TextView overDueInterestRate3;
+//    @BindView(R.id.earlyRepaymentType)
+//    TextView earlyRepaymentType;
+//
+//    @BindView(R.id.overDueTime1)
+//    TextView overDueTime1;
+//
+//    @BindView(R.id.overDueInterestRate1)
+//    TextView overDueInterestRate1;
+//
+//    @BindView(R.id.overDueTime2)
+//    TextView overDueTime2;
+//
+//    @BindView(R.id.overDueInterestRate2)
+//    TextView overDueInterestRate2;
+//
+//    @BindView(R.id.overDueTime3)
+//    TextView overDueTime3;
+//
+//    @BindView(R.id.overDueInterestRate3)
+//    TextView overDueInterestRate3;
 
     @BindView(R.id.estimateTextStatus)
     TextView statusTextView;
@@ -188,8 +188,7 @@ public class DetailedEstimate extends AppCompatActivity {
                 .setTopColorRes(R.color.colorAccent)
                 .setButtonsColorRes(R.color.darkDeepOrange)
                 .setIcon(R.drawable.icon)
-                .setTitle("진행 변화")
-                .setMessage("상태를 변화하시겠습니가?")
+                .setMessage("진행 상태를 변경합니다.")
                 .setPositiveButton("확인", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -247,7 +246,6 @@ public class DetailedEstimate extends AppCompatActivity {
             public void onResponse(Call<SingleEstimateRes> call, Response<SingleEstimateRes> response) {
                 if (response.isSuccessful()) {
 
-                    Log.d(TAG, "가져옴");
 
                     SingleEstimateRes estimate = response.body();
                     estimates = estimate.getEstimates();
@@ -287,13 +285,13 @@ public class DetailedEstimate extends AppCompatActivity {
                     estimateLoanType.setText(singleEstimate.getInterestRateType());
                     loanRate.setText(singleEstimate.getInterestRate() + "%");
                     repaymentType.setText(singleEstimate.getRepaymentType());
-                    earlyRepaymentType.setText(singleEstimate.getEarlyRepaymentFee() + "%");
-                    overDueTime1.setText(singleEstimate.getOverdueTime1());
-                    overDueTime2.setText(singleEstimate.getOverdueTime2());
-                    overDueTime3.setText(singleEstimate.getOverdueTime3());
-                    overDueInterestRate1.setText(singleEstimate.getOverdueInterestRate1() + "%");
-                    overDueInterestRate2.setText(singleEstimate.getOverdueInterestRate2() + "%");
-                    overDueInterestRate3.setText(singleEstimate.getOverdueInterestRate3() + "%");
+//                    earlyRepaymentType.setText(singleEstimate.getEarlyRepaymentFee() + "%");
+//                    overDueTime1.setText(singleEstimate.getOverdueTime1());
+//                    overDueTime2.setText(singleEstimate.getOverdueTime2());
+//                    overDueTime3.setText(singleEstimate.getOverdueTime3());
+//                    overDueInterestRate1.setText(singleEstimate.getOverdueInterestRate1() + "%");
+//                    overDueInterestRate2.setText(singleEstimate.getOverdueInterestRate2() + "%");
+//                    overDueInterestRate3.setText(singleEstimate.getOverdueInterestRate3() + "%");
 
                     stateProgressBar.setStateDescriptionData(descriptionData);
 
@@ -331,7 +329,6 @@ public class DetailedEstimate extends AppCompatActivity {
                     }
 
 //                    String estimateId = String.valueOf(singleEstimate.getEstimateId());
-//
 ////                    NULL 또는 같지 않을 경우에 활용하기..
                     String selectedEstimateId = singleEstimate.getSelectedEstimateId();
                     String estimateIdConvertToString = String.valueOf(estimateId);

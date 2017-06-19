@@ -48,14 +48,16 @@ public interface NetworkService {
                              @Field("itemName") String itemName,
                              @Field("interestRate") String interestRate,
                              @Field("interestRateType") String interestRateType,
-                             @Field("repaymentType") String repaymentType,
-                             @Field("overdueInterestRate1") String overdueInterestRate1,
-                             @Field("overdueInterestRate2") String overdueInterestRate2,
-                             @Field("overdueInterestRate3") String overdueInterestRate3,
-                             @Field("overdueTime1") String overdueTime1,
-                             @Field("overdueTime2") String overdueTime2,
-                             @Field("overdueTime3") String overdueTime3,
-                             @Field("earlyRepaymentFee") String earlyRepaymentFee);
+                             @Field("repaymentType") String repaymentType
+                             );
+
+//    @Field("overdueInterestRate1") String overdueInterestRate1,
+//    @Field("overdueInterestRate2") String overdueInterestRate2,
+//    @Field("overdueInterestRate3") String overdueInterestRate3,
+//    @Field("overdueTime1") String overdueTime1,
+//    @Field("overdueTime2") String overdueTime2,
+//    @Field("overdueTime3") String overdueTime3,
+//    @Field("earlyRepaymentFee") String earlyRepaymentFee
 
     @FormUrlEncoded
     @POST("/consultant/logout")

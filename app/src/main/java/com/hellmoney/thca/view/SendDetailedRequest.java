@@ -23,8 +23,6 @@ import com.hellmoney.thca.network.NetworkManager;
 import com.hellmoney.thca.util.StringUtil;
 import com.hellmoney.thca.util.TimeUtil;
 
-import java.text.DecimalFormat;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -93,26 +91,26 @@ public class SendDetailedRequest extends AppCompatActivity {
     @BindView(R.id.repaymentType)
     EditText repaymentType;
 
-    @BindView(R.id.earlyRepaymentType)
-    EditText earlyRepaymentType;
-
-    @BindView(R.id.overDueTime1)
-    EditText overDueTime1;
-
-    @BindView(R.id.overDueInterestRate1)
-    EditText overDueInterestRate1;
-
-    @BindView(R.id.overDueTime2)
-    EditText overDueTime2;
-
-    @BindView(R.id.overDueInterestRate2)
-    EditText overDueInterestRate2;
-
-    @BindView(R.id.overDueTime3)
-    EditText overDueTime3;
-
-    @BindView(R.id.overDueInterestRate3)
-    EditText overDueInterestRate3;
+//    @BindView(R.id.earlyRepaymentType)
+//    EditText earlyRepaymentType;
+//
+//    @BindView(R.id.overDueTime1)
+//    EditText overDueTime1;
+//
+//    @BindView(R.id.overDueInterestRate1)
+//    EditText overDueInterestRate1;
+//
+//    @BindView(R.id.overDueTime2)
+//    EditText overDueTime2;
+//
+//    @BindView(R.id.overDueInterestRate2)
+//    EditText overDueInterestRate2;
+//
+//    @BindView(R.id.overDueTime3)
+//    EditText overDueTime3;
+//
+//    @BindView(R.id.overDueInterestRate3)
+//    EditText overDueInterestRate3;
 
     @BindView(R.id.sendEstimate)
     Button sendEstimateButton;
@@ -217,15 +215,15 @@ public class SendDetailedRequest extends AppCompatActivity {
                 itemName.getText().toString(),
                 loanRate.getText().toString(),
                 request.getInterestRateType(),
-                repaymentType.getText().toString(),
-                overDueInterestRate1.getText().toString(),
-                overDueInterestRate2.getText().toString(),
-                overDueInterestRate3.getText().toString(),
-                overDueTime1.getText().toString(),
-                overDueTime2.getText().toString(),
-                overDueTime3.getText().toString(),
-                earlyRepaymentType.getText().toString());
+                repaymentType.getText().toString());
 
+//        overDueInterestRate1.getText().toString(),
+//                overDueInterestRate2.getText().toString(),
+//                overDueInterestRate3.getText().toString(),
+//                overDueTime1.getText().toString(),
+//                overDueTime2.getText().toString(),
+//                overDueTime3.getText().toString(),
+//                earlyRepaymentType.getText().toString()
         insertEstimate.enqueue(new Callback<Request>() {
             @Override
             public void onResponse(Call<Request> call, Response<Request> response) {
