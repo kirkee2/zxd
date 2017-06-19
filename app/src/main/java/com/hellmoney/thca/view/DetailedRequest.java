@@ -8,9 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -19,11 +23,13 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
+import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.timeUtil;
+import com.hellmoney.thca.util.StringUtil;
+import com.hellmoney.thca.util.TimeUtil;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -83,6 +89,19 @@ public class DetailedRequest extends AppCompatActivity {
     @BindView(R.id.calledAddEstimate)
     Button mButton;
 
+    @BindView(R.id.linearChart)
+    LinearLayout mLinearLayout;
+
+    @BindView(R.id.bottomLinear)
+    LinearLayout mLinearLayout2;
+
+    @BindView(R.id.star)
+    ToggleButton mToggleButton;
+
+    @BindView(R.id.endTime)
+    TextView endTime;
+
+
     ArrayList<Request> loanRates;
     private int requestId;
     Context mContext;
@@ -92,7 +111,6 @@ public class DetailedRequest extends AppCompatActivity {
         intent.putExtra(REQUESTID, id);
         return intent;
     }
-
 
 
     @Override
@@ -131,7 +149,6 @@ public class DetailedRequest extends AppCompatActivity {
                     if (requests.getMessage().equals("SUCCESS")) {
 
 
-
                         ArrayList<BarEntry> entries = new ArrayList<>();
                         ArrayList<BarEntry> entriesMin = new ArrayList<>();
 
@@ -139,67 +156,74 @@ public class DetailedRequest extends AppCompatActivity {
                         int minIndex = 0;
                         loanRates.clear();
 
-                        Request request = requests.getRequests().get(0);
-                        Log.d(TAG + "GGG ", request.getTotalAddress() + "");
-
                         loanRates.addAll(requests.getRequests());
 
+
                         int length = loanRates.size();
-                        Double sum = 0.0;
+                        if (length == 0) {
 
-                        int i = 0;
-                        for (Request loanLate : loanRates) {
-//                            Float rate = Float.parseFloat(loanLate.getInterestRate());
-//                            sum += rate;
-//                            entries.add(new BarEntry(i * 0.5F, rate));
-//
-//                            if (rate < min) {
-//                                min = rate;
-//                                minIndex = i;
-//                            }
-//                            i++;
+                        } else {
+                            Double sum = 0.0;
+
+                            int i = 0;
+                            for (Request loanLate : loanRates) {
+                                Float rate = Float.parseFloat(loanLate.getInterestRate());
+                                sum += rate;
+                                entries.add(new BarEntry(i * 0.5F, rate));
+
+                                if (rate < min) {
+                                    min = rate;
+                                    minIndex = i;
+                                }
+                                i++;
+                            }
+
+                            entriesMin.add(entries.get(minIndex));
+                            entries.remove(minIndex);
+
+
+                            Description d = new Description();
+                            d.setText("");
+
+                            BarDataSet dataSet = new BarDataSet(entries, "금리");
+                            BarDataSet dataSetMin = new BarDataSet(entriesMin, "최저 금리");
+
+                            dataSet.setColor(0xFF00BFA5);
+                            dataSet.setHighlightEnabled(false);
+                            dataSet.setValueTextSize(10);
+
+                            dataSetMin.setColor(0xFFFF4081);
+                            dataSetMin.setHighlightEnabled(false);
+                            dataSetMin.setValueTextSize(10);
+
+                            BarData data = new BarData(dataSet);
+                            data.addDataSet(dataSetMin);
+
+                            data.setBarWidth(0.15F);
+
+
+                            mBarChart.setData(data);
+                            mBarChart.getAxisRight().setEnabled(false);
+                            mBarChart.getXAxis().setEnabled(false);
+                            mBarChart.setDescription(d);
+                            mBarChart.setEnabled(false);
+                            mBarChart.animateY(500);
+                            mBarChart.setDoubleTapToZoomEnabled(false);
+                            mBarChart.setScaleEnabled(false);
+
+                            mBarChart.invalidate();
+
+                            Double average = (sum / length);
+
+                            String pattern = "#####.##";
+                            DecimalFormat dformat = new DecimalFormat(pattern);
+
+                            averageInterestRate.setText(dformat.format(average) + "%");
                         }
-
-                        entriesMin.add(entries.get(minIndex));
-                        entries.remove(minIndex);
-
-
-                        Description d = new Description();
-                        d.setText("");
-
-                        BarDataSet dataSet = new BarDataSet(entries, "금리");
-                        BarDataSet dataSetMin = new BarDataSet(entriesMin, "최저 금리");
-
-                        dataSet.setColor(0xFF00BFA5);
-                        dataSet.setHighlightEnabled(false);
-                        dataSet.setValueTextSize(10);
-
-                        dataSetMin.setColor(0xFFFF4081);
-                        dataSetMin.setHighlightEnabled(false);
-                        dataSetMin.setValueTextSize(10);
-
-                        BarData data = new BarData(dataSet);
-                        data.addDataSet(dataSetMin);
-
-                        data.setBarWidth(0.15F);
-
-                        mBarChart.setData(data);
-                        mBarChart.getAxisRight().setEnabled(false);
-                        mBarChart.getXAxis().setEnabled(false);
-                        mBarChart.setDescription(d);
-                        mBarChart.setEnabled(false);
-                        mBarChart.animateY(500);
-                        mBarChart.setDoubleTapToZoomEnabled(false);
-                        mBarChart.setScaleEnabled(false);
-                        mBarChart.invalidate();
-
-                        Double average = (sum / length);
-
-                        String pattern = "#####.##";
-                        DecimalFormat dformat = new DecimalFormat(pattern);
-
-                        averageInterestRate.setText(dformat.format(average) + "%");
-
+                    } else {
+                        mLinearLayout.setBackgroundResource(R.drawable.pic2);
+                        mLinearLayout2.setVisibility(View.GONE);
+                        mBarChart.setVisibility(View.GONE);
                     }
                 }
             }
@@ -220,9 +244,7 @@ public class DetailedRequest extends AppCompatActivity {
                     if (results.getMessage().equals("SUCCESS")) {
                         Request request = results.getRequest();
 
-                        Log.d(TAG, request.getTotalAddress());
-
-                        if (request.getEstiamteCount() > 10){
+                        if (request.getEstiamteCount() > 10) {
                             mButton.setSelected(false);
                         }
                         finalQuotationCount.setText(request.getEstiamteCount() + "");
@@ -244,11 +266,25 @@ public class DetailedRequest extends AppCompatActivity {
                         String pattern = "#####";
                         DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
-                        requestLimitAmount.setText(decimalFormat.format(request.getLimiteAmount()) + " 만원");
-                        loanAmount.setText(request.getLoanAmount() + " 만원");
+                        requestLimitAmount.setText(StringUtil.toNumFormat(Integer.parseInt(decimalFormat.format(request.getLimiteAmount()))) + " 만원");
+                        loanAmount.setText(StringUtil.toNumFormat(Integer.parseInt(request.getLoanAmount())) + " 만원");
                         loanType.setText(request.getLoanType());
                         jobType.setText(request.getJobType());
-                        scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
+                        scheduledTime.setText(TimeUtil.dateFormat.format(request.getScheduledTime()));
+
+                        int time = TimeUtil.timeLeftSecondParsing(request.getEndTime());
+
+                        int hour = time / 3600;
+                        int temp = time % 3600;
+                        int minute = temp / 60;
+                        int second = temp % 60;
+
+
+                        if (time > 0) {
+                            endTime.setText("마감 " + TimeUtil.formatNumber2(hour) + " : " + TimeUtil.formatNumber2(minute) + " 전");
+                        } else {
+                            endTime.setText("견적 마감");
+                        }
                     }
                 }
             }
@@ -256,6 +292,45 @@ public class DetailedRequest extends AppCompatActivity {
             @Override
             public void onFailure(Call<SingleRequestRes> call, Throwable t) {
                 Log.e(TAG, t + "");
+            }
+        });
+
+
+        mToggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isChecked = ((ToggleButton) v).isChecked();
+                if (isChecked) {
+                    Call<LikeRes> insertFavorite = NetworkManager.service.like(TempAgent.AGENT_ID, requestId);
+                    insertFavorite.enqueue(new Callback<LikeRes>() {
+                        @Override
+                        public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(mContext, "좋아요!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<LikeRes> call, Throwable t) {
+                            Log.e(TAG, "onFailure: ");
+                        }
+                    });
+                } else {
+                    Call<LikeRes> deleteFavorite = NetworkManager.service.unlike(TempAgent.AGENT_ID, requestId);
+                    deleteFavorite.enqueue(new Callback<LikeRes>() {
+                        @Override
+                        public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(mContext, "좋아요를 취소합니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<LikeRes> call, Throwable t) {
+                            Log.e(TAG, "onFailure: ");
+                        }
+                    });
+                }
             }
         });
     }

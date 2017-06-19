@@ -18,7 +18,8 @@ import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.Estimate;
 import com.hellmoney.thca.model.EstimateRes;
 import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.timeUtil;
+import com.hellmoney.thca.util.StringUtil;
+import com.hellmoney.thca.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,8 +159,6 @@ public class AgentFragment extends Fragment {
             mInterestLoanType = (TextView) itemView.findViewById(R.id.estimateLoanType);
             mImageView = (ImageView) itemView.findViewById(R.id.statusImageView);
 
-            mEstimateEndTime.setSelected(true);
-
             itemView.setOnClickListener(this);
         }
 
@@ -168,7 +167,7 @@ public class AgentFragment extends Fragment {
             mEstimate = estimate;
             mEstimateStatus.setText(mEstimate.getStatus());
 
-            int second = timeUtil.timeLeftSecondParsing(mEstimate.getEndTime());
+            int second = TimeUtil.timeLeftSecondParsing(mEstimate.getEndTime());
 
             int hour = second / 3600;
             int temp = second % 3600;
@@ -176,9 +175,9 @@ public class AgentFragment extends Fragment {
             int _second = temp % 60;
 
             if (second > 0) {
-                mEstimateEndTime.setText("마감시간이 " + hour + "시 " + minute + "분" + _second + "초 남았습니다.");
+                mEstimateEndTime.setText("마감시간 " + hour + ": " + minute + "전");
             } else {
-                mEstimateEndTime.setText("마감까지 " + "00" + ":" + "00" + " 남았습니다.");
+                mEstimateEndTime.setText("견적 마감");
             }
 
               /*
@@ -201,12 +200,13 @@ public class AgentFragment extends Fragment {
             mRequestAddress.setText(mEstimate.getTotalAddress());
             mRequestAddressApt.setText(mEstimate.getAptName());
             mRequestAddressSize.setText(mEstimate.getSize());
-            mRequestAddressPrice.setText(mEstimate.getPrice());
+            // LoanAmount가 사용자가 입력한 가격.
+            mRequestAddressPrice.setText(StringUtil.toNumFormat(Integer.parseInt(mEstimate.getLoanAmount())) + "만원");
             mRequestJobType.setText(mEstimate.getJobType());
 
             mInterestLoanType.setText(mEstimate.getInterestRateType());
 
-            if (mEstimate.getStatus().equals("대출실행완료")){
+            if (mEstimate.getStatus().equals("대출실행완료")) {
                 mImageView.setImageResource(R.drawable.myestiamte_ing);
             } else {
                 mImageView.setImageResource(R.drawable.myestimate_selected);

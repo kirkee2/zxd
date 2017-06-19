@@ -19,7 +19,8 @@ import com.hellmoney.thca.model.LikeRes;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.RequestRes;
 import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.timeUtil;
+import com.hellmoney.thca.util.StringUtil;
+import com.hellmoney.thca.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.hellmoney.thca.util.timeUtil.formatNumber2;
+import static com.hellmoney.thca.util.TimeUtil.formatNumber2;
 
 public class MainFragment extends Fragment {
     public static final String TAG = MainFragment.class.getName();
@@ -143,22 +144,22 @@ public class MainFragment extends Fragment {
             mRequest = request;
             mEstimateCount.setText(mRequest.getCountEstimate());
 
-            int secondParsing = timeUtil.timeLeftSecondParsing(mRequest.getEndTime());
+            int secondParsing = TimeUtil.timeLeftSecondParsing(mRequest.getEndTime());
             int hour = secondParsing/3600;
             int tmp = secondParsing%3600;
             int minute = tmp/60;
             int second = tmp%60;
 
             if(secondParsing > 0) {
-                mEstimateEndTime.setText("마감까지 " + formatNumber2(hour) + " : " + formatNumber2(minute) + ":" + formatNumber2(second) + " 남았습니다. ");
+                mEstimateEndTime.setText("마감 " + formatNumber2(hour) + " : " + formatNumber2(minute) + "전");
             } else {
-                mEstimateEndTime.setText("현재 요청서는 마감 되었습니다.");
+                mEstimateEndTime.setText("견적 마감");
 
             }
             mRequestAddress.setText(mRequest.getTotalAddress());
             mRequestAddressApt.setText(mRequest.getAptName());
             mRequestAddressSize.setText(mRequest.getSize());
-            mRequestAddressPrice.setText(mRequest.getPrice());
+            mRequestAddressPrice.setText(StringUtil.toNumFormat(Integer.parseInt(mRequest.getLoanAmount())) + " 만원");
             mRequestJobType.setText(mRequest.getJobType());
             loanType.setText(mRequest.getInterestRateType());
             switch (mRequest.getFavorite()) {

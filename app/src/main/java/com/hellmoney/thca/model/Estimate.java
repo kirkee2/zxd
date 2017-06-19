@@ -192,7 +192,7 @@ public class Estimate {
     }
 
     public String getSize() {
-        return supplySize + " / " + exclusiveSize;
+        return supplySize + "\u33A1" + " / " + exclusiveSize + "\u33A1";
     }
 
     public String getMsg() {

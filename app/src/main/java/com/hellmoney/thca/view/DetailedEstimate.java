@@ -19,7 +19,8 @@ import com.hellmoney.thca.model.Estimate;
 import com.hellmoney.thca.model.SingleEstimateRes;
 import com.hellmoney.thca.model.SingleRes;
 import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.timeUtil;
+import com.hellmoney.thca.util.StringUtil;
+import com.hellmoney.thca.util.TimeUtil;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
@@ -124,7 +125,7 @@ public class DetailedEstimate extends AppCompatActivity {
 
     @OnClick(R.id.oneStatus)
     public void setOneStatusView(View view) {
-        Log.d("STATUS", "clicked First Status View" );
+        Log.d("STATUS", "clicked First Status View");
     }
 
     @BindView(R.id.twoStatus)
@@ -162,8 +163,7 @@ public class DetailedEstimate extends AppCompatActivity {
                 .setTopColorRes(R.color.colorAccent)
                 .setButtonsColorRes(R.color.darkDeepOrange)
                 .setIcon(R.drawable.icon)
-                .setTitle("진행 변화")
-                .setMessage("상태를 변화하시겠습니가?")
+                .setMessage("진행 상태를 변경합니다.")
                 .setPositiveButton("확인", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -205,6 +205,7 @@ public class DetailedEstimate extends AppCompatActivity {
                 .show();
     }
 
+
     private int estimateId;
 
     protected static Intent getIntent(int id, Context context) {
@@ -231,8 +232,6 @@ public class DetailedEstimate extends AppCompatActivity {
         Log.d(TAG, "EstimateId 는" + estimateId + "");
 
 
-
-
     }
 
     private Estimate estimates;
@@ -255,7 +254,7 @@ public class DetailedEstimate extends AppCompatActivity {
                     singleEstimate = estimates;
                     statusTextView.setText(singleEstimate.getStatus());
 
-                    int time = timeUtil.timeLeftSecondParsing(singleEstimate.getEndTime());
+                    int time = TimeUtil.timeLeftSecondParsing(singleEstimate.getEndTime());
 
                     int hour = time / 3600;
                     int temp = time % 3600;
@@ -264,11 +263,9 @@ public class DetailedEstimate extends AppCompatActivity {
 
                     if (time > 0) {
 
-                        endTime.setText("마감 " + timeUtil.formatNumber2(hour) + "시간 " + timeUtil.formatNumber2(minute) + " 분 " + timeUtil.formatNumber2(second) + " 전");
-                        endTime.setSelected(true);
+                        endTime.setText("마감 " + TimeUtil.formatNumber2(hour) + " : " + TimeUtil.formatNumber2(minute) + " 전");
                     } else {
-                        endTime.setText("마감까지 " + "00" + "시" + "00 분" + " 전");
-                        endTime.setSelected(true);
+                        endTime.setText("견적 마감");
                     }
 
                     requestAddress.setText(singleEstimate.getTotalAddress());
@@ -278,12 +275,11 @@ public class DetailedEstimate extends AppCompatActivity {
                     String pattern = "#####";
                     DecimalFormat dformat = new DecimalFormat(pattern);
 
-                    requestLimitAmount.setText(dformat.format(singleEstimate.getLimiteAmount()) + "만원");
-                    loanAmount.setText(singleEstimate.getLoanAmount() + "만원");
+                    requestLimitAmount.setText(StringUtil.toNumFormat(Integer.parseInt(dformat.format(singleEstimate.getLimiteAmount()))) + "만원");
+                    loanAmount.setText(StringUtil.toNumFormat(Integer.parseInt(singleEstimate.getLoanAmount())) + "만원");
                     loanType.setText(singleEstimate.getLoanType());
                     jobType.setText(singleEstimate.getJobType());
-                    scheduledTime.setText(timeUtil.dateFormat.format(singleEstimate.getScheduledTime()));
-
+                    scheduledTime.setText(TimeUtil.dateFormat.format(singleEstimate.getScheduledTime()));
 
                     itemName.setText(singleEstimate.getItemName());
 
@@ -298,7 +294,6 @@ public class DetailedEstimate extends AppCompatActivity {
                     overDueInterestRate1.setText(singleEstimate.getOverdueInterestRate1() + "%");
                     overDueInterestRate2.setText(singleEstimate.getOverdueInterestRate2() + "%");
                     overDueInterestRate3.setText(singleEstimate.getOverdueInterestRate3() + "%");
-
 
                     stateProgressBar.setStateDescriptionData(descriptionData);
 
@@ -335,11 +330,22 @@ public class DetailedEstimate extends AppCompatActivity {
                             break;
                     }
 
-                    String estimateId = String.valueOf(singleEstimate.getEstimateId());
+//                    String estimateId = String.valueOf(singleEstimate.getEstimateId());
+//
+////                    NULL 또는 같지 않을 경우에 활용하기..
+                    String selectedEstimateId = singleEstimate.getSelectedEstimateId();
+                    String estimateIdConvertToString = String.valueOf(estimateId);
+//                    if (selectedEstimateId == null){
+//
+//                        selectedEstimateId = StringUtil.null2Length0(selectedEstimateId);
+//                    }
 
-                    if (!singleEstimate.getSelectedEstimateId().equals(estimateId)) {
+
+                    if ((selectedEstimateId == null)) {
                         mFrameLayout.setVisibility(View.GONE);
-                    }else {
+                    } else if (!(selectedEstimateId.equals(estimateIdConvertToString))) {
+                        mFrameLayout.setVisibility(View.GONE);
+                    } else {
                         mFrameLayout.setVisibility(View.VISIBLE);
                     }
 

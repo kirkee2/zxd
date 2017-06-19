@@ -133,8 +133,8 @@ public class Request {
     @SerializedName("fixed_loan_amount")
     private String fixedLoanAmount;
 
-    public Double getLimiteAmount() {
-        return Double.parseDouble(loanAmount) * 0.7;
+    public int getLimiteAmount() {
+        return (int) (Integer.parseInt(price) * 0.7);
     }
 
     public String getMsg() {
@@ -161,7 +161,7 @@ public class Request {
     private String Size;
 
     public String getSize() {
-        return getExclusiveSize() + "/" + getSupplySize() + "m3";
+        return getExclusiveSize() +"\u33A1"+ "/" + getSupplySize() + "\u33A1";
     }
 
     public String getTotalAddress() {

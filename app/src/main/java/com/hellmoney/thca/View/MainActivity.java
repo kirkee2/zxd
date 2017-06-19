@@ -1,5 +1,8 @@
 package com.hellmoney.thca.view;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -20,10 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
-import com.hellmoney.thca.message.MyFirebaseInstanceIDService;
 import com.hellmoney.thca.model.Agent;
 import com.hellmoney.thca.model.AgentDetailRes;
 import com.hellmoney.thca.network.NetworkManager;
@@ -35,7 +36,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+
     private static final String TAG = MainActivity.class.getName();
+
 
     @BindView(R.id.drawer_layout)
     protected DrawerLayout mDrawerLayout;
@@ -48,16 +52,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private View mNavHeader;
 
+//    public static Intent newIntent(Context context, boolean isPostSuccess) {
+//        Intent intent = new Intent(context, MainActivity.class);
+//        intent.putExtra("onPost", isPostSuccess);
+//        return intent;
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+
         addFragment(R.id.main_container, MainFragment.newInstance(null, null), MainFragment.TAG);
-
         setSupportActionBar(mToolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
@@ -67,6 +76,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        Intent intent = getIntent();
+
+        Boolean agentFragmentChanged = intent.getBooleanExtra("on", false);
+
+        //TODO 화면만 전환되고 바텀네빕뷰는 변화없음
+        if (agentFragmentChanged) {
+            MenuItem menuItem = mBottomNavigationView.getMenu().getItem(1);
+            onNavigationItemSelected(menuItem);
+//            replaceFragment(R.id.main_container, AgentFragment.newInstance(null, null), AgentFragment.TAG, AgentFragment.TAG);
+
+        }
+
     }
 
     @Override
@@ -77,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getAgent.enqueue(new Callback<AgentDetailRes>() {
             @Override
             public void onResponse(Call<AgentDetailRes> call, Response<AgentDetailRes> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     AgentDetailRes results = response.body();
-                    if(results.getMessage().equals("SUCCESS")) {
+                    if (results.getMessage().equals("SUCCESS")) {
                         Agent agent = results.getAgent();
                         ((TextView) mNavHeader.findViewById(R.id.agent_name_text_view)).setText(agent.getName());
                         ((TextView) mNavHeader.findViewById(R.id.agent_company_name_text_view)).setText(agent.getCompanyName());

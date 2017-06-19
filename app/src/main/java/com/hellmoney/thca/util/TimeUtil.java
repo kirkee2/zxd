@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by len on 2017. 6. 15..
  */
 
-public class timeUtil {
+public class TimeUtil {
 
 
     public static int timeLeftSecondParsing(Date endDate) {

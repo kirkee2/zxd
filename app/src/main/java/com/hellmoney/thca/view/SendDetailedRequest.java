@@ -20,7 +20,8 @@ import com.hellmoney.thca.TempAgent;
 import com.hellmoney.thca.model.Request;
 import com.hellmoney.thca.model.SingleRequestRes;
 import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.timeUtil;
+import com.hellmoney.thca.util.StringUtil;
+import com.hellmoney.thca.util.TimeUtil;
 
 import java.text.DecimalFormat;
 
@@ -36,6 +37,12 @@ public class SendDetailedRequest extends AppCompatActivity {
 
     private static final String REQUESTID = "requestId";
     private static final String TAG = SendDetailedRequest.class.getName();
+
+    isPost mIsPost;
+
+    public interface isPost {
+        void isPostSuccess(boolean on);
+    }
 
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
@@ -153,17 +160,15 @@ public class SendDetailedRequest extends AppCompatActivity {
                         requestAddressApt.setText(request.getAptName());
                         requestAddressSize.setText(request.getSize());
 
-                        String pattern = "#######";
-                        DecimalFormat decimalFormat = new DecimalFormat(pattern);
 
-                        Toast.makeText(SendDetailedRequest.this, request.getAgentId() + "", Toast.LENGTH_SHORT).show();
-                        requestLimitAmount.setText(decimalFormat.format(request.getLimiteAmount())+ " 만원");
-                        loanAmount.setText(request.getLoanAmount() + "만원");
+                        Toast.makeText(SendDetailedRequest.this, TempAgent.AGENT_ID + "", Toast.LENGTH_SHORT).show();
+                        requestLimitAmount.setText(StringUtil.toNumFormat(request.getLimiteAmount()) + " 만원");
+                        loanAmount.setText(StringUtil.toNumFormat(Integer.parseInt(request.getLoanAmount())) + "만원");
                         loanType.setText(request.getLoanType());
                         interestLoanType.setText(request.getInterestRateType());
                         jobType.setText(request.getJobType());
-                        scheduledTime.setText(timeUtil.dateFormat.format(request.getScheduledTime()));
-                        switch (request.getLoanType()){
+                        scheduledTime.setText(TimeUtil.dateFormat.format(request.getScheduledTime()));
+                        switch (request.getLoanType()) {
                             case "주택담보대출":
                                 loanTypeImage.setImageResource(R.drawable.dambuu);
                                 break;
@@ -203,14 +208,14 @@ public class SendDetailedRequest extends AppCompatActivity {
     @OnClick(R.id.sendEstimate)
     public void submit(View view) {
 
-        Call<Request> insertEstimate = NetworkManager.service.addRequest(
+        final Call<Request> insertEstimate = NetworkManager.service.addRequest(
                 TempAgent.AGENT_ID,
                 fixedLoanAmount.getText().toString(),
                 requestId,
                 TempAgent.AGENT_ID,
                 request.getItemBank(),
                 itemName.getText().toString(),
-                request.getInterestRate(),
+                loanRate.getText().toString(),
                 request.getInterestRateType(),
                 repaymentType.getText().toString(),
                 overDueInterestRate1.getText().toString(),
@@ -225,13 +230,19 @@ public class SendDetailedRequest extends AppCompatActivity {
             @Override
             public void onResponse(Call<Request> call, Response<Request> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     Log.d(TAG, "Estimate insert Success");
                     Request request = response.body();
                     String msg = request.getMsg();
                     Log.d(TAG, msg);
 
+
+                    //깔끔하지 않음..
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("on", true);
+
+                    startActivity(intent);
                     finish();
                 }
             }
