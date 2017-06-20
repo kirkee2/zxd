@@ -88,9 +88,11 @@ public class AgentFragment extends Fragment {
             public void onResponse(Call<EstimateRes> call, Response<EstimateRes> response) {
                 if (response.isSuccessful()) {
                     EstimateRes estimateRes = response.body();
-                    mEstimates.clear();
-                    mEstimates.addAll(estimateRes.getEstimates());
-                    mMainContentAdapter.notifyDataSetChanged();
+                    if(estimateRes.getMessage().equals("SUCCESS")) {
+                        mEstimates.clear();
+                        mEstimates.addAll(estimateRes.getEstimates());
+                        mMainContentAdapter.notifyDataSetChanged();
+                    }
                 }
             }
 

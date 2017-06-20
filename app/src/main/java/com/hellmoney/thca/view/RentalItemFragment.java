@@ -88,10 +88,12 @@ public class RentalItemFragment extends Fragment {
             public void onResponse(Call<ItemRes> call, Response<ItemRes> response) {
                 if(response.isSuccessful()) {
                     ItemRes results = response.body();
-                    Log.d(TAG, results.getItems().toString());
-                    mItems.clear();
-                    mItems.addAll(results.getItems());
-                    mItemAdapter.notifyDataSetChanged();
+                    if(results.getMessage().equals("SUCCESS")) {
+                        Log.d(TAG, results.getItems().toString());
+                        mItems.clear();
+                        mItems.addAll(results.getItems());
+                        mItemAdapter.notifyDataSetChanged();
+                    }
                 }
             }
 

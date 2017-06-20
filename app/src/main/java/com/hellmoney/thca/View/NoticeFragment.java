@@ -90,10 +90,12 @@ public class NoticeFragment extends Fragment {
             public void onResponse(Call<NoticeRes> call, Response<NoticeRes> response) {
                 if (response.isSuccessful()) {
                     NoticeRes results = response.body();
-                    Log.d(TAG, results.getNotices().toString());
-                    mNotices.clear();
-                    mNotices.addAll(results.getNotices());
-                    mNoticeAdapter.notifyDataSetChanged();
+                    if(results.getMessage().equals("SUCCESS")) {
+                        Log.d(TAG, results.getNotices().toString());
+                        mNotices.clear();
+                        mNotices.addAll(results.getNotices());
+                        mNoticeAdapter.notifyDataSetChanged();
+                    }
                 }
             }
 
