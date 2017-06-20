@@ -136,9 +136,9 @@ public class DetailedEstimate extends AppCompatActivity {
         new LovelyStandardDialog(view.getContext())
                 .setTopColorRes(R.color.colorAccent)
                 .setButtonsColorRes(R.color.darkDeepOrange)
-                .setIcon(R.drawable.icon)
-                .setTitle("진행 변화")
-                .setMessage("상태를 변화하시겠습니가?")
+//                .setIcon(R.drawable.icon)
+//                .setTitle("진행 변화")
+                .setMessage("상태를 변경하시겠습니까?")
                 .setPositiveButton("확인", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -161,9 +161,9 @@ public class DetailedEstimate extends AppCompatActivity {
     public void setThreeStatusView(View view) {
         new LovelyStandardDialog(view.getContext())
                 .setTopColorRes(R.color.colorAccent)
-                .setButtonsColorRes(R.color.darkDeepOrange)
-                .setIcon(R.drawable.icon)
-                .setMessage("진행 상태를 변경합니다.")
+//                .setIcon(R.drawable.icon)
+//                .setTitle("진행 변화")
+                .setMessage("상태를 변경하시겠습니까?")
                 .setPositiveButton("확인", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -187,8 +187,9 @@ public class DetailedEstimate extends AppCompatActivity {
         new LovelyStandardDialog(view.getContext())
                 .setTopColorRes(R.color.colorAccent)
                 .setButtonsColorRes(R.color.darkDeepOrange)
-                .setIcon(R.drawable.icon)
-                .setMessage("진행 상태를 변경합니다.")
+//                .setIcon(R.drawable.icon)
+//                .setTitle("진행 변화")
+                .setMessage("상태를 변경하시겠습니까?")
                 .setPositiveButton("확인", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -397,8 +398,8 @@ public class DetailedEstimate extends AppCompatActivity {
         new LovelyStandardDialog(context)
                 .setTopColorRes(R.color.indigo)
                 .setButtonsColorRes(R.color.darkDeepOrange)
-                .setTitle("진행 변화")
-                .setMessage("상태를 변화하시겠습니가?")
+//                .setTitle("진행 변화")
+                .setMessage("상태를 변경하시겠습니까?")
                 .setPositiveButton("확인", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

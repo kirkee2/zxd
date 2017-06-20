@@ -1,510 +1,528 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.hellmoney.thca.view.ItemDetailActivity">
+
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:fitsSystemWindows="true"
-        tools:context="com.hellmoney.thca.view.ItemDetailActivity"
-        >
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/app_bar_main" />
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:background="#bababa"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:foreground="?attr/selectableItemBackground">
 
-            >
-        <android.support.v4.widget.NestedScrollView
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-            <LinearLayout
+                android:layout_height="match_parent">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginBottom="16dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
-                    android:orientation="vertical"
                     android:background="#ffffff"
+                    android:orientation="vertical"
+                    android:paddingBottom="30dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
 
                     >
-                <LinearLayout
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        >
-                    <LinearLayout
+                        android:orientation="vertical">
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            >
-                        <ImageView
+                            android:orientation="horizontal">
+
+                            <ImageView
                                 android:id="@+id/loanTypeImageView"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:src="@drawable/dambuu"
-                                />
-                        <Space
+                                android:src="@drawable/dambuu" />
+
+                            <Space
                                 android:layout_width="2dp"
                                 android:layout_height="48dp"
-                                android:background="#bdbdbd"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginRight="12dp"
-                                />
-                        <LinearLayout
+                                android:background="#bdbdbd" />
+
+                            <LinearLayout
                                 android:layout_width="231dp"
                                 android:layout_height="48dp"
-                                android:orientation="vertical"
                                 android:layout_gravity="center"
-                                >
-                            <TextView
+                                android:orientation="vertical">
+
+                                <TextView
                                     android:id="@+id/requestAddress"
                                     android:layout_width="match_parent"
                                     android:layout_height="16dp"
-                                    android:textSize="13sp"
-                                    android:textColor="#262637"
                                     android:text="세종특별자치시 세종특별자치시 조치원읍"
-                                    />
-                            <TextView
+                                    android:textColor="#262637"
+                                    android:textSize="13sp" />
+
+                                <TextView
                                     android:id="@+id/requestAddressApt"
                                     android:layout_width="match_parent"
                                     android:layout_height="16dp"
-                                    android:textSize="13sp"
-                                    android:textColor="#262637"
                                     android:text="대덕테크노밸리(11단지)감사"
-                                    />
-                            <TextView
+                                    android:textColor="#262637"
+                                    android:textSize="13sp" />
+
+                                <TextView
                                     android:id="@+id/requestAddressSize"
                                     android:layout_width="match_parent"
                                     android:layout_height="16dp"
-                                    android:textSize="13sp"
-                                    android:textColor="#262637"
                                     android:text="109.42㎡ / 89.98㎡"
-                                    />
+                                    android:textColor="#262637"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                    <Space
+
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
+                            android:layout_height="8dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
                                 android:text="대출한도"
-                                />
-                        <TextView
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 android:id="@+id/requestLimitAmount"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="3.8억"
-                                />
-                    </LinearLayout>
-                    <Space
+                                android:textColor="#262637"
+                                android:textSize="14sp"
+                                tools:text="3.8억" />
+                        </LinearLayout>
+
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
+                            android:layout_height="8dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
                                 android:text="대출금액"
-                                />
-                        <TextView
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 android:id="@+id/loanAmount"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="1.5억"
-                                />
-                    </LinearLayout>
-                    <Space
+                                android:textColor="#262637"
+                                android:textSize="14sp"
+                                tools:text="1.5억" />
+                        </LinearLayout>
+
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
+                            android:layout_height="8dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
                                 android:text="금리종류"
-                                />
-                        <TextView
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 android:id="@+id/typeLoan"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="고정"
-                                />
-                    </LinearLayout>
-                    <Space
+                                android:textColor="#262637"
+                                android:textSize="14sp"
+                                tools:text="고정" />
+                        </LinearLayout>
+
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
+                            android:layout_height="8dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
                                 android:text="금리방식"
-                                />
-                        <TextView
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 android:id="@+id/interestLoanType"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="고정"
-                                />
-                    </LinearLayout>
-                    <Space
+                                android:textColor="#262637"
+                                android:textSize="14sp"
+                                tools:text="고정" />
+                        </LinearLayout>
+
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
+                            android:layout_height="8dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
                                 android:text="직업구분"
-                                />
-                        <TextView
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 android:id="@+id/jobType"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="개인사업자"
-                                />
+                                android:textColor="#262637"
+                                android:textSize="14sp"
+                                tools:text="개인사업자" />
 
-                    </LinearLayout>
-                    <Space
+                        </LinearLayout>
+
+                        <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            />
-                    <LinearLayout
+                            android:layout_height="8dp" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:layout_marginRight="12dp"
                             android:layout_marginLeft="12dp"
-                            android:orientation="horizontal"
-                            >
-                        <TextView
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#757575"
                                 android:text="실행예정일"
-                                />
-                        <TextView
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                            <TextView
                                 android:id="@+id/scheduledTime"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:textSize="14sp"
-                                android:textColor="#262637"
                                 android:gravity="end"
-                                tools:text="17.06.13"
-                                />
-                    </LinearLayout>
+                                android:textColor="#262637"
+                                android:textSize="14sp"
+                                tools:text="17.06.13" />
+                        </LinearLayout>
 
-                    <LinearLayout
+                        <LinearLayout
                             android:id="@+id/bottom"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            >
-                        <View
+                            android:orientation="vertical">
+
+                            <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="#bdbdbd"
-                                android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
-                                />
-                        <RelativeLayout
+                                android:layout_marginTop="10dp"
+                                android:background="#bdbdbd" />
+
+                            <RelativeLayout
                                 android:id="@+id/title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
                                 android:layout_marginLeft="12dp"
-                                android:layout_marginStart="12dp"
-                                >
+                                android:layout_marginStart="12dp">
 
-                            <TextView
+                                <TextView
                                     android:id="@+id/bottomTitle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="18sp"
-                                    android:textColor="#262637"
-                                    android:lineSpacingExtra="9sp"
-                                    android:textStyle="bold"
-                                    android:text="대출조건"
                                     android:layout_centerHorizontal="true"
-                                    />
-
-                            <TextView
-                                    android:id="@+id/callItem"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/ic_item_load"
-                                    android:textSize="12sp"
+                                    android:lineSpacingExtra="9sp"
+                                    android:text="대출조건"
                                     android:textColor="#262637"
-                                    android:lineSpacingExtra="15sp"
-                                    android:gravity="center"
-                                    android:text="불러오기"
-                                    android:layout_alignParentRight="true"
-                                    />
-                        </RelativeLayout>
-                        <Space
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <!--<TextView-->
+                                    <!--android:id="@+id/callItem"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:layout_alignParentRight="true"-->
+                                    <!--android:background="@drawable/ic_item_load"-->
+                                    <!--android:gravity="center"-->
+                                    <!--android:lineSpacingExtra="15sp"-->
+                                    <!--android:text="불러오기"-->
+                                    <!--android:textColor="#262637"-->
+                                    <!--android:textSize="12sp" />-->
+                            </RelativeLayout>
+
+                            <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="8dp"
-                                />
-                        <LinearLayout
+                                android:layout_height="8dp" />
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
-                                android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
-                                android:orientation="horizontal"
-                                >
-                            <TextView
+                                android:layout_marginRight="12dp"
+                                android:orientation="horizontal">
+
+                                <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#757575"
                                     android:text="대출금액"
-                                    />
-                            <EditText
+                                    android:textColor="#757575"
+                                    android:textSize="14sp" />
+
+                                <EditText
                                     android:id="@+id/fixedLoanAmount"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
-                                    android:gravity="end"
-                                    android:singleLine="true"
-                                    android:inputType="number"
-                                    android:digits="0123456789."
-                                    android:hint="10000"
                                     android:background="@null"
-                                    />
-                            <TextView
+                                    android:digits="0123456789."
+                                    android:gravity="end"
+                                    android:hint="10000"
+                                    android:inputType="number"
+                                    android:singleLine="true"
+                                    android:textColor="#262637"
+                                    android:textSize="14sp" />
+
+                                <TextView
                                     android:layout_width="30dp"
                                     android:layout_height="wrap_content"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
                                     android:gravity="end"
                                     android:text="만원"
-                                    />
-                        </LinearLayout>
-                        <Space
+                                    android:textColor="#262637"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="8dp"
-                                />
-                        <LinearLayout
+                                android:layout_height="8dp" />
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
-                                android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
-                                android:orientation="horizontal"
-                                >
-                            <TextView
+                                android:layout_marginRight="12dp"
+                                android:orientation="horizontal">
+
+                                <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#757575"
                                     android:text="금리종류"
-                                    />
-                            <EditText
+                                    android:textColor="#757575"
+                                    android:textSize="14sp" />
+
+                                <EditText
                                     android:id="@+id/itemName"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
+                                    android:background="@null"
                                     android:gravity="end"
                                     android:hint="고정"
                                     android:singleLine="true"
-                                    android:background="@null"
-                                    />
-                            <TextView
+                                    android:textColor="#262637"
+                                    android:textSize="14sp" />
+
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
+                                    android:background="@null"
                                     android:gravity="end"
                                     android:singleLine="true"
-                                    android:background="@null"
                                     android:text="금리"
-                                    />
-                        </LinearLayout>
-                        <Space
+                                    android:textColor="#262637"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="8dp"
-                                />
-                        <LinearLayout
+                                android:layout_height="8dp" />
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
-                                android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
-                                android:orientation="horizontal"
-                                >
-                            <TextView
+                                android:layout_marginRight="12dp"
+                                android:orientation="horizontal">
+
+                                <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#757575"
                                     android:text="금리"
-                                    />
-                            <EditText
+                                    android:textColor="#757575"
+                                    android:textSize="14sp" />
+
+                                <EditText
                                     android:id="@+id/loanRate"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
-                                    android:gravity="end"
-                                    android:singleLine="true"
-                                    android:inputType="numberDecimal"
-                                    android:digits="0123456789."
-                                    android:hint="10"
                                     android:background="@null"
+                                    android:digits="0123456789."
+                                    android:gravity="end"
+                                    android:hint="10"
+                                    android:inputType="numberDecimal"
+                                    android:singleLine="true"
+                                    android:textColor="#262637"
+                                    android:textSize="14sp"
 
                                     />
-                            <TextView
+
+                                <TextView
                                     android:layout_width="30dp"
                                     android:layout_height="wrap_content"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
                                     android:gravity="end"
                                     android:text="%"
-                                    />
-                        </LinearLayout>
-                        <Space
+                                    android:textColor="#262637"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <Space
                                 android:layout_width="match_parent"
-                                android:layout_height="8dp"
-                                />
-                        <LinearLayout
+                                android:layout_height="8dp" />
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
-                                android:layout_marginRight="12dp"
                                 android:layout_marginLeft="12dp"
-                                android:orientation="horizontal"
-                                >
-                            <TextView
+                                android:layout_marginRight="12dp"
+                                android:orientation="horizontal">
+
+                                <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#757575"
                                     android:text="상환방식"
-                                    />
-                            <EditText
+                                    android:textColor="#757575"
+                                    android:textSize="14sp" />
+
+                                <EditText
                                     android:id="@+id/repaymentType"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:textSize="14sp"
-                                    android:textColor="#262637"
-                                    android:gravity="end"
-                                    android:singleLine="true"
-                                    android:hint="ex) 원리금분할상환"
                                     android:background="@null"
+                                    android:gravity="end"
+                                    android:hint="ex) 원리금분할상환"
+                                    android:singleLine="true"
+                                    android:textColor="#262637"
+                                    android:textSize="14sp"
 
                                     />
-                        </LinearLayout>
+                            </LinearLayout>
 
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-                <View
+
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        />
-                <Button
+                        android:layout_height="20dp" />
+
+                    <Button
                         android:id="@+id/sendEstimate"
-                        android:layout_gravity="center_horizontal"
                         android:layout_width="296dp"
                         android:layout_height="48dp"
+                        android:layout_gravity="center_horizontal"
                         android:background="#00bfa5"
-                        android:textStyle=""
-                        android:textSize="18sp"
-                        android:textColor="@color/white"
                         android:text="견적서 전송"
-                        />
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

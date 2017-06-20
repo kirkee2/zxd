@@ -13,6 +13,17 @@ public class Request {
     @SerializedName("msg")
     private String msg;
 
+    @SerializedName("agent_already_estimated")
+    private int agentAlreadyEstimated;
+
+    public int getAgentAlreadyEstimated() {
+        return agentAlreadyEstimated;
+    }
+
+    public void setAgentAlreadyEstimated(int agentAlreadyEstimated) {
+        this.agentAlreadyEstimated = agentAlreadyEstimated;
+    }
+
     @SerializedName("estimate_count")
     private int estiamteCount;
 
