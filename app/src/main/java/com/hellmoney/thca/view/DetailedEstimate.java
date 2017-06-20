@@ -359,7 +359,7 @@ public class DetailedEstimate extends AppCompatActivity {
                     } else {
                         mFrameLayout.setVisibility(View.VISIBLE);
                         mLinearLayout.setVisibility(View.VISIBLE);
-                        phoneNumber.setText(singleEstimate.getPhoneNumber());
+                        phoneNumber.setText( "고객 연락처 : "+ StringUtil.formatPhoneNumber(singleEstimate.getPhoneNumber()));
                     }
 
                 }
