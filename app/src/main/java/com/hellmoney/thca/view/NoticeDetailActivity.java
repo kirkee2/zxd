@@ -36,8 +36,8 @@ public class NoticeDetailActivity extends AppCompatActivity {
     protected ImageView mTypeImageView;
     @BindView(R.id.notice_content_text_view)
     protected TextView mContentTextView;
-    @BindView(R.id.notice_register_time_text_view)
-    protected TextView mRegisterTimeTextView;
+//    @BindView(R.id.notice_register_time_text_view)
+//    protected TextView mRegisterTimeTextView;
 
     private int mNoticeId;
 
@@ -80,8 +80,8 @@ public class NoticeDetailActivity extends AppCompatActivity {
                                 mTypeImageView.setImageResource(R.mipmap.ic_education);
                                 break;
                         }
-                        mContentTextView.setText(notice.getContent());
-                        mRegisterTimeTextView.setText(dateFormat.format(notice.getRegisterTime()));
+                        mContentTextView.setText(notice.getContent().replace("\\n", "\n"));
+//                        mRegisterTimeTextView.setText(dateFormat.format(notice.getRegisterTime()));
                     } else {
                         Log.e(TAG, results.getMessage());
                     }

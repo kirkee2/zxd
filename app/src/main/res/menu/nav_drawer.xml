@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!--TODO : 앱 서비스 하려면 추가해줘야 하는 부분-->
-    <!--<group android:checkableBehavior="single">-->
-        <!--<item-->
-            <!--android:id="@+id/nav_info"-->
-            <!--android:textColor="#757575"-->
-            <!--android:textSize="18sp"-->
-            <!--android:title="퍼센트 이용 안내" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_faq"-->
-            <!--android:textColor="#757575"-->
-            <!--android:textSize="18sp"-->
-            <!--android:title="자주 묻는 질문 (FAQ)" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_contact"-->
-            <!--android:textColor="#757575"-->
-            <!--android:textSize="18sp"-->
-            <!--android:title="연락처 (문의)" />-->
-    <!--</group>-->
+    <!--<item-->
+    <!--android:id="@+id/nav_info"-->
+    <!--android:textColor="#757575"-->
+    <!--android:textSize="18sp"-->
+    <!--android:title="퍼센트 이용 안내" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_faq"-->
+    <!--android:textColor="#757575"-->
+    <!--android:textSize="18sp"-->
+    <!--android:title="자주 묻는 질문 (FAQ)" />-->
+    <item
+        android:id="@+id/nav_contact"
+        android:textColor="#757575"
+        android:textSize="18sp"
+        android:title="고객센터 (연락처)" />
 
     <!--<item android:title="@string/nav_communicate">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_share"-->
-                <!--android:title="@string/nav_share" />-->
-            <!--<item-->
-                <!--android:id="@+id/nav_send"-->
-                <!--android:title="@string/nav_send" />-->
-        <!--</menu>-->
+    <!--<menu>-->
+    <!--<item-->
+    <!--android:id="@+id/nav_share"-->
+    <!--android:title="@string/nav_share" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_send"-->
+    <!--android:title="@string/nav_send" />-->
+    <!--</menu>-->
     <!--</item>-->
 
 </menu>

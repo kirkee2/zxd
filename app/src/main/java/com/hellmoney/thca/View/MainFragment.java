@@ -3,6 +3,7 @@ package com.hellmoney.thca.view;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -25,6 +28,7 @@ import com.hellmoney.thca.util.TimeUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +49,8 @@ public class MainFragment extends Fragment {
     private MainContentAdapter mMainContentAdapter;
     private LinearLayoutManager linearLayoutManager;
     private List<Request> mRequests;
-
+    private RelativeLayout mEmptyDataLayout;
+    private NestedScrollView mNestedScrollView;
 
     public MainFragment() {
     }
@@ -79,6 +84,9 @@ public class MainFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        mNestedScrollView = (NestedScrollView) view.findViewById(R.id.nested_scroll_view);
+        mEmptyDataLayout = (RelativeLayout) view.findViewById(R.id.empty_data_layout);
+
         return view;
     }
 
@@ -93,10 +101,15 @@ public class MainFragment extends Fragment {
             public void onResponse(Call<RequestRes> call, Response<RequestRes> response) {
                 if (response.isSuccessful()) {
                     RequestRes requestRes = response.body();
-                    Log.d("Len", requestRes.getRequests().toString());
-                    mRequests.clear();
-                    mRequests.addAll(requestRes.getRequests());
-                    mMainContentAdapter.notifyDataSetChanged();
+                    if(requestRes.getMessage().equals("SUCCESS")) {
+                        Log.d("Len", requestRes.getRequests().toString());
+                        mRequests.clear();
+                        mRequests.addAll(requestRes.getRequests());
+                        mMainContentAdapter.notifyDataSetChanged();
+                    } else {
+                        mNestedScrollView.setVisibility(View.GONE);
+                        mEmptyDataLayout.setVisibility(View.VISIBLE);
+                    }
                 }
                 Log.d("Len", "MAIN ON");
             }

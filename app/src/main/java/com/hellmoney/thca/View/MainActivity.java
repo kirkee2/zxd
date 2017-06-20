@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
         addFragment(R.id.main_container, MainFragment.newInstance(null, null), MainFragment.TAG);
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,6 +72,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         toggle.syncState();
 
         mNavHeader = mNavigationView.inflateHeaderView(R.layout.nav_header);
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id == R.id.nav_contact) {
+                    startActivity(new Intent(MainActivity.this, ContactActivity.class));
+                }
+                return true;
+            }
+        });
 
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -83,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         //TODO 화면만 전환되고 바텀네빕뷰는 변화없음
         if (agentFragmentChanged) {
-            MenuItem menuItem = mBottomNavigationView.getMenu().getItem(1);
-            onNavigationItemSelected(menuItem);
+//            MenuItem menuItem = mBottomNavigationView.getMenu().getItem(1);
+//            onNavigationItemSelected(menuItem);
 //            replaceFragment(R.id.main_container, AgentFragment.newInstance(null, null), AgentFragment.TAG, AgentFragment.TAG);
 
         }

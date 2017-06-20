@@ -1,9 +1,11 @@
 package com.hellmoney.thca.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -37,6 +39,8 @@ public class SendDetailedRequest extends AppCompatActivity {
     private static final String TAG = SendDetailedRequest.class.getName();
 
     isPost mIsPost;
+
+    private Context mContext;
 
     public interface isPost {
         void isPostSuccess(boolean on);
@@ -75,9 +79,9 @@ public class SendDetailedRequest extends AppCompatActivity {
     @BindView(R.id.scheduledTime)
     TextView scheduledTime;
 
-    //저장된 아이템 불러오는 버튼
-    @BindView(R.id.callItem)
-    TextView callItem;
+//    //저장된 아이템 불러오는 버튼
+//    @BindView(R.id.callItem)
+//    TextView callItem;
 
     @BindView(R.id.fixedLoanAmount)
     EditText fixedLoanAmount;
@@ -132,6 +136,8 @@ public class SendDetailedRequest extends AppCompatActivity {
         setContentView(R.layout.activity_send_detailed_request);
         ButterKnife.bind(this);
 
+        mContext = this;
+
         requestId = (int) getIntent().getSerializableExtra(REQUESTID);
         Log.d(TAG, "RequestID 는" + requestId + "");
 
@@ -159,7 +165,7 @@ public class SendDetailedRequest extends AppCompatActivity {
                         requestAddressSize.setText(request.getSize());
 
 
-                        Toast.makeText(SendDetailedRequest.this, TempAgent.AGENT_ID + "", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SendDetailedRequest.this, TempAgent.AGENT_ID + "", Toast.LENGTH_SHORT).show();
                         requestLimitAmount.setText(StringUtil.toNumFormat(request.getLimiteAmount()) + " 만원");
                         loanAmount.setText(StringUtil.toNumFormat(Integer.parseInt(request.getLoanAmount())) + "만원");
                         loanType.setText(request.getLoanType());
@@ -237,10 +243,15 @@ public class SendDetailedRequest extends AppCompatActivity {
 
 
                     //깔끔하지 않음..
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("on", true);
+//                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                    intent.putExtra("on", true);
+//
+//                    startActivity(intent);
+//                    finish();
 
-                    startActivity(intent);
+                    Toast.makeText(mContext, "견적서가 작성되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    setResult(Activity.RESULT_OK);
                     finish();
                 }
             }

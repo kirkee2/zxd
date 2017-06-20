@@ -2,6 +2,7 @@ package com.hellmoney.thca.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -43,6 +45,7 @@ import retrofit2.Response;
 
 
 public class DetailedRequest extends AppCompatActivity {
+    private final static int REQUEST_EXIT = 1342;
 
     private static final String REQUESTID = "requestId";
     private static final String TAG = DetailedRequest.class.getName();
@@ -95,6 +98,9 @@ public class DetailedRequest extends AppCompatActivity {
     @BindView(R.id.bottomLinear)
     LinearLayout mLinearLayout2;
 
+    @BindView(R.id.empty_data_layout)
+    RelativeLayout mEmptyDataLayout;
+
     @BindView(R.id.star)
     ToggleButton mToggleButton;
 
@@ -131,7 +137,17 @@ public class DetailedRequest extends AppCompatActivity {
 
     @OnClick(R.id.calledAddEstimate)
     void onClick() {
-        startActivity(SendDetailedRequest.getIntent(requestId, mContext));
+        startActivityForResult(SendDetailedRequest.getIntent(requestId, mContext), REQUEST_EXIT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_EXIT) {
+                finish();
+            }
+        }
     }
 
     @Override
@@ -221,7 +237,8 @@ public class DetailedRequest extends AppCompatActivity {
                             averageInterestRate.setText(dformat.format(average) + "%");
                         }
                     } else {
-                        mLinearLayout.setBackgroundResource(R.drawable.pic2);
+                        mEmptyDataLayout.setVisibility(View.VISIBLE);
+                        mLinearLayout.setVisibility(View.GONE);
                         mLinearLayout2.setVisibility(View.GONE);
                         mBarChart.setVisibility(View.GONE);
                     }
@@ -245,10 +262,26 @@ public class DetailedRequest extends AppCompatActivity {
                         Request request = results.getRequest();
 
                         if (request.getEstiamteCount() > 10) {
-                            mButton.setSelected(false);
+                            mButton.setBackgroundColor(Color.parseColor("#cccccc"));
+                            mButton.setClickable(false);
                         }
-                        finalQuotationCount.setText(request.getEstiamteCount() + "");
 
+                        if (request.getAgentAlreadyEstimated() == 1) {
+                            mButton.setText("이미 작성한 요청서입니다.");
+                            mButton.setBackgroundColor(Color.parseColor("#cccccc"));
+                            mButton.setClickable(false);
+                        }
+
+                        finalQuotationCount.setText(String.valueOf(request.getEstiamteCount()));
+
+                        switch (request.getFavorite()) {
+                            case 1:
+                                mToggleButton.setChecked(true);
+                                break;
+                            case 0:
+                                mToggleButton.setChecked(false);
+                                break;
+                        }
                         switch (request.getLoanType()) {
 
                             case "주택담보대출":
@@ -306,7 +339,7 @@ public class DetailedRequest extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
                             if (response.isSuccessful()) {
-                                Toast.makeText(mContext, "좋아요!", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(mContext, "좋아요!", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -321,7 +354,7 @@ public class DetailedRequest extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<LikeRes> call, Response<LikeRes> response) {
                             if (response.isSuccessful()) {
-                                Toast.makeText(mContext, "좋아요를 취소합니다.", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(mContext, "좋아요를 취소합니다.", Toast.LENGTH_SHORT).show();
                             }
                         }
 
