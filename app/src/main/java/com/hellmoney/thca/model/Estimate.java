@@ -20,6 +20,13 @@ public class Estimate {
         return fixedLoanAmount;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @SerializedName("phone_number")
+    private String phoneNumber;
+
     @SerializedName("fixed_loan_amount")
     private String fixedLoanAmount;
 

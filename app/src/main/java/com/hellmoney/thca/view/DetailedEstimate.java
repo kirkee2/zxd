@@ -114,6 +114,9 @@ public class DetailedEstimate extends AppCompatActivity {
     @BindView(R.id.statusImageViewaa)
     ImageView statusImageView;
 
+    @BindView(R.id.phoneNumber)
+    TextView phoneNumber;
+
     @BindView(R.id.your_state_progress_bar_id)
     StateProgressBar stateProgressBar;
 
@@ -278,6 +281,10 @@ public class DetailedEstimate extends AppCompatActivity {
                     loanType.setText(singleEstimate.getLoanType());
                     jobType.setText(singleEstimate.getJobType());
                     scheduledTime.setText(TimeUtil.dateFormat.format(singleEstimate.getScheduledTime()));
+
+                    phoneNumber.setText(singleEstimate.getPhoneNumber());
+
+                    Log.d(TAG, singleEstimate.getPhoneNumber());
 
                     itemName.setText(singleEstimate.getItemName());
 
