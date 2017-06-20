@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,6 +117,9 @@ public class DetailedEstimate extends AppCompatActivity {
 
     @BindView(R.id.phoneNumber)
     TextView phoneNumber;
+
+    @BindView(R.id.linearLayout)
+    LinearLayout mLinearLayout;
 
     @BindView(R.id.your_state_progress_bar_id)
     StateProgressBar stateProgressBar;
@@ -283,7 +287,7 @@ public class DetailedEstimate extends AppCompatActivity {
                     jobType.setText(singleEstimate.getJobType());
                     scheduledTime.setText(TimeUtil.dateFormat.format(singleEstimate.getScheduledTime()));
 
-                    phoneNumber.setText(singleEstimate.getPhoneNumber());
+
 
                     Log.d(TAG, singleEstimate.getPhoneNumber());
 
@@ -348,10 +352,14 @@ public class DetailedEstimate extends AppCompatActivity {
 
                     if ((selectedEstimateId == null)) {
                         mFrameLayout.setVisibility(View.GONE);
+                        mLinearLayout.setVisibility(View.GONE);
                     } else if (!(selectedEstimateId.equals(estimateIdConvertToString))) {
                         mFrameLayout.setVisibility(View.GONE);
+                        mLinearLayout.setVisibility(View.GONE);
                     } else {
                         mFrameLayout.setVisibility(View.VISIBLE);
+                        mLinearLayout.setVisibility(View.VISIBLE);
+                        phoneNumber.setText(singleEstimate.getPhoneNumber());
                     }
 
                 }
