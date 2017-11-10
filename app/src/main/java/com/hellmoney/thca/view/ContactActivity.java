@@ -14,11 +14,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hellmoney.thca.R;
+import com.hellmoney.thca.common.CommonBaseAcitivity;
 
 import java.net.URISyntaxException;
 import java.util.List;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends CommonBaseAcitivity {
     private Toolbar toolbar;
     private ImageView call;
     private ImageView kakaoTalk;

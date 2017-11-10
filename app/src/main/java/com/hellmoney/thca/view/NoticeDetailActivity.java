@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.model.Notice;
-import com.hellmoney.thca.model.NoticeDetailRes;
-import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.common.CommonBaseAcitivity;
+import com.hellmoney.thca.module.network.networkData.Notice;
+import com.hellmoney.thca.module.network.networkData.NoticeDetailRes;
+import com.hellmoney.thca.module.network.NetworkManager;
 
 import java.text.SimpleDateFormat;
 
@@ -21,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NoticeDetailActivity extends AppCompatActivity {
+public class NoticeDetailActivity extends CommonBaseAcitivity {
     private static final String TAG = NoticeDetailActivity.class.getName();
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");

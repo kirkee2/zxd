@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_main"
+        android:id="@+id/bottom_navi_main"
         android:icon="@drawable/bottom_menu_selector_request"
-        android:title="요청목록" />
+        android:title="@string/bottom_navi_main" />
     <item
-        android:id="@+id/navigation_agent"
+        android:id="@+id/bottom_navi_agent"
         android:icon="@drawable/bottom_menu_selector_agent"
-        android:title="내 견적" />
+        android:title="@string/bottom_navi_agent" />
     <item
-        android:id="@+id/navigation_notice"
-        android:icon="@drawable/bottom_menu_selector_notice"
-        android:title="공지사항" />
-    <item
-        android:id="@+id/navigation_item"
+        android:id="@+id/bottom_navi_item"
         android:icon="@drawable/bottom_menu_selector_item"
-        android:title="대출상품" />
+        android:title="@string/bottom_navi_item" />
+    <item
+        android:id="@+id/bottom_navi_notice"
+        android:icon="@drawable/bottom_menu_selector_notice"
+        android:title="@string/bottom_navi_notice" />
 </menu>

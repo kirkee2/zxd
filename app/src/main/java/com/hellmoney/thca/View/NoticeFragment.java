@@ -11,13 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.model.Notice;
-import com.hellmoney.thca.model.NoticeRes;
-import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.module.network.networkData.Notice;
+import com.hellmoney.thca.module.network.networkData.NoticeRes;
+import com.hellmoney.thca.module.network.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.List;

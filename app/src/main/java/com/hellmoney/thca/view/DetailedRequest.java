@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -25,13 +24,14 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
-import com.hellmoney.thca.model.LikeRes;
-import com.hellmoney.thca.model.Request;
-import com.hellmoney.thca.model.RequestRes;
-import com.hellmoney.thca.model.SingleRequestRes;
-import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.StringUtil;
-import com.hellmoney.thca.util.TimeUtil;
+import com.hellmoney.thca.common.CommonBaseAcitivity;
+import com.hellmoney.thca.module.network.networkData.LikeRes;
+import com.hellmoney.thca.module.network.networkData.Request;
+import com.hellmoney.thca.module.network.networkData.RequestRes;
+import com.hellmoney.thca.module.network.networkData.SingleRequestRes;
+import com.hellmoney.thca.module.network.NetworkManager;
+import com.hellmoney.thca.common.util.StringUtil;
+import com.hellmoney.thca.common.util.TimeUtil;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class DetailedRequest extends AppCompatActivity {
+public class DetailedRequest extends CommonBaseAcitivity {
     private final static int REQUEST_EXIT = 1342;
 
     private static final String REQUESTID = "requestId";
@@ -112,7 +112,7 @@ public class DetailedRequest extends AppCompatActivity {
     private int requestId;
     Context mContext;
 
-    protected static Intent getIntent(int id, Context context) {
+    public static Intent getIntent(int id, Context context) {
         Intent intent = new Intent(context, DetailedRequest.class);
         intent.putExtra(REQUESTID, id);
         return intent;

@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!--TODO : 앱 서비스 하려면 추가해줘야 하는 부분-->
-    <!--<item-->
-    <!--android:id="@+id/nav_info"-->
-    <!--android:textColor="#757575"-->
-    <!--android:textSize="18sp"-->
-    <!--android:title="퍼센트 이용 안내" />-->
-    <!--<item-->
-    <!--android:id="@+id/nav_faq"-->
-    <!--android:textColor="#757575"-->
-    <!--android:textSize="18sp"-->
-    <!--android:title="자주 묻는 질문 (FAQ)" />-->
-    <item
-        android:id="@+id/nav_contact"
-        android:textColor="#757575"
-        android:textSize="18sp"
-        android:title="고객센터 (연락처)" />
+    <group android:id="@+id/navi_info_group">
+        <item
+            android:id="@+id/navi_info"
+            android:textColor="#757575"
+            android:textSize="18sp"
+            android:title="@string/navi_info" />
+    </group>
 
+    <group android:id="@+id/navi_faq_group">
+        <item
+            android:id="@+id/navi_faq"
+            android:textColor="#757575"
+            android:textSize="18sp"
+            android:title="@string/navi_faq" />
+    </group>
+
+    <group android:id="@+id/navi_contact_group">
+        <item
+            android:id="@+id/navi_contact"
+            android:textColor="#757575"
+            android:textSize="18sp"
+            android:title="@string/navi_contact" />
+    </group>
     <!--<item android:title="@string/nav_communicate">-->
     <!--<menu>-->
     <!--<item-->

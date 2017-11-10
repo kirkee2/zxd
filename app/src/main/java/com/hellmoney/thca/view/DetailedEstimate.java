@@ -16,12 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.model.Estimate;
-import com.hellmoney.thca.model.SingleEstimateRes;
-import com.hellmoney.thca.model.SingleRes;
-import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.StringUtil;
-import com.hellmoney.thca.util.TimeUtil;
+import com.hellmoney.thca.common.CommonBaseAcitivity;
+import com.hellmoney.thca.module.network.networkData.Estimate;
+import com.hellmoney.thca.module.network.networkData.SingleEstimateRes;
+import com.hellmoney.thca.module.network.networkData.SingleRes;
+import com.hellmoney.thca.module.network.NetworkManager;
+import com.hellmoney.thca.common.util.StringUtil;
+import com.hellmoney.thca.common.util.TimeUtil;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
@@ -35,7 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class DetailedEstimate extends AppCompatActivity {
+public class DetailedEstimate extends CommonBaseAcitivity {
 
     private static final String ESTIMATEID = "estimateId";
     private static final String TAG = DetailedEstimate.class.getName();

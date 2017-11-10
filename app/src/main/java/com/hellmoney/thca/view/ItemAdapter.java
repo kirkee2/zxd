@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.model.Item;
+import com.hellmoney.thca.module.network.networkData.Item;
 
 import java.util.List;
 

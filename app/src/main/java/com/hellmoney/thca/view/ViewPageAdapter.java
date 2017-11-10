@@ -2,15 +2,7 @@ package com.hellmoney.thca.view;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.hellmoney.thca.view.AgentFragment;
-import com.hellmoney.thca.view.ItemFragment;
-import com.hellmoney.thca.view.MainFragment;
-import com.hellmoney.thca.view.NoticeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

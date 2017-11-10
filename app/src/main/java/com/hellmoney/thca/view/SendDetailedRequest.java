@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,11 +18,12 @@ import android.widget.Toast;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
-import com.hellmoney.thca.model.Request;
-import com.hellmoney.thca.model.SingleRequestRes;
-import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.StringUtil;
-import com.hellmoney.thca.util.TimeUtil;
+import com.hellmoney.thca.common.CommonBaseAcitivity;
+import com.hellmoney.thca.module.network.networkData.Request;
+import com.hellmoney.thca.module.network.networkData.SingleRequestRes;
+import com.hellmoney.thca.module.network.NetworkManager;
+import com.hellmoney.thca.common.util.StringUtil;
+import com.hellmoney.thca.common.util.TimeUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SendDetailedRequest extends AppCompatActivity {
+public class SendDetailedRequest extends CommonBaseAcitivity {
 
     private static final String REQUESTID = "requestId";
     private static final String TAG = SendDetailedRequest.class.getName();

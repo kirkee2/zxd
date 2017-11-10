@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
-import com.hellmoney.thca.model.Item;
-import com.hellmoney.thca.model.ItemRes;
-import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.module.network.networkData.Item;
+import com.hellmoney.thca.module.network.networkData.ItemRes;
+import com.hellmoney.thca.module.network.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.List;

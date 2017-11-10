@@ -15,11 +15,11 @@ import android.widget.TextView;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
-import com.hellmoney.thca.model.Estimate;
-import com.hellmoney.thca.model.EstimateRes;
-import com.hellmoney.thca.network.NetworkManager;
-import com.hellmoney.thca.util.StringUtil;
-import com.hellmoney.thca.util.TimeUtil;
+import com.hellmoney.thca.module.network.networkData.Estimate;
+import com.hellmoney.thca.module.network.networkData.EstimateRes;
+import com.hellmoney.thca.module.network.NetworkManager;
+import com.hellmoney.thca.common.util.StringUtil;
+import com.hellmoney.thca.common.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.hellmoney.thca.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,13 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.TempAgent;
-import com.hellmoney.thca.model.Item;
-import com.hellmoney.thca.model.ItemRes;
-import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.module.network.networkData.Item;
+import com.hellmoney.thca.module.network.networkData.ItemRes;
+import com.hellmoney.thca.module.network.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.List;

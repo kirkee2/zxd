@@ -7,14 +7,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.model.Item;
-import com.hellmoney.thca.model.ItemDetailRes;
-import com.hellmoney.thca.network.NetworkManager;
+import com.hellmoney.thca.common.CommonBaseAcitivity;
+import com.hellmoney.thca.module.network.networkData.Item;
+import com.hellmoney.thca.module.network.networkData.ItemDetailRes;
+import com.hellmoney.thca.module.network.NetworkManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ItemDetailActivity extends AppCompatActivity {
+public class ItemDetailActivity extends CommonBaseAcitivity {
     private static final String TAG = ItemDetailActivity.class.getName();
 
     public static final String EXTRA_ITEM_ID = "extra-item-id";
