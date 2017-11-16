@@ -1,5 +1,8 @@
 package com.hellmoney.thca.module.network.networkData;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -8,7 +11,11 @@ import java.util.Date;
  * Created by len on 2017. 6. 15..
  */
 
-public class Estimate {
+public class Estimate implements Parcelable {
+
+    public Estimate(Parcel in) {
+        readFromParcel(in);
+    }
 
     @SerializedName("msg")
     private String msg;
@@ -269,4 +276,97 @@ public class Estimate {
     public String getEarlyRepaymentFee() {
         return earlyRepaymentFee;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.msg);
+        dest.writeSerializable(this.scheduledTime);
+        dest.writeString(this.phoneNumber);
+        dest.writeString(this.fixedLoanAmount);
+        dest.writeInt(this.estimateId);
+        dest.writeString(this.status);
+        dest.writeSerializable(this.endTime);
+        dest.writeString(this.address1);
+        dest.writeString(this.address2);
+        dest.writeString(this.address3);
+        dest.writeString(this.aptName);
+        dest.writeString(this.kbId);
+        dest.writeString(this.price);
+        dest.writeFloat(this.supplySize);
+        dest.writeFloat(this.exclusiveSize);
+        dest.writeInt(this.requestId);
+        dest.writeString(this.agentId);
+        dest.writeString(this.registerTime);
+        dest.writeString(this.itemBank);
+        dest.writeString(this.itemName);
+        dest.writeString(this.interestRate);
+        dest.writeString(this.interestRateType);
+        dest.writeString(this.repaymentType);
+        dest.writeString(this.overdueInterestRate1);
+        dest.writeString(this.overdueInterestRate2);
+        dest.writeString(this.overdueInterestRate3);
+        dest.writeString(this.overdueTime1);
+        dest.writeString(this.overdueTime2);
+        dest.writeString(this.overdueTime3);
+        dest.writeString(this.earlyRepaymentFee);
+        dest.writeString(this.jobType);
+        dest.writeString(this.overdueRecord);
+        dest.writeString(this.loanType);
+        dest.writeString(this.loanAmount);
+        dest.writeString(this.selectedEstimateId);
+    }
+
+    private void readFromParcel(Parcel in){
+        this.msg = in.readString();
+        this.scheduledTime = (java.util.Date) in.readSerializable();
+        this.phoneNumber = in.readString();
+        this.fixedLoanAmount = in.readString();
+        this.estimateId = in.readInt();
+        this.status = in.readString();
+        this.endTime = (java.util.Date) in.readSerializable();
+        this.address1 = in.readString();
+        this.address2 = in.readString();
+        this.address3 = in.readString();
+        this.aptName = in.readString();
+        this.kbId = in.readString();
+        this.price = in.readString();
+        this.supplySize = in.readFloat();
+        this.exclusiveSize = in.readFloat();
+        this.requestId = in.readInt();
+        this.agentId = in.readString();
+        this.registerTime = in.readString();
+        this.itemBank = in.readString();
+        this.itemName = in.readString();
+        this.interestRate = in.readString();
+        this.interestRateType = in.readString();
+        this.repaymentType = in.readString();
+        this.overdueInterestRate1 = in.readString();
+        this.overdueInterestRate2 = in.readString();
+        this.overdueInterestRate3 = in.readString();
+        this.overdueTime1 = in.readString();
+        this.overdueTime2 = in.readString();
+        this.overdueTime3 = in.readString();
+        this.earlyRepaymentFee = in.readString();
+        this.jobType = in.readString();
+        this.overdueRecord = in.readString();
+        this.loanType = in.readString();
+        this.loanAmount = in.readString();
+        this.selectedEstimateId = in.readString();
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Estimate createFromParcel(Parcel in) {
+            return new Estimate(in);
+        }
+
+        @Override
+        public Estimate[] newArray(int size) {
+            return new Estimate[size];
+        }
+    };
 }

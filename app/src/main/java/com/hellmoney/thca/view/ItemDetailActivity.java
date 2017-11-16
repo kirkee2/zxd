@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ItemDetailActivity extends CommonBaseAcitivity {
+public class ItemDetailActivity extends AppCompatActivity {
     private static final String TAG = ItemDetailActivity.class.getName();
 
     public static final String EXTRA_ITEM_ID = "extra-item-id";

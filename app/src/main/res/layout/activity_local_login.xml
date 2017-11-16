@@ -84,6 +84,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/region1" />
 
+
+    <EditText
+        android:id="@+id/phoneNumber"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="핸드폰 번호를 적어주세요."
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/requestAuth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/region2" />
+
+    <Button
+        android:id="@id/requestAuth"
+        android:text="인증 요청"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/region2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/phoneNumber" />
+
+    <EditText
+        android:id="@+id/authCheck"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="인증번호를 눌러주세요."
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/assign"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumber" />
+
+    <Button
+        android:id="@id/assign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/authCheck"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumber" />
+
     <Button
         android:id="@+id/signup"
         android:text="회원 가입"
@@ -92,4 +133,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateTint="@color/progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>

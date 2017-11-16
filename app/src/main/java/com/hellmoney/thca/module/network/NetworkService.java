@@ -12,6 +12,9 @@ import com.hellmoney.thca.module.network.networkData.RequestRes;
 import com.hellmoney.thca.module.network.networkData.SingleEstimateRes;
 import com.hellmoney.thca.module.network.networkData.SingleRequestRes;
 import com.hellmoney.thca.module.network.networkData.SingleRes;
+import com.hellmoney.thca.module.network.networkData.SingleResActivity;
+import com.hellmoney.thca.module.network.networkData.SingleResCount;
+import com.hellmoney.thca.module.network.networkData.SingleResData;
 import com.hellmoney.thca.module.network.networkData.User;
 
 import retrofit2.Call;
@@ -25,16 +28,36 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface NetworkService {
+
+    @FormUrlEncoded
+    @POST("/consultants/agents/reviewCount")
+    Call<SingleResCount> reviewCount(@Field("agentId") String agentId);
+
+    @FormUrlEncoded
+    @POST("/consultants/agents/activity")
+    Call<SingleResActivity> activityCount(@Field("agentId") String agentId);
+
+    @FormUrlEncoded
+    @POST("/clients/customers/sendSms")
+    Call<SingleResData> phoneAuth(@Field("phoneNum") String phoneNum);
+
+    @FormUrlEncoded
+    @POST("/consultants/agents/member")
+    Call<SingleResData> isLocalLogin(@Field("agentId") String agentId);
+
     @FormUrlEncoded
     @POST("/consultants/agents/joinSvc")
     Call<SingleRes> signupLocal(@Field("name") String name,
-                           @Field("nickname") String nickname,
-                           @Field("greeting") String greeting,
-                           @Field("bankCode") int bankCode,
-                           @Field("companyName") String companyName,
-                           @Field("registerNumber") int registerNumber,
-                           @Field("region1") String region1,
-                           @Field("region2") String region2);
+                                @Field("nickname") String nickname,
+                                @Field("greeting") String greeting,
+                                @Field("bankCode") int bankCode,
+                                @Field("companyName") String companyName,
+                                @Field("registerNumber") int registerNumber,
+                                @Field("region1") String region1,
+                                @Field("region2") String region2,
+                                @Field("character") int character,
+                                @Field("phoneNumber") String phoneNumber,
+                                @Field("agentId") String agentId);
 
     @FormUrlEncoded
     @POST("/consultant/login")
@@ -60,7 +83,7 @@ public interface NetworkService {
                              @Field("interestRate") String interestRate,
                              @Field("interestRateType") String interestRateType,
                              @Field("repaymentType") String repaymentType
-                             );
+    );
 
 //    @Field("overdueInterestRate1") String overdueInterestRate1,
 //    @Field("overdueInterestRate2") String overdueInterestRate2,

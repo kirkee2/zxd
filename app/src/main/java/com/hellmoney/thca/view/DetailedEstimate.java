@@ -36,7 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class DetailedEstimate extends CommonBaseAcitivity {
+public class DetailedEstimate extends AppCompatActivity {
 
     private static final String ESTIMATEID = "estimateId";
     private static final String TAG = DetailedEstimate.class.getName();
@@ -216,7 +216,7 @@ public class DetailedEstimate extends CommonBaseAcitivity {
 
     private int estimateId;
 
-    protected static Intent getIntent(int id, Context context) {
+    public static Intent getIntent(int id, Context context) {
         Intent intent = new Intent(context, DetailedEstimate.class);
         intent.putExtra(ESTIMATEID, id);
         return intent;

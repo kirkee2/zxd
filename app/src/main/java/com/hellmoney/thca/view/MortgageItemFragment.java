@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hellmoney.thca.R;
-import com.hellmoney.thca.TempAgent;
+import com.hellmoney.thca.common.CommonBaseFragment;
 import com.hellmoney.thca.module.network.networkData.Item;
 import com.hellmoney.thca.module.network.networkData.ItemRes;
 import com.hellmoney.thca.module.network.NetworkManager;
@@ -25,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MortgageItemFragment extends Fragment {
+public class MortgageItemFragment extends CommonBaseFragment {
     public static final String TAG = MortgageItemFragment.class.getName();
     public static final String NAME = "주택담보대출";
 
@@ -82,7 +82,7 @@ public class MortgageItemFragment extends Fragment {
         super.onResume();
         mItemAdapter = new ItemAdapter(mContext, mItems);
         mRecyclerView.setAdapter(mItemAdapter);
-        Call<ItemRes> geItemsByAgentId = NetworkManager.service.getItemsByAgentId(TempAgent.AGENT_ID, this.NAME);
+        Call<ItemRes> geItemsByAgentId = NetworkManager.service.getItemsByAgentId(kakaoId, this.NAME);
         geItemsByAgentId.enqueue(new Callback<ItemRes>() {
             @Override
             public void onResponse(Call<ItemRes> call, Response<ItemRes> response) {

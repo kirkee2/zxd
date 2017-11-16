@@ -2,6 +2,7 @@ package com.hellmoney.thca.module.network.networkData;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class RequestRes {
     @SerializedName("msg")
     private String message;
     @SerializedName("data")
-    private List<Request> mRequests;
+    private ArrayList<Request> mRequests;
 
     public String getMessage() {
         return message;
@@ -23,11 +24,11 @@ public class RequestRes {
         this.message = message;
     }
 
-    public List<Request> getRequests() {
+    public ArrayList<Request> getRequests() {
         return mRequests;
     }
 
-    public void setRequests(List<Request> requests) {
+    public void setRequests(ArrayList<Request> requests) {
         mRequests = requests;
     }
 }

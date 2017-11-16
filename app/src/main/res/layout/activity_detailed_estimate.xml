@@ -1,118 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context="com.hellmoney.thca.view.ItemDetailActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F6"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F5F5F6"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:orientation="vertical">
 
-    <FrameLayout
-            android:id="@+id/topContainer"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="16dp">
-
-            <com.kofigyan.stateprogressbar.StateProgressBar
-                android:id="@+id/your_state_progress_bar_id"
+            <FrameLayout
+                android:id="@+id/topContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:spb_animateToCurrentProgressState="true"
-                app:spb_currentStateDescriptionColor="#009688"
-                app:spb_currentStateNumber="one"
-                app:spb_descriptionTopSpaceIncrementer="10dp"
-                app:spb_maxStateNumber="four"
-                app:spb_stateBackgroundColor="#BDBDBD"
-                app:spb_stateDescriptionColor="#808080"
-                app:spb_stateForegroundColor="#009688"
-                app:spb_stateLineThickness="10dp"
-                app:spb_stateNumberBackgroundColor="#808080"
-                app:spb_stateNumberForegroundColor="#eeeeee"
-                app:spb_stateTextSize="20sp" />
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp">
+
+                <com.kofigyan.stateprogressbar.StateProgressBar
+                    android:id="@+id/your_state_progress_bar_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    app:spb_animateToCurrentProgressState="true"
+                    app:spb_currentStateDescriptionColor="#009688"
+                    app:spb_currentStateNumber="one"
+                    app:spb_descriptionTopSpaceIncrementer="10dp"
+                    app:spb_maxStateNumber="four"
+                    app:spb_stateBackgroundColor="#BDBDBD"
+                    app:spb_stateDescriptionColor="#808080"
+                    app:spb_stateForegroundColor="#009688"
+                    app:spb_stateLineThickness="10dp"
+                    app:spb_stateNumberBackgroundColor="#808080"
+                    app:spb_stateNumberForegroundColor="#eeeeee"
+                    app:spb_stateTextSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/oneStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <View
+                        android:id="@+id/twoStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <View
+                        android:id="@+id/threeStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <View
+                        android:id="@+id/fourStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </FrameLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
-
-                <View
-                    android:id="@+id/oneStatus"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <View
-                    android:id="@+id/twoStatus"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <View
-                    android:id="@+id/threeStatus"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <View
-                    android:id="@+id/fourStatus"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-        </FrameLayout>
-        <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical"
-                >
-            <TextView
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+                <TextView
                     android:id="@+id/phoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:text="전화 번호"
                     android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:background="@color/white"
-                    />
+                    android:gravity="center"
+                    android:text="전화 번호"
+                    android:textSize="16sp" />
 
-        </LinearLayout>
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -133,18 +132,18 @@
                     android:paddingStart="16dp">
 
                     <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
 
-                            >
+                        >
 
-                    <RelativeLayout
+                        <RelativeLayout
                             android:id="@+id/top"
                             android:layout_width="match_parent"
                             android:layout_height="40dp">
 
-                        <TextView
+                            <TextView
                                 android:id="@+id/estimateTextStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -153,7 +152,7 @@
                                 android:textSize="15sp"
                                 tools:text="견적진행" />
 
-                        <TextView
+                            <TextView
                                 android:id="@+id/endTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -163,7 +162,7 @@
                                 android:textSize="15sp"
                                 tools:text="마감 01시간 20분 전" />
 
-                    </RelativeLayout>
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="match_parent"
@@ -586,6 +585,6 @@
                     android:layout_alignTop="@+id/container"
                     android:src="@drawable/myestiamte_ing" />
             </RelativeLayout>
-        </android.support.v4.widget.NestedScrollView>
-    </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

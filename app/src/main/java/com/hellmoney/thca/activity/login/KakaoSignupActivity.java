@@ -18,17 +18,27 @@ package com.hellmoney.thca.activity.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.hellmoney.thca.R;
 import com.hellmoney.thca.activity.MainActivity;
 import com.hellmoney.thca.activity.SplashScreenActivity;
 import com.hellmoney.thca.common.util.SharedReferenceUtil;
+import com.hellmoney.thca.module.network.NetworkManager;
+import com.hellmoney.thca.module.network.networkData.SingleEstimateRes;
+import com.hellmoney.thca.module.network.networkData.SingleRequestRes;
+import com.hellmoney.thca.module.network.networkData.SingleRes;
+import com.hellmoney.thca.module.network.networkData.SingleResData;
 import com.kakao.auth.ErrorCode;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * 유효한 세션이 있다는 검증 후
@@ -67,18 +77,38 @@ public class KakaoSignupActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onSuccess(UserProfile userProfile) {
-                Intent successIntent;
+            public void onSuccess(final UserProfile userProfile) {
+                final Call<SingleResData> isLocalLogin = NetworkManager.service.isLocalLogin(String.valueOf(userProfile.getId()));
 
-                if(SharedReferenceUtil.getLocalLogin() == false){
-                    successIntent = new Intent(KakaoSignupActivity.this, LocalLoginActivity.class);
-                    successIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(successIntent);
-                }else{
-                    successIntent = new Intent(KakaoSignupActivity.this, MainActivity.class);
-                    successIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(successIntent);
-                }
+                isLocalLogin.enqueue(new Callback<SingleResData>() {
+                    @Override
+                    public void onResponse(Call<SingleResData> call, Response<SingleResData> response) {
+                        Intent successIntent;
+
+                        if (response.isSuccessful()) {
+                            SingleResData singleRes = response.body();
+                            String msg = singleRes.getMsg();
+
+                            if ("SUCCESS".equals(msg)) {
+                                successIntent = new Intent(KakaoSignupActivity.this, MainActivity.class);
+                                successIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(successIntent);
+                            } else {
+                                successIntent = new Intent(KakaoSignupActivity.this, KakaoLoginActivity.class);
+                                successIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(successIntent);
+                            }
+
+                        }else{
+                            Log.e("????"," ??? " + response.body() + " ??? " + response.message() + " ??? " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SingleResData> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override

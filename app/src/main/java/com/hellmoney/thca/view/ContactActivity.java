@@ -19,7 +19,7 @@ import com.hellmoney.thca.common.CommonBaseAcitivity;
 import java.net.URISyntaxException;
 import java.util.List;
 
-public class ContactActivity extends CommonBaseAcitivity {
+public class ContactActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView call;
     private ImageView kakaoTalk;
